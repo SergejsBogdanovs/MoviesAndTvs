@@ -28,13 +28,13 @@ android {
 
 }
 
-//def API_URL = System.getenv("API_URL") ?: apiUrl
-//def API_KEY = System.getenv("API_KEY") ?: apiKey
-//
-//android.buildTypes.each { type ->
-//    type.buildConfigField "String", "API_URL", "\"$API_URL\""
-//    type.buildConfigField "String", "API_KEY", "\"$API_KEY\""
-//}
+def API_URL = System.getenv("API_URL") ?: apiUrl
+def API_KEY = System.getenv("API_KEY") ?: apiKey
+
+android.buildTypes.each { type ->
+    type.buildConfigField "String", "API_URL", "\"$API_URL\""
+    type.buildConfigField "String", "API_KEY", "\"$API_KEY\""
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
