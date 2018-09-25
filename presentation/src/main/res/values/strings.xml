@@ -3,4 +3,7 @@
 
     <!--Warning/Error Messages-->
     <string name="unknown_error">Unknown error</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
