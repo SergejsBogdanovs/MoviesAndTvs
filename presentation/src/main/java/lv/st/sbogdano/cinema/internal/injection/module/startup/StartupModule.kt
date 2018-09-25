@@ -31,8 +31,8 @@ internal class StartupModule {
                     modelClass.isAssignableFrom(StartupViewModel::class.java) ->
                         StartupViewModel(context, genresGetAllUseCase) as T
 
-//                    modelClass.isAssignableFrom(GenreViewModel::class.java) ->
-//                        GenreViewModel(context, genresGetAllUseCase) as T
+//                    modelClass.isAssignableFrom(GenreTypeViewModel::class.java) ->
+//                        GenreTypeViewModel(context, genresGetAllUseCase) as T
 
                     else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                 }

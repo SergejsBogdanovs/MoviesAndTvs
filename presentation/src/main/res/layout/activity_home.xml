@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="lv.st.sbogdano.cinema.movie.genre.GenreViewModel"/>
+            type="lv.st.sbogdano.cinema.movie.genre.GenreTypeViewModel"/>
     </data>
 
 
