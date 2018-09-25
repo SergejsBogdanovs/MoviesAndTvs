@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_home.*
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.ActivityHomeBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
@@ -27,7 +28,10 @@ class HomeActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setActionBar()
+        setSupportActionBar(binder.toolbar)
 
+        binder.viewModel = viewModel
+
+        viewModel.loadGenreTypeList()
     }
 }
