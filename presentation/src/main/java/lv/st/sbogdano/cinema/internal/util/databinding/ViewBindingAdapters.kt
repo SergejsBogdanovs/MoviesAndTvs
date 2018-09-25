@@ -1,9 +1,9 @@
 package lv.st.sbogdano.cinema.internal.util.databinding
 
-import android.databinding.BindingAdapter
 import android.support.design.widget.BaseTransientBottomBar
 import android.support.design.widget.Snackbar
 import android.view.View
+import androidx.databinding.BindingAdapter
 
 object ViewBindingAdapters {
 

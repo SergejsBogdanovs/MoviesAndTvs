@@ -6,7 +6,6 @@ import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import io.reactivex.Maybe
 import lv.st.sbogdano.data.local.model.GenreTypeLocalModel
-import lv.st.sbogdano.domain.entity.GenreType
 
 @Dao
 interface GenreTypeDao {

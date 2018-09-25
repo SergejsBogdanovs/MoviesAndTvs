@@ -3,15 +3,14 @@ package lv.st.sbogdano.cinema.startup
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.adapters.ViewBindingAdapter
 import android.os.Bundle
 import android.support.design.widget.BaseTransientBottomBar
 import android.support.design.widget.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
 import lv.st.sbogdano.cinema.internal.util.databinding.ViewBindingAdapters
+import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
 import javax.inject.Inject
-import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 
 
 class StartupActivity : DaggerAppCompatActivity() {

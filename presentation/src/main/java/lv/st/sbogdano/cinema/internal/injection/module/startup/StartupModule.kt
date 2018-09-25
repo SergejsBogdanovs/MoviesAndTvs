@@ -10,7 +10,6 @@ import lv.st.sbogdano.cinema.startup.StartupViewModel
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.SystemGateway
 import lv.st.sbogdano.domain.interactor.GenreTypeGetAllUseCase
-import java.lang.IllegalArgumentException
 
 @Module
 internal class StartupModule {
@@ -32,8 +31,8 @@ internal class StartupModule {
                     modelClass.isAssignableFrom(StartupViewModel::class.java) ->
                         StartupViewModel(context, genresGetAllUseCase) as T
 
-//                    modelClass.isAssignableFrom(GenresViewModel::class.java) ->
-//                        GenresViewModel(context, genresGetAllUseCase) as T
+//                    modelClass.isAssignableFrom(GenreViewModel::class.java) ->
+//                        GenreViewModel(context, genresGetAllUseCase) as T
 
                     else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                 }
