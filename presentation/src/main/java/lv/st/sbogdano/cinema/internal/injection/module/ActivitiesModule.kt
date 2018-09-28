@@ -13,4 +13,8 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector(modules = [StartupModule::class])
     internal abstract fun contributeStartupActivity(): StartupActivity
 
+//    @HomeScope
+//    @ContributesAndroidInjector(modules = [HomeModule::class])
+//    internal abstract fun contributeHomeActivity(): StartupActivity
+
 }

@@ -7,27 +7,28 @@ import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
 import lv.st.sbogdano.cinema.internal.util.SingleLiveData
-import lv.st.sbogdano.domain.entity.GenreType
-import lv.st.sbogdano.domain.interactor.GenreTypeGetAllUseCase
+import lv.st.sbogdano.domain.entity.Movie
+import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 
 class StartupViewModel(context: Context,
-                       private val genreTypeGetAllUseCase: GenreTypeGetAllUseCase
-) : BaseAndroidViewModel(context.applicationContext as Application) {
+                       private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase)
+    : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val _result = SingleLiveData<Boolean>()
     val result = _result
     private val _error = SingleLiveData<String>()
     val error = _error
 
-    fun startup() = addDisposable(getAllGenreTypes())
+    fun startup(type: String, refresh: Boolean = true) = addDisposable(getMoviesByType(type, refresh))
 
-    private fun getAllGenreTypes(): Disposable {
-        return genreTypeGetAllUseCase.execute()
-                .subscribeWith(object : DisposableObserver<List<GenreType>>() {
+    private fun getMoviesByType(type: String, refresh: Boolean): Disposable {
+        val params = Pair(type, refresh)
+        return moviesByTypeGetAllUseCase.execute(params)
+                .subscribeWith(object : DisposableObserver<List<Movie>>() {
                     override fun onComplete() {
                     }
 
-                    override fun onNext(t: List<GenreType>) {
+                    override fun onNext(t: List<Movie>) {
                         result.value = true
                     }
 

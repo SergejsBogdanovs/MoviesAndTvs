@@ -8,31 +8,30 @@ import dagger.Provides
 import lv.st.sbogdano.cinema.internal.injection.scope.StartupScope
 import lv.st.sbogdano.cinema.startup.StartupViewModel
 import lv.st.sbogdano.domain.Schedulers
-import lv.st.sbogdano.domain.gateway.SystemGateway
-import lv.st.sbogdano.domain.interactor.GenreTypeGetAllUseCase
+import lv.st.sbogdano.domain.gateway.Gateway
+import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 
 @Module
 internal class StartupModule {
 
     @StartupScope
     @Provides
-    internal fun provideGenreTypeGetAllUseCase(schedulers: Schedulers,
-                                               systemGateWay: SystemGateway): GenreTypeGetAllUseCase {
-        return GenreTypeGetAllUseCase(schedulers, systemGateWay)
+    internal fun provideMoviesByTypeGetAllUseCase(schedulers: Schedulers,
+                                                  gateway: Gateway): MoviesByTypeGetAllUseCase {
+        return MoviesByTypeGetAllUseCase(schedulers, gateway)
     }
 
     @Provides
     internal fun provideViewModelFactory(context: Context,
-                                         genresGetAllUseCase: GenreTypeGetAllUseCase): ViewModelProvider.Factory {
+                                         moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase): ViewModelProvider.Factory {
 
         return object : ViewModelProvider.Factory {
+
+            @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return when {
                     modelClass.isAssignableFrom(StartupViewModel::class.java) ->
-                        StartupViewModel(context, genresGetAllUseCase) as T
-
-//                    modelClass.isAssignableFrom(GenreTypeViewModel::class.java) ->
-//                        GenreTypeViewModel(context, genresGetAllUseCase) as T
+                        StartupViewModel(context, moviesByTypeGetAllUseCase) as T
 
                     else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                 }

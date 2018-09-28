@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.BaseTransientBottomBar
 import android.support.design.widget.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
+import lv.st.sbogdano.cinema.internal.util.PreferencesHelper
 import lv.st.sbogdano.cinema.internal.util.databinding.ViewBindingAdapters
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
@@ -17,9 +18,10 @@ class StartupActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
     @Inject
     lateinit var navigator: Navigator
+    @Inject
+    lateinit var preferencesHelper: PreferencesHelper
 
     private val viewModel by lazyThreadSafetyNone {
         ViewModelProviders.of(this, viewModelFactory).get(StartupViewModel::class.java)
@@ -41,6 +43,6 @@ class StartupActivity : DaggerAppCompatActivity() {
                     })
         })
 
-        viewModel.startup()
+        viewModel.startup(preferencesHelper.movieType)
     }
 }

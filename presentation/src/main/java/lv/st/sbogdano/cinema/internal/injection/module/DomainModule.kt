@@ -2,10 +2,9 @@ package lv.st.sbogdano.cinema.internal.injection.module
 
 import dagger.Module
 import dagger.Provides
-import lv.st.sbogdano.data.gateway.SystemGatewayImpl
 import lv.st.sbogdano.domain.Schedulers
-import lv.st.sbogdano.domain.gateway.SystemGateway
-import lv.st.sbogdano.domain.interactor.GenreTypeGetAllUseCase
+import lv.st.sbogdano.domain.gateway.Gateway
+import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 import javax.inject.Singleton
 
 @Module
@@ -13,8 +12,8 @@ class DomainModule {
 
     @Provides
     @Singleton
-    internal fun provideGenreTypeGetAllUseCase(schedulers: Schedulers,
-                                               systemGateWay: SystemGateway): GenreTypeGetAllUseCase {
-        return GenreTypeGetAllUseCase(schedulers, systemGateWay)
+    internal fun provideMoviesByTypeGetAllUseCase(schedulers: Schedulers,
+                                               gateway: Gateway): MoviesByTypeGetAllUseCase {
+        return MoviesByTypeGetAllUseCase(schedulers, gateway)
     }
 }

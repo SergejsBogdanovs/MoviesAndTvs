@@ -8,7 +8,7 @@ import lv.st.sbogdano.data.BuildConfig
 import lv.st.sbogdano.data.remote.api.util.AuthenticatorInterceptor
 import lv.st.sbogdano.data.remote.api.util.MoshiConverters
 import lv.st.sbogdano.data.remote.api.util.RetryAfterInterceptor
-import lv.st.sbogdano.data.remote.model.GenreTypeRemoteModel
+import lv.st.sbogdano.data.remote.model.MovieRemoteModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BASIC
@@ -56,6 +56,6 @@ class CinemaApi(baseUrl: String) : CinemaService {
         service = retrofit.create(CinemaService::class.java)
     }
 
-    override fun getGenreTypes(): Observable<List<GenreTypeRemoteModel>> = service.getGenreTypes()
+    override fun getMoviesByType(type: String): Observable<List<MovieRemoteModel>> = service.getMoviesByType(type)
 
 }

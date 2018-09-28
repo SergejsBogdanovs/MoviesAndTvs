@@ -1,36 +1,41 @@
 package lv.st.sbogdano.cinema.home
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
+import android.support.v4.view.ViewPager
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_home.*
 import lv.st.sbogdano.cinema.R
-import lv.st.sbogdano.cinema.databinding.ActivityHomeBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
-import lv.st.sbogdano.cinema.movie.genre.GenreTypeViewModel
-import javax.inject.Inject
+import lv.st.sbogdano.cinema.movie.type.adapter.MovieTypePagerAdapter
 
 class HomeActivity : DaggerAppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
     private val binder by lazyThreadSafetyNone<ActivityHomeBinding> {
         DataBindingUtil.setContentView(this, R.layout.activity_home)
-    }
-
-    private val viewModel by lazyThreadSafetyNone {
-        ViewModelProviders.of(this, viewModelFactory).get(GenreTypeViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(binder.toolbar)
+        setMovieTypeAdapter()
+    }
 
-        binder.viewModel = viewModel
+    private fun setMovieTypeAdapter() {
 
-        viewModel.loadGenreTypeList()
+        val movieTypes = arrayOf(
+                Pair("Popular", "popular"),
+                Pair("Top Rated", "top_rated"),
+                Pair("Upcoming", "upcoming"),
+                Pair("Now Playing", "now_playing")
+        )
+
+        movieTypes.let {
+            val fm = (view_pager.context as FragmentActivity).supportFragmentManager
+            view_pager.adapter = MovieTypePagerAdapter(fm, it)
+        }
     }
 }

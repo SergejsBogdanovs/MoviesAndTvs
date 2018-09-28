@@ -4,16 +4,16 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import lv.st.sbogdano.data.BuildConfig
-import lv.st.sbogdano.data.gateway.SystemGatewayImpl
-import lv.st.sbogdano.data.local.GenreTypeLocalDataSource
-import lv.st.sbogdano.data.local.dao.GenreTypeDao
-import lv.st.sbogdano.data.local.system.SystemDatabase
-import lv.st.sbogdano.data.remote.GenreTypeRemoteDataSource
+import lv.st.sbogdano.data.gateway.GatewayImpl
+import lv.st.sbogdano.data.local.MovieLocalDataSource
+import lv.st.sbogdano.data.local.dao.MovieDao
+import lv.st.sbogdano.data.local.database.CinemaDatabase
+import lv.st.sbogdano.data.remote.MovieRemoteDataSource
 import lv.st.sbogdano.data.remote.api.CinemaApi
 import lv.st.sbogdano.data.remote.api.CinemaService
-import lv.st.sbogdano.data.repository.GenreTypeRepository
-import lv.st.sbogdano.data.repository.mapper.GenreTypeMapper
-import lv.st.sbogdano.domain.gateway.SystemGateway
+import lv.st.sbogdano.data.repository.MovieRepository
+import lv.st.sbogdano.data.repository.mapper.MovieMapper
+import lv.st.sbogdano.domain.gateway.Gateway
 import javax.inject.Singleton
 
 @Module
@@ -25,35 +25,35 @@ internal class DataModule {
 
     @Provides
     @Singleton
-    internal fun provideSystemDatabase(context: Context): SystemDatabase = SystemDatabase.newInstance(context)
+    internal fun provideDatabase(context: Context): CinemaDatabase = CinemaDatabase.newInstance(context)
 
     @Provides
     @Singleton
-    internal fun provideGenreTypeDao(systemDatabase: SystemDatabase): GenreTypeDao = systemDatabase.genreTypeDao()
+    internal fun provideMovieDao(cinemaDatabase: CinemaDatabase): MovieDao = cinemaDatabase.movieDao()
 
     @Provides
     @Singleton
-    internal fun provideGenreTypeLocalDataSource(genreTypeDao: GenreTypeDao): GenreTypeLocalDataSource {
-        return GenreTypeLocalDataSource(genreTypeDao)
+    internal fun provideMovieLocalDataSource(movieDao: MovieDao): MovieLocalDataSource {
+        return MovieLocalDataSource(movieDao)
     }
 
     @Provides
     @Singleton
-    internal fun provideGenreTypeRemoteDataSource(cinemaService: CinemaService): GenreTypeRemoteDataSource {
-        return GenreTypeRemoteDataSource(cinemaService)
+    internal fun provideMovieRemoteDataSource(cinemaService: CinemaService): MovieRemoteDataSource {
+        return MovieRemoteDataSource(cinemaService)
     }
 
     @Provides
     @Singleton
-    internal fun provideGenreTypeRepository(genreTypeLocalDataSource: GenreTypeLocalDataSource,
-                                            genreTypeRemoteDataSource: GenreTypeRemoteDataSource): GenreTypeRepository {
-        return GenreTypeRepository(genreTypeLocalDataSource, genreTypeRemoteDataSource, GenreTypeMapper())
+    internal fun provideMovieRepository(movieLocalDataSource: MovieLocalDataSource,
+                                        movieRemoteDataSource: MovieRemoteDataSource): MovieRepository {
+        return MovieRepository(movieLocalDataSource, movieRemoteDataSource, MovieMapper())
     }
 
     @Provides
     @Singleton
-    internal fun provideSystemGateway(genreTypeRepository: GenreTypeRepository): SystemGateway {
-        return SystemGatewayImpl(genreTypeRepository)
+    internal fun provideGateway(movieRepository: MovieRepository): Gateway {
+        return GatewayImpl(movieRepository)
     }
 
 
