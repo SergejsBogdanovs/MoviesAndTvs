@@ -2,18 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    tools:targetApi="lollipop">
 
     <data>
-
         <variable
             name="movie"
-            type="lv.st.sbogdano.domain.entity.Movie" />
+            type="lv.st.sbogdano.cinema.movie.list.model.MovieModel" />
     </data>
 
     <FrameLayout
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_width="wrap_content">
 
         <ImageView

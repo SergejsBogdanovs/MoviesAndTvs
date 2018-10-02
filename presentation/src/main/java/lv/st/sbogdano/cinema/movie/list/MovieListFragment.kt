@@ -2,11 +2,12 @@ package lv.st.sbogdano.cinema.movie.list
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.widget.Toast
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentMovieListBinding
@@ -56,6 +57,6 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks{
     }
 
     override fun onItemClick(view: View, item: MovieModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(activity?.applicationContext, "Hello", Toast.LENGTH_SHORT).show()
     }
 }

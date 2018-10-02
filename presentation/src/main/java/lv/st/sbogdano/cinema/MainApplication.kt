@@ -1,5 +1,7 @@
 package lv.st.sbogdano.cinema
 
+import android.content.Context
+import android.support.multidex.MultiDex
 import android.util.Log
 import com.facebook.stetho.Stetho
 import io.reactivex.exceptions.UndeliverableException
@@ -13,6 +15,11 @@ class MainApplication : DaggerApplication() {
 
     companion object {
         private const val LOG_TAG = "Cinema"
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     override fun onCreate() {

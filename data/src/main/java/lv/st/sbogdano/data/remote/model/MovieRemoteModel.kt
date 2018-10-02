@@ -8,7 +8,7 @@ data class MovieRemoteModel(
         @Json(name = "overview") var overview: String,
         @Json(name = "release_date")var releaseDate: String,
         @Json(name = "title") var title: String,
-        @Json(name = "popularity") var popularity: Int,
+        @Json(name = "popularity") var popularity: Float,
         @Json(name = "vote_count") var voteCount: Int,
-        @Json(name = "vote_average") var voteAverage: Int
+        @Json(name = "vote_average") var voteAverage: Float
 )

@@ -14,26 +14,45 @@ android {
         versionName ext.application.versionName
         testInstrumentationRunner ext.application.testInstrumentationRunner
         vectorDrawables.useSupportLibrary true
-
+        multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dexOptions {
+        // Skip pre-dexing when disabled via -DpreDex=false.
+        preDexLibraries ext.build.preDexEnabled
+    }
+
     dataBinding {
         enabled true
     }
+
     sourceSets {
         main.java.srcDirs += 'src/main/java'
         test.java.srcDirs += 'src/test/java'
         androidTest.java.srcDirs += 'src/androidTest/java'
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packagingOptions {
+        exclude 'androidsupportmultidexversion.txt'
+    }
+}
+
+def POSTER_BASE_URL = System.getenv("POSTER_BASE_URL") ?: posterBaseUrl
+
+android.buildTypes.each { type ->
+    type.buildConfigField "String", "POSTER_BASE_URL", "\"$POSTER_BASE_URL\""
 }
 
 dependencies {

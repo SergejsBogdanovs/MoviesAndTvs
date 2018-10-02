@@ -6,7 +6,7 @@ data class Movie(
         val overview: String,
         val releaseDate: String,
         val title: String,
-        val popularity: Int,
+        val popularity: Float,
         val voteCount: Int,
-        val voteAverage: Int
+        val voteAverage: Float
 )
