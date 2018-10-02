@@ -57,6 +57,6 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks{
     }
 
     override fun onItemClick(view: View, item: MovieModel) {
-        Toast.makeText(activity?.applicationContext, "Hello", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity?.applicationContext, "Hello world", Toast.LENGTH_SHORT).show()
     }
 }
