@@ -23,14 +23,12 @@ class HomeActivity : DaggerAppCompatActivity() {
     }
 
     private fun setMovieTypeAdapter() {
-
         val movieTypes = arrayOf(
                 Pair("Popular", "popular"),
                 Pair("Top Rated", "top_rated"),
                 Pair("Upcoming", "upcoming"),
                 Pair("Now Playing", "now_playing")
         )
-
         val fm = (view_pager.context as FragmentActivity).supportFragmentManager
         view_pager.adapter = MovieTypePagerAdapter(fm, movieTypes)
     }
