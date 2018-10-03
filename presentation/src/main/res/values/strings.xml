@@ -10,8 +10,8 @@
     <string name="movie_poster">Movie poster</string>
 
     <!-- Bottom navigation -->
-    <string name="navigation_movies">Movies</string>
+    <string name="navigation_movies">MOVIES</string>
     <string name="navigation_tv">TV</string>
-    <string name="navigation_favorite">Favorite</string>
+    <string name="navigation_favorite">FAVORITE</string>
 
 </resources>
