@@ -54,5 +54,4 @@ class SingleLiveData<T> : MutableLiveData<T>() {
     companion object {
         private const val TAG = "SingleLiveData"
     }
-
 }

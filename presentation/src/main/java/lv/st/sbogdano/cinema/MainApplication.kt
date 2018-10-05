@@ -10,7 +10,6 @@ import lv.st.sbogdano.cinema.internal.injection.DaggerApplication
 import java.io.IOException
 import java.net.SocketException
 
-
 class MainApplication : DaggerApplication() {
 
     companion object {
@@ -60,5 +59,4 @@ class MainApplication : DaggerApplication() {
             }
         }
     }
-
 }

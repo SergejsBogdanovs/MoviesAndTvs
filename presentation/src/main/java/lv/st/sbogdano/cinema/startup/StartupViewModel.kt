@@ -10,8 +10,10 @@ import lv.st.sbogdano.cinema.internal.util.SingleLiveData
 import lv.st.sbogdano.domain.entity.Movie
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 
-class StartupViewModel(context: Context,
-                       private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase)
+class StartupViewModel(
+    context: Context,
+    private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+)
     : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val _result = SingleLiveData<Boolean>()

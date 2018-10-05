@@ -15,7 +15,7 @@ fun imageSize(context: Context): Pair<Int, Int> {
     val imageWidth = context.resources.displayMetrics.widthPixels / columns
     val rowsCount = typedValue.float
     val actionBarHeight =
-            when(context.theme.resolveAttribute(R.attr.actionBarSize, typedValue, true)) {
+            when (context.theme.resolveAttribute(R.attr.actionBarSize, typedValue, true)) {
                 true -> TypedValue.complexToDimensionPixelSize(typedValue.data, context.resources.displayMetrics)
                 false -> 0
             }
@@ -29,5 +29,5 @@ fun numberOfColumns(): Int {
     val widthDivider = 500
     val width = displayMetrics.widthPixels
     val nColumns = width / widthDivider
-    return if (nColumns < 2) 2 else nColumns //to keep the grid aspect
+    return if (nColumns < 2) 2 else nColumns // to keep the grid aspect
 }

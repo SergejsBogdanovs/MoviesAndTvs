@@ -5,8 +5,10 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import lv.st.sbogdano.cinema.movie.list.MovieListFragment
 
-class MovieTypePagerAdapter(fm: FragmentManager,
-                            private val items: Array<Pair<String, String>>) : FragmentStatePagerAdapter(fm) {
+class MovieTypePagerAdapter(
+    fm: FragmentManager,
+    private val items: Array<Pair<String, String>>
+) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return MovieListFragment.newInstance(items[position].second)

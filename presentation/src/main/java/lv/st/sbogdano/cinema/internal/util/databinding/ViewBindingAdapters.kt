@@ -2,6 +2,7 @@ package lv.st.sbogdano.cinema.internal.util.databinding
 
 import android.databinding.BindingAdapter
 import android.support.design.widget.BaseTransientBottomBar
+import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.ImageView
@@ -43,5 +44,14 @@ object ViewBindingAdapters {
                     .apply(RequestOptions.noTransformation())
                     .into(imageView)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("onNavigationItemSelected")
+    fun setOnNavigationItemSelectedListener(
+        view: BottomNavigationView,
+        listener: BottomNavigationView.OnNavigationItemSelectedListener
+    ) {
+        view.setOnNavigationItemSelectedListener(listener)
     }
 }

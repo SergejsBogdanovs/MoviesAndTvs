@@ -16,14 +16,18 @@ internal class StartupModule {
 
     @StartupScope
     @Provides
-    internal fun provideMoviesByTypeGetAllUseCase(schedulers: Schedulers,
-                                                  gateway: Gateway): MoviesByTypeGetAllUseCase {
+    internal fun provideMoviesByTypeGetAllUseCase(
+        schedulers: Schedulers,
+        gateway: Gateway
+    ): MoviesByTypeGetAllUseCase {
         return MoviesByTypeGetAllUseCase(schedulers, gateway)
     }
 
     @Provides
-    internal fun provideViewModelFactory(context: Context,
-                                         moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase): ViewModelProvider.Factory {
+    internal fun provideViewModelFactory(
+        context: Context,
+        moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+    ): ViewModelProvider.Factory {
 
         return object : ViewModelProvider.Factory {
 

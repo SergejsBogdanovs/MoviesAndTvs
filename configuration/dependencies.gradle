@@ -2,7 +2,8 @@ ext {
 
     compiler = [
             java  : JavaVersion.VERSION_1_8,
-            kotlin: '1.2.71'
+            kotlin: '1.2.71',
+            ktlint: '0.29.0'
     ]
 
     android = [

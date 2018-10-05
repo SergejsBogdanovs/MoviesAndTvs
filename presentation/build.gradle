@@ -49,6 +49,26 @@ android {
     }
 }
 
+// ktlint
+configurations {
+    ktlint
+}
+
+task ktlint(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
+//
+
 def POSTER_BASE_URL = System.getenv("POSTER_BASE_URL") ?: posterBaseUrl
 
 android.buildTypes.each { type ->
@@ -59,6 +79,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':domain')
     implementation project(':data')
+    ktlint "com.github.shyiko:ktlint:$compiler.ktlint"
     kapt presentationKaptDependencies
     implementation presentationDependencies
     testImplementation presentationTestDependencies

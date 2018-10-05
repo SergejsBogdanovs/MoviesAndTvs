@@ -12,8 +12,10 @@ class DomainModule {
 
     @Provides
     @Singleton
-    internal fun provideMoviesByTypeGetAllUseCase(schedulers: Schedulers,
-                                               gateway: Gateway): MoviesByTypeGetAllUseCase {
+    internal fun provideMoviesByTypeGetAllUseCase(
+        schedulers: Schedulers,
+        gateway: Gateway
+    ): MoviesByTypeGetAllUseCase {
         return MoviesByTypeGetAllUseCase(schedulers, gateway)
     }
 }

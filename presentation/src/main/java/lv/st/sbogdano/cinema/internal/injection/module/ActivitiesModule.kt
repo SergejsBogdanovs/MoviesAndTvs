@@ -19,5 +19,4 @@ abstract class ActivitiesModule {
     @HomeScope
     @ContributesAndroidInjector(modules = [HomeModule::class])
     internal abstract fun contributeHomeActivity(): HomeActivity
-
 }

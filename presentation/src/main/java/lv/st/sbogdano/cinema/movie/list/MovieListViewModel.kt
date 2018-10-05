@@ -14,8 +14,10 @@ import lv.st.sbogdano.cinema.movie.list.model.MovieModel
 import lv.st.sbogdano.domain.entity.Movie
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 
-class MovieListViewModel(context: Context,
-                         private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase)
+class MovieListViewModel(
+    context: Context,
+    private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+)
     : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = MovieMapper()
@@ -57,9 +59,7 @@ class MovieListViewModel(context: Context,
                     }
 
                     override fun onComplete() {
-
                     }
                 })
     }
-
 }

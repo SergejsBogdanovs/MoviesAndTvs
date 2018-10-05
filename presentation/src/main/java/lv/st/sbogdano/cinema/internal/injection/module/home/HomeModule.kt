@@ -25,16 +25,20 @@ internal abstract class HomeModule {
         @HomeScope
         @Provides
         @JvmStatic
-        internal fun provideMoviesByTypeGetAllUseCase(schedulers: Schedulers,
-                                                      gateway: Gateway): MoviesByTypeGetAllUseCase {
+        internal fun provideMoviesByTypeGetAllUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+        ): MoviesByTypeGetAllUseCase {
             return MoviesByTypeGetAllUseCase(schedulers, gateway)
         }
 
         @HomeScope
         @Provides
         @JvmStatic
-        internal fun provideViewModelFactory(context: Context,
-                                             moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase): ViewModelProvider.Factory {
+        internal fun provideViewModelFactory(
+            context: Context,
+            moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+        ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -48,5 +52,4 @@ internal abstract class HomeModule {
             }
         }
     }
-
 }

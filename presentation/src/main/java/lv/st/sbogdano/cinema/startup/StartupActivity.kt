@@ -13,7 +13,6 @@ import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
 import javax.inject.Inject
 
-
 class StartupActivity : DaggerAppCompatActivity() {
 
     @Inject

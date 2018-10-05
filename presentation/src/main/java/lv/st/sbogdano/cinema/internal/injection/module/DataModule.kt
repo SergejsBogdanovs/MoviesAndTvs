@@ -45,8 +45,10 @@ internal class DataModule {
 
     @Provides
     @Singleton
-    internal fun provideMovieRepository(movieLocalDataSource: MovieLocalDataSource,
-                                        movieRemoteDataSource: MovieRemoteDataSource): MovieRepository {
+    internal fun provideMovieRepository(
+        movieLocalDataSource: MovieLocalDataSource,
+        movieRemoteDataSource: MovieRemoteDataSource
+    ): MovieRepository {
         return MovieRepository(movieLocalDataSource, movieRemoteDataSource, MovieMapper())
     }
 
@@ -55,6 +57,4 @@ internal class DataModule {
     internal fun provideGateway(movieRepository: MovieRepository): Gateway {
         return GatewayImpl(movieRepository)
     }
-
-
 }

@@ -17,7 +17,7 @@ import lv.st.sbogdano.cinema.movie.list.model.MovieModel
 import lv.st.sbogdano.cinema.navigation.Navigator
 import javax.inject.Inject
 
-class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks{
+class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks {
 
     companion object {
 
