@@ -6,8 +6,9 @@
     <string name="empty_icon">¯\\\\_(ツ)_/¯</string>
     <string name="movie_list_empty">Sorry, we couldn\'t find any movie\n of this type</string>
 
-    <!-- Movie list item -->
+    <!-- List items -->
     <string name="movie_poster">Movie poster</string>
+    <string name="tv_poster">Tv poster</string>
 
     <!-- Bottom navigation -->
     <string name="navigation_movies">MOVIES</string>

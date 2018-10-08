@@ -10,11 +10,10 @@ import lv.st.sbogdano.cinema.databinding.FragmentMovieListItemBinding
 import lv.st.sbogdano.cinema.movie.list.model.MovieModel
 
 class MovieListAdapter(
-    private val items: List<MovieModel>,
-    private val callbacks: Callbacks? = null,
-    private val imageSize: Pair<Int, Int>
-)
-    : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+        private val items: List<MovieModel>,
+        private val callbacks: Callbacks? = null,
+        private val imageSize: Pair<Int, Int>
+) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     interface Callbacks {
         fun onItemClick(view: View, item: MovieModel)

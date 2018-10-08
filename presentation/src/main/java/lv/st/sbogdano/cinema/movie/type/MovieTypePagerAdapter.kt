@@ -1,4 +1,4 @@
-package lv.st.sbogdano.cinema.movie.type.adapter
+package lv.st.sbogdano.cinema.movie.type
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

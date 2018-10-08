@@ -3,14 +3,14 @@ package lv.st.sbogdano.cinema.home
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.view.MenuItem
 import android.widget.Toast
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.ActivityHomeBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
-import lv.st.sbogdano.cinema.movie.type.adapter.MovieTypePagerAdapter
+import lv.st.sbogdano.cinema.movie.type.MovieTypePagerAdapter
+import lv.st.sbogdano.cinema.tv.type.TvTypePagerAdapter
 
 class HomeActivity : DaggerAppCompatActivity() {
 
@@ -18,32 +18,18 @@ class HomeActivity : DaggerAppCompatActivity() {
         DataBindingUtil.setContentView(this, R.layout.activity_home)
     }
 
+    private val fm by lazy {
+        (view_pager.context as FragmentActivity).supportFragmentManager
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binder.toolbar)
 
-//        binder.bottomNavigation.setOnNavigationItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.nav_movies -> {
-//                    setMovieTypeAdapter()
-//                    true
-//                }
-//                R.id.nav_tv -> {
-//                    setTvTypeAdapter()
-//                    true
-//                }
-//                R.id.nav_favorite -> {
-//                    setFavoriteAdapter()
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-    }
+        setMovieTypeAdapter()
 
-    //
-    fun onNavigationClick(item: MenuItem) =
-            when (item.itemId) {
+        binder.bottomNavigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
                 R.id.nav_movies -> {
                     setMovieTypeAdapter()
                     true
@@ -58,13 +44,21 @@ class HomeActivity : DaggerAppCompatActivity() {
                 }
                 else -> false
             }
+        }
+    }
 
     private fun setFavoriteAdapter() {
         Toast.makeText(this, "Hello Favorite", Toast.LENGTH_SHORT).show()
     }
 
     private fun setTvTypeAdapter() {
-        Toast.makeText(this, "Hello Tv", Toast.LENGTH_SHORT).show()
+        val tvTypes = arrayOf(
+                Pair("Popular", "popular"),
+                Pair("Top Rated", "top_rated"),
+                Pair("On Tv", "on_the_air"),
+                Pair("Airing Today", "airing_today")
+        )
+        view_pager.adapter = TvTypePagerAdapter(fm, tvTypes)
     }
 
     private fun setMovieTypeAdapter() {
@@ -74,7 +68,6 @@ class HomeActivity : DaggerAppCompatActivity() {
                 Pair("Upcoming", "upcoming"),
                 Pair("Now Playing", "now_playing")
         )
-        val fm = (view_pager.context as FragmentActivity).supportFragmentManager
         view_pager.adapter = MovieTypePagerAdapter(fm, movieTypes)
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="lollipop">
+
+    <data>
+        <variable
+            name="tv"
+            type="lv.st.sbogdano.cinema.tv.list.model.TvModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_tv_poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/tv_poster"
+            android:scaleType="centerCrop"
+            android:transitionName="@{@string/tv_image_transition + tv.id}"
+            app:loadUrl="@{tv.posterPath}"
+            tools:src="@tools:sample/backgrounds/scenic"/>
+
+    </FrameLayout>
+
+</layout>

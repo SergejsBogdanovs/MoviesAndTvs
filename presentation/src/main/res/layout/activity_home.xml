@@ -55,9 +55,7 @@
             app:itemIconTint="@drawable/bottom_nav_colors"
             app:itemTextColor="@drawable/bottom_nav_colors"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-            app:onNavigationItemSelected="@{handler::onNavigationClick}"
             app:menu="@menu/bottom_navigation"/>
-
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

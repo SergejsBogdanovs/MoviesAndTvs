@@ -1,4 +1,4 @@
-package lv.st.sbogdano.cinema.movie.list
+package lv.st.sbogdano.cinema.tv.list
 
 import android.app.Application
 import android.content.Context
@@ -9,43 +9,43 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.cinema.movie.list.mapper.MovieMapper
-import lv.st.sbogdano.cinema.movie.list.model.MovieModel
-import lv.st.sbogdano.domain.entity.Movie
-import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
+import lv.st.sbogdano.cinema.tv.list.model.TvModel
+import lv.st.sbogdano.cinema.tv.list.mapper.TvMapper
+import lv.st.sbogdano.domain.entity.Tv
+import lv.st.sbogdano.domain.interactor.TvByTypeGetAllUseCase
 
-class MovieListViewModel(
-    context: Context,
-    private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+class TvListViewModel(
+        context: Context,
+        private val tvByTypeGetAllUseCase: TvByTypeGetAllUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
-    private val mapper = MovieMapper()
+    private val mapper = TvMapper()
 
     val loading = ObservableBoolean()
-    val result = ObservableArrayList<MovieModel>()
+    val result = ObservableArrayList<TvModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
-    private var movieType = ""
+    private var tvType = ""
 
-    fun loadMovieList(type: String, refresh: Boolean = false) {
-        this.movieType = type
-        addDisposable(findMoviesByType(type, refresh))
+    fun loadTvList(type: String, refresh: Boolean = false) {
+        this.tvType = type
+        addDisposable(findTvByType(type, refresh))
     }
 
-    fun refresh() = loadMovieList(movieType, true)
+    fun refresh() = loadTvList(tvType, true)
 
-    private fun findMoviesByType(type: String, refresh: Boolean): Disposable {
+    private fun findTvByType(type: String, refresh: Boolean): Disposable {
         val params = Pair(type, refresh)
-        return moviesByTypeGetAllUseCase.execute(params)
-                .subscribeWith(object : DisposableObserver<List<Movie>>() {
+        return tvByTypeGetAllUseCase.execute(params)
+                .subscribeWith(object : DisposableObserver<List<Tv>>() {
 
                     override fun onStart() {
                         loading.set(true)
                         empty.set(false)
                     }
 
-                    override fun onNext(t: List<Movie>) {
+                    override fun onNext(t: List<Tv>) {
                         loading.set(false)
                         result.clear()
                         result.addAll(t.map { mapper.toModel(it) })
@@ -61,4 +61,5 @@ class MovieListViewModel(
                     }
                 })
     }
+
 }
