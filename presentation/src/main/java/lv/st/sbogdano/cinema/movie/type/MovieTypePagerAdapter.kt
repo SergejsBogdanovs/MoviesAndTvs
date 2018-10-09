@@ -16,5 +16,5 @@ class MovieTypePagerAdapter(
 
     override fun getCount() = items.size
 
-    override fun getPageTitle(position: Int) = items[position].first
+    override fun getPageTitle(position: Int) = items[position].first.toUpperCase()
 }
