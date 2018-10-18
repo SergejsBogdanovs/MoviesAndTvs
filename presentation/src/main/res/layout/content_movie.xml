@@ -30,7 +30,7 @@
             custom:arc_bottom_text="USER SCORE"
             custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
             custom:arc_finished_color="@color/colorAccent"
-            custom:arc_max="100"
+            custom:arc_max="@integer/arc_max_vote_average"
             custom:arc_progress="@{movieDetailViewModel.movie.voteAverage}"
             custom:arc_text_color="@color/colorPrimary"
             custom:arc_text_size="@dimen/content_movie_text_size"
@@ -79,7 +79,7 @@
             custom:arc_bottom_text="VOTES"
             custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
             custom:arc_finished_color="@color/colorAccent"
-            custom:arc_max="@integer/arc_max"
+            custom:arc_max="@integer/arc_max_votes"
             custom:arc_progress="@{movieDetailViewModel.movie.voteCount}"
             custom:arc_suffix_text=" "
             custom:arc_text_color="@color/colorPrimary"
@@ -87,6 +87,55 @@
             custom:arc_unfinished_color="@color/colorPrimary"
             custom:layout_constraintEnd_toEndOf="parent"
             custom:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_score_progress" />
+
+        <TextView
+            android:id="@+id/overview_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/overview_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_1" />
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{movieDetailViewModel.movie.overview}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overview_label" />
+
+        <View
+            android:id="@+id/divider_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overview" />
+
 
     </android.support.constraint.ConstraintLayout>
 </layout>

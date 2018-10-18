@@ -3,5 +3,6 @@
     <integer name="columns_count">2</integer>
     <item name="rows_count" type="dimen" format="float">2</item>
 
-    <integer name="arc_max">50000</integer>
+    <integer name="arc_max_votes">50000</integer>
+    <integer name="arc_max_vote_average">100</integer>
 </resources>
