@@ -14,10 +14,10 @@ import lv.st.sbogdano.cinema.databinding.FragmentTvListBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
 import lv.st.sbogdano.cinema.tv.list.adapter.TvListAdapter
-import lv.st.sbogdano.cinema.tv.list.model.TvModel
+import lv.st.sbogdano.cinema.tv.list.model.TvListModel
 import javax.inject.Inject
 
-class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks{
+class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks {
 
     companion object {
 
@@ -56,7 +56,7 @@ class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks{
         viewModel.loadTvList(tvType)
     }
 
-    override fun onItemClick(view: View, item: TvModel) {
+    override fun onItemClick(view: View, item: TvListModel) {
         Toast.makeText(activity?.applicationContext, "Hello world", Toast.LENGTH_SHORT).show()
     }
 }

@@ -9,20 +9,20 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.cinema.movie.list.mapper.MovieMapper
-import lv.st.sbogdano.cinema.movie.list.model.MovieModel
+import lv.st.sbogdano.cinema.movie.list.mapper.MovieListMapper
+import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
 import lv.st.sbogdano.domain.entity.Movie
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 
 class MovieListViewModel(
-    context: Context,
-    private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+        context: Context,
+        private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
-    private val mapper = MovieMapper()
+    private val mapper = MovieListMapper()
 
     val loading = ObservableBoolean()
-    val result = ObservableArrayList<MovieModel>()
+    val result = ObservableArrayList<MovieListModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
@@ -54,7 +54,8 @@ class MovieListViewModel(
 
                     override fun onError(e: Throwable) {
                         loading.set(false)
-                        error.set(e.localizedMessage ?: e.message ?: context.getString(R.string.unknown_error))
+                        error.set(e.localizedMessage ?: e.message
+                        ?: context.getString(R.string.unknown_error))
                     }
 
                     override fun onComplete() {

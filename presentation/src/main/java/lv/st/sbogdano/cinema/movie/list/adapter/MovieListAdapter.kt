@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentMovieListItemBinding
-import lv.st.sbogdano.cinema.movie.list.model.MovieModel
+import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
 
 class MovieListAdapter(
-        private val items: List<MovieModel>,
+        private val items: List<MovieListModel>,
         private val callbacks: Callbacks? = null,
         private val imageSize: Pair<Int, Int>
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     interface Callbacks {
-        fun onItemClick(view: View, item: MovieModel)
+        fun onItemClick(view: View, item: MovieListModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.ViewHolder {

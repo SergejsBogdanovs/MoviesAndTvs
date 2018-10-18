@@ -9,20 +9,20 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.cinema.tv.list.model.TvModel
+import lv.st.sbogdano.cinema.tv.list.model.TvListModel
 import lv.st.sbogdano.cinema.tv.list.mapper.TvMapper
 import lv.st.sbogdano.domain.entity.Tv
 import lv.st.sbogdano.domain.interactor.TvByTypeGetAllUseCase
 
 class TvListViewModel(
-        context: Context,
-        private val tvByTypeGetAllUseCase: TvByTypeGetAllUseCase
+    context: Context,
+    private val tvByTypeGetAllUseCase: TvByTypeGetAllUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = TvMapper()
 
     val loading = ObservableBoolean()
-    val result = ObservableArrayList<TvModel>()
+    val result = ObservableArrayList<TvListModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
@@ -61,5 +61,4 @@ class TvListViewModel(
                     }
                 })
     }
-
 }

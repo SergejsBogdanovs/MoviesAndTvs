@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import lv.st.sbogdano.cinema.tv.list.TvListFragment
 
 class TvTypePagerAdapter(
-        fm: FragmentManager,
-        private val items: Array<Pair<String, String>>
+    fm: FragmentManager,
+    private val items: Array<Pair<String, String>>
 ) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(postition: Int): Fragment {
@@ -17,5 +17,4 @@ class TvTypePagerAdapter(
     override fun getCount() = items.size
 
     override fun getPageTitle(position: Int) = items[position].first.toUpperCase()
-
 }

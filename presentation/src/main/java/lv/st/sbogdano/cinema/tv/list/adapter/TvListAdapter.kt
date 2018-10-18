@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentTvListItemBinding
-import lv.st.sbogdano.cinema.tv.list.model.TvModel
+import lv.st.sbogdano.cinema.tv.list.model.TvListModel
 
 class TvListAdapter(
-    private val items: List<TvModel>,
-    private val callbacks: Callbacks? = null,
-    private val imageSize: Pair<Int, Int>
+        private val items: List<TvListModel>,
+        private val callbacks: Callbacks? = null,
+        private val imageSize: Pair<Int, Int>
 )
     : RecyclerView.Adapter<TvListAdapter.ViewHolder>() {
 
     interface Callbacks {
-        fun onItemClick(view: View, item: TvModel)
+        fun onItemClick(view: View, item: TvListModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvListAdapter.ViewHolder {

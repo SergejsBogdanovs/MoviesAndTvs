@@ -14,6 +14,23 @@ import lv.st.sbogdano.cinema.tv.type.TvTypePagerAdapter
 
 class HomeActivity : DaggerAppCompatActivity() {
 
+    companion object {
+
+        @JvmField val TV = arrayOf(
+                Pair("Popular", "popular"),
+                Pair("Top Rated", "top_rated"),
+                Pair("On Tv", "on_the_air"),
+                Pair("Airing Today", "airing_today")
+        )
+
+        @JvmField val MOVIES = arrayOf(
+                Pair("Popular", "popular"),
+                Pair("Top Rated", "top_rated"),
+                Pair("Upcoming", "upcoming"),
+                Pair("Now Playing", "now_playing")
+        )
+    }
+
     private val binder by lazyThreadSafetyNone<ActivityHomeBinding> {
         DataBindingUtil.setContentView(this, R.layout.activity_home)
     }
@@ -52,22 +69,10 @@ class HomeActivity : DaggerAppCompatActivity() {
     }
 
     private fun setTvTypeAdapter() {
-        val tvTypes = arrayOf(
-                Pair("Popular", "popular"),
-                Pair("Top Rated", "top_rated"),
-                Pair("On Tv", "on_the_air"),
-                Pair("Airing Today", "airing_today")
-        )
-        view_pager.adapter = TvTypePagerAdapter(fm, tvTypes)
+        view_pager.adapter = TvTypePagerAdapter(fm, TV)
     }
 
     private fun setMovieTypeAdapter() {
-        val movieTypes = arrayOf(
-                Pair("Popular", "popular"),
-                Pair("Top Rated", "top_rated"),
-                Pair("Upcoming", "upcoming"),
-                Pair("Now Playing", "now_playing")
-        )
-        view_pager.adapter = MovieTypePagerAdapter(fm, movieTypes)
+        view_pager.adapter = MovieTypePagerAdapter(fm, MOVIES)
     }
 }

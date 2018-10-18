@@ -4,16 +4,17 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.util.Pair
+import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentMovieListBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.movie.list.adapter.MovieListAdapter
-import lv.st.sbogdano.cinema.movie.list.model.MovieModel
+import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
 import lv.st.sbogdano.cinema.navigation.Navigator
 import javax.inject.Inject
 
@@ -56,7 +57,9 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks {
         viewModel.loadMovieList(movieType)
     }
 
-    override fun onItemClick(view: View, item: MovieModel) {
-        Toast.makeText(activity?.applicationContext, "Hello world", Toast.LENGTH_SHORT).show()
+    override fun onItemClick(view: View, item: MovieListModel) {
+        val imageView = view.findViewById<View>(R.id.image_movie_poster)
+        val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
+        activity?.let { navigator.navigateToMovie(it, item.id, sharedView) }
     }
 }

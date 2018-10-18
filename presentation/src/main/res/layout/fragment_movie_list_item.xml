@@ -7,7 +7,7 @@
     <data>
         <variable
             name="movie"
-            type="lv.st.sbogdano.cinema.movie.list.model.MovieModel" />
+            type="lv.st.sbogdano.cinema.movie.list.model.MovieListModel" />
     </data>
 
     <FrameLayout

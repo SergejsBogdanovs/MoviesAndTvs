@@ -3,7 +3,7 @@ package lv.st.sbogdano.data.repository.mapper
 import lv.st.sbogdano.data.local.model.MovieLocalModel
 import lv.st.sbogdano.data.remote.model.MovieRemoteModel
 
-class MovieMapper {
+class MovieListMapper {
 
     private fun toLocal(movie: MovieRemoteModel, type: String) = MovieLocalModel(
             movie.id,

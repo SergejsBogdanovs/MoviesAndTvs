@@ -4,12 +4,12 @@ import io.reactivex.Observable
 import lv.st.sbogdano.data.local.TvLocalDataSource
 import lv.st.sbogdano.data.local.model.TvLocalModel
 import lv.st.sbogdano.data.remote.TvRemoteDataSource
-import lv.st.sbogdano.data.repository.mapper.TvMapper
+import lv.st.sbogdano.data.repository.mapper.TvListMapper
 
 class TvRepository(
         private val tvLocalDataSource: TvLocalDataSource,
         private val tvRemoteDataSource: TvRemoteDataSource,
-        private val tvMapper: TvMapper) {
+        private val tvListMapper: TvListMapper) {
 
     fun getAll(type: String, refresh: Boolean): Observable<List<TvLocalModel>> {
 
@@ -17,7 +17,7 @@ class TvRepository(
                 .filter { !it.isEmpty() }
 
         val remote = tvRemoteDataSource.getAll(type)
-                .map { tvMapper.toLocal(it, type) }
+                .map { tvListMapper.toLocal(it, type) }
                 .doOnNext { tvLocalDataSource.insertAll(it) }
 
         return Observable.just(refresh)

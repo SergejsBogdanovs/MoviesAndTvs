@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".movie.detail.MovieActivity"
+    tools:shownIn="@layout/activity_movie"
+    tools:targetApi="lollipop">
+
+    <data>
+
+        <variable
+            name="movieDetailViewModel"
+            type="lv.st.sbogdano.cinema.movie.detail.MovieDetailViewModel" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.github.lzyzsd.circleprogress.ArcProgress
+            android:id="@+id/user_score_progress"
+            android:layout_width="@dimen/arc_layout_width"
+            android:layout_height="@dimen/arc_layout_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            custom:arc_bottom_text="USER SCORE"
+            custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
+            custom:arc_finished_color="@color/colorAccent"
+            custom:arc_max="100"
+            custom:arc_progress="@{movieDetailViewModel.movie.voteAverage}"
+            custom:arc_text_color="@color/colorPrimary"
+            custom:arc_text_size="@dimen/content_movie_text_size"
+            custom:arc_unfinished_color="@color/colorPrimary"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{movieDetailViewModel.movie.releaseDate}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/content_movie_text_size"
+            custom:layout_constraintBottom_toBottomOf="@+id/vote_progress"
+            custom:layout_constraintEnd_toStartOf="@+id/vote_progress"
+            custom:layout_constraintStart_toEndOf="@+id/user_score_progress"
+            custom:layout_constraintTop_toTopOf="@+id/vote_progress"
+            tools:text="2018-10-16" />
+
+        <TextView
+            android:id="@+id/release_date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/release_date_title"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/arc_bottom_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/user_score_progress"
+            app:layout_constraintEnd_toStartOf="@+id/vote_progress"
+            app:layout_constraintStart_toEndOf="@+id/user_score_progress"
+            app:layout_constraintTop_toBottomOf="@+id/release_date"
+            app:layout_constraintVertical_bias="0.74" />
+
+        <com.github.lzyzsd.circleprogress.ArcProgress
+            android:id="@+id/vote_progress"
+            android:layout_width="@dimen/arc_layout_width"
+            android:layout_height="@dimen/arc_layout_height"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            custom:arc_bottom_text="VOTES"
+            custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
+            custom:arc_finished_color="@color/colorAccent"
+            custom:arc_max="@integer/arc_max"
+            custom:arc_progress="@{movieDetailViewModel.movie.voteCount}"
+            custom:arc_suffix_text=" "
+            custom:arc_text_color="@color/colorPrimary"
+            custom:arc_text_size="@dimen/content_movie_text_size"
+            custom:arc_unfinished_color="@color/colorPrimary"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

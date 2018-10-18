@@ -13,6 +13,9 @@ interface MovieDao {
     @Query("SELECT * FROM Movie WHERE type = :type")
     fun getAll(type: String): Maybe<List<MovieLocalModel>>
 
+    @Query("SELECT * FROM Movie WHERE id = :id")
+    fun getById(id: Int): Maybe<MovieLocalModel>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg movie: MovieLocalModel)
 

@@ -16,8 +16,8 @@ import lv.st.sbogdano.data.remote.api.CinemaApi
 import lv.st.sbogdano.data.remote.api.CinemaService
 import lv.st.sbogdano.data.repository.MovieRepository
 import lv.st.sbogdano.data.repository.TvRepository
-import lv.st.sbogdano.data.repository.mapper.MovieMapper
-import lv.st.sbogdano.data.repository.mapper.TvMapper
+import lv.st.sbogdano.data.repository.mapper.MovieListMapper
+import lv.st.sbogdano.data.repository.mapper.TvListMapper
 import lv.st.sbogdano.domain.gateway.Gateway
 import javax.inject.Singleton
 
@@ -70,23 +70,24 @@ internal class DataModule {
         movieLocalDataSource: MovieLocalDataSource,
         movieRemoteDataSource: MovieRemoteDataSource
     ): MovieRepository {
-        return MovieRepository(movieLocalDataSource, movieRemoteDataSource, MovieMapper())
+        return MovieRepository(movieLocalDataSource, movieRemoteDataSource, MovieListMapper())
     }
 
     @Provides
     @Singleton
     internal fun provideTvRepository(
-            tvLocalDataSource: TvLocalDataSource,
-            tvRemoteDataSource: TvRemoteDataSource
+        tvLocalDataSource: TvLocalDataSource,
+        tvRemoteDataSource: TvRemoteDataSource
     ): TvRepository {
-        return TvRepository(tvLocalDataSource, tvRemoteDataSource, TvMapper())
+        return TvRepository(tvLocalDataSource, tvRemoteDataSource, TvListMapper())
     }
 
     @Provides
     @Singleton
     internal fun provideGateway(
-            movieRepository: MovieRepository,
-            tvRepository: TvRepository): Gateway {
+        movieRepository: MovieRepository,
+        tvRepository: TvRepository
+    ): Gateway {
         return GatewayImpl(movieRepository, tvRepository)
     }
 }

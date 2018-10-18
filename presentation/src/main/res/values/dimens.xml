@@ -4,4 +4,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="text_margin">8dp</dimen>
+
+    <!-- content_movie -->
+    <dimen name="content_movie_text_size">25sp</dimen>
+    <dimen name="arc_bottom_text_size">8sp</dimen>
+    <dimen name="appbar_height_large">256dp</dimen>
+    <dimen name="arc_layout_width">100dp</dimen>
+    <dimen name="arc_layout_height">100dp</dimen>
+
 </resources>

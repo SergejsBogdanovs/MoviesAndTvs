@@ -9,4 +9,6 @@ interface Gateway {
     fun getMoviesByType(type: String, refresh: Boolean): Observable<List<Movie>>
 
     fun getTvByType(type: String, refresh: Boolean): Observable<List<Tv>>
+
+    fun getMovieById(id: Int): Observable<Movie>
 }

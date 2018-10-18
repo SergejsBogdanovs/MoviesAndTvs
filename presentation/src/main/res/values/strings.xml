@@ -14,5 +14,6 @@
     <string name="navigation_movies">MOVIES</string>
     <string name="navigation_tv">TV</string>
     <string name="navigation_favorite">FAVORITE</string>
+    <string name="release_date_title">Release Date</string>
 
 </resources>

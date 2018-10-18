@@ -25,5 +25,9 @@ class GatewayImpl(
                     .doOnError { println("Tv by Type($type) error") }
                     .map { it.map { mapper.toEntity(it) } }
 
+    override fun getMovieById(id: Int): Observable<Movie> =
+            movieRepository.getById(id)
+                    .doOnError { println("Movie by Id($id) Error") }
+                    .map { mapper.toEntity(it) }
 
 }

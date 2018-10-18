@@ -41,6 +41,7 @@ ext {
     androidKtxVersion = '0.1'
     glideVersion = '4.8.0'
     stethoVersion = '1.5.0'
+    circleprogressVersion = '1.2.1'
 
     // Testing
     jUnitVersion = '4.12'
@@ -74,7 +75,8 @@ ext {
             "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             "com.github.bumptech.glide:glide:${glideVersion}",
             "android.arch.persistence.room:runtime:$roomVersion",
-            "com.facebook.stetho:stetho:$stethoVersion"
+            "com.facebook.stetho:stetho:$stethoVersion",
+            "com.github.lzyzsd:circleprogress:$circleprogressVersion"
 
     ]
 
