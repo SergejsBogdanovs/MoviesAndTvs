@@ -2,6 +2,7 @@ package lv.st.sbogdano.data.remote.api
 
 import com.serjltt.moshi.adapters.Wrapped
 import io.reactivex.Observable
+import lv.st.sbogdano.data.remote.model.CreditRemoteModel
 import lv.st.sbogdano.data.remote.model.MovieRemoteModel
 import lv.st.sbogdano.data.remote.model.TvRemoteModel
 import retrofit2.http.GET
@@ -17,4 +18,7 @@ interface CinemaService {
     @Wrapped(path = ["results"])
     fun getTvsByType(@Path("type") type: String): Observable<List<TvRemoteModel>>
 
+    @GET("movie/{movie_id}/credits")
+    @Wrapped(path = ["cast"])
+    fun getCreditsById(@Path("movie_id") id: Int): Observable<List<CreditRemoteModel>>
 }

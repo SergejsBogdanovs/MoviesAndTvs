@@ -5,17 +5,22 @@ import dagger.Module
 import dagger.Provides
 import lv.st.sbogdano.data.BuildConfig
 import lv.st.sbogdano.data.gateway.GatewayImpl
+import lv.st.sbogdano.data.local.CreditsLocalDataSource
 import lv.st.sbogdano.data.local.MovieLocalDataSource
 import lv.st.sbogdano.data.local.TvLocalDataSource
+import lv.st.sbogdano.data.local.dao.CreditsDao
 import lv.st.sbogdano.data.local.dao.MovieDao
 import lv.st.sbogdano.data.local.dao.TvDao
 import lv.st.sbogdano.data.local.database.CinemaDatabase
+import lv.st.sbogdano.data.remote.CreditsRemoteDataSource
 import lv.st.sbogdano.data.remote.MovieRemoteDataSource
 import lv.st.sbogdano.data.remote.TvRemoteDataSource
 import lv.st.sbogdano.data.remote.api.CinemaApi
 import lv.st.sbogdano.data.remote.api.CinemaService
+import lv.st.sbogdano.data.repository.CreditsRepository
 import lv.st.sbogdano.data.repository.MovieRepository
 import lv.st.sbogdano.data.repository.TvRepository
+import lv.st.sbogdano.data.repository.mapper.CreditsListMapper
 import lv.st.sbogdano.data.repository.mapper.MovieListMapper
 import lv.st.sbogdano.data.repository.mapper.TvListMapper
 import lv.st.sbogdano.domain.gateway.Gateway
@@ -24,14 +29,27 @@ import javax.inject.Singleton
 @Module
 internal class DataModule {
 
-    @Provides
-    @Singleton
-    internal fun provideCinemaService(): CinemaService = CinemaApi(BuildConfig.API_URL)
-
+    //-------------------------------------MAIN-----------------------------------------------------//
     @Provides
     @Singleton
     internal fun provideDatabase(context: Context): CinemaDatabase = CinemaDatabase.newInstance(context)
 
+    @Provides
+    @Singleton
+    internal fun provideCinemaService(): CinemaService = CinemaApi(BuildConfig.API_URL)
+
+
+    @Provides
+    @Singleton
+    internal fun provideGateway(
+            movieRepository: MovieRepository,
+            tvRepository: TvRepository,
+            creditsRepository: CreditsRepository
+    ): Gateway {
+        return GatewayImpl(movieRepository, tvRepository, creditsRepository)
+    }
+
+    //-------------------------------------DAOs-----------------------------------------------------//
     @Provides
     @Singleton
     internal fun provideMovieDao(cinemaDatabase: CinemaDatabase): MovieDao = cinemaDatabase.movieDao()
@@ -40,6 +58,12 @@ internal class DataModule {
     @Singleton
     internal fun provideTvDao(cinemaDatabase: CinemaDatabase): TvDao = cinemaDatabase.tvDao()
 
+    @Provides
+    @Singleton
+    internal fun provideCreditsDao(cinemaDatabase: CinemaDatabase): CreditsDao = cinemaDatabase.creditsDao()
+
+
+    //-------------------------------------LOCAL DATA SOURCES---------------------------------------//
     @Provides
     @Singleton
     internal fun provideMovieLocalDataSource(movieDao: MovieDao): MovieLocalDataSource {
@@ -54,6 +78,13 @@ internal class DataModule {
 
     @Provides
     @Singleton
+    internal fun provideCreditsLocalDataSource(creditsDao: CreditsDao): CreditsLocalDataSource {
+        return CreditsLocalDataSource(creditsDao)
+    }
+
+    //-------------------------------------REMOTE DATA SOURCES--------------------------------------//
+    @Provides
+    @Singleton
     internal fun provideMovieRemoteDataSource(cinemaService: CinemaService): MovieRemoteDataSource {
         return MovieRemoteDataSource(cinemaService)
     }
@@ -66,9 +97,17 @@ internal class DataModule {
 
     @Provides
     @Singleton
+    internal fun provideCreditsRemoteDataSource(cinemaService: CinemaService): CreditsRemoteDataSource {
+        return CreditsRemoteDataSource(cinemaService)
+    }
+
+
+    //-------------------------------------REPOSITORIES---------------------------------------------//
+    @Provides
+    @Singleton
     internal fun provideMovieRepository(
-        movieLocalDataSource: MovieLocalDataSource,
-        movieRemoteDataSource: MovieRemoteDataSource
+            movieLocalDataSource: MovieLocalDataSource,
+            movieRemoteDataSource: MovieRemoteDataSource
     ): MovieRepository {
         return MovieRepository(movieLocalDataSource, movieRemoteDataSource, MovieListMapper())
     }
@@ -76,18 +115,19 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideTvRepository(
-        tvLocalDataSource: TvLocalDataSource,
-        tvRemoteDataSource: TvRemoteDataSource
+            tvLocalDataSource: TvLocalDataSource,
+            tvRemoteDataSource: TvRemoteDataSource
     ): TvRepository {
         return TvRepository(tvLocalDataSource, tvRemoteDataSource, TvListMapper())
     }
 
     @Provides
     @Singleton
-    internal fun provideGateway(
-        movieRepository: MovieRepository,
-        tvRepository: TvRepository
-    ): Gateway {
-        return GatewayImpl(movieRepository, tvRepository)
+    internal fun provideCreditsRepository(
+            creditsLocalDataSource: CreditsLocalDataSource,
+            creditsRemoteDataSource: CreditsRemoteDataSource
+    ): CreditsRepository {
+        return CreditsRepository(creditsLocalDataSource, creditsRemoteDataSource, CreditsListMapper())
     }
+
 }

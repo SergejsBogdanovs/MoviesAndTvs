@@ -1,7 +1,9 @@
 package lv.st.sbogdano.data.gateway.mapper
 
+import lv.st.sbogdano.data.local.model.CreditLocalModel
 import lv.st.sbogdano.data.local.model.MovieLocalModel
 import lv.st.sbogdano.data.local.model.TvLocalModel
+import lv.st.sbogdano.domain.entity.Credit
 import lv.st.sbogdano.domain.entity.Movie
 import lv.st.sbogdano.domain.entity.Tv
 
@@ -27,5 +29,12 @@ class GatewayMapper {
             tvLocalModel.popularity,
             tvLocalModel.voteCount,
             tvLocalModel.voteAverage
+    )
+
+    fun toEntity(creditLocalModel: CreditLocalModel) = Credit(
+            creditLocalModel.id,
+            creditLocalModel.name,
+            creditLocalModel.character,
+            creditLocalModel.profilePath
     )
 }

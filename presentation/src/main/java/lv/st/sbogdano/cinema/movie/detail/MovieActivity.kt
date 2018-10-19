@@ -41,6 +41,7 @@ class MovieActivity : DaggerAppCompatActivity() {
 
         val movie = navigator.getMovie(this)
         movieDetailViewModel.loadMovieDetail(movie)
+        movieDetailViewModel.loadCredits(movie)
 
         movieDetailViewModel.movie.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
