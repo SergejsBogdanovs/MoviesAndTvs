@@ -35,12 +35,17 @@ object ViewBindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("loadUrl")
-    fun loadUrl(imageView: ImageView, url: String?) {
+    @BindingAdapter("loadUrl", "isCircularImageView", requireAll = false)
+    fun loadUrl(imageView: ImageView, url: String?, isCircularImageView: Boolean = false) {
+        val options = if (isCircularImageView) {
+            RequestOptions.circleCropTransform()
+        } else {
+            RequestOptions.noTransformation()
+        }
         url?.let {
             Glide.with(imageView.context)
                     .load(BuildConfig.POSTER_BASE_URL + it)
-                    .apply(RequestOptions.noTransformation())
+                    .apply(options)
                     .into(imageView)
         }
     }

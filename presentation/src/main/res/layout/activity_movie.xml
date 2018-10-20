@@ -9,6 +9,11 @@
         <variable
             name="movieDetailViewModel"
             type="lv.st.sbogdano.cinema.movie.detail.MovieDetailViewModel" />
+
+        <variable
+            name="castCallbacks"
+            type="lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter.Callbacks" />
+
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -55,8 +60,8 @@
 
         <include
             layout="@layout/content_movie"
-            app:movieDetailViewModel="@{movieDetailViewModel}" />
-
+            app:movieDetailViewModel="@{movieDetailViewModel}"
+            app:castCallbacks="@{castCallbacks}"/>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

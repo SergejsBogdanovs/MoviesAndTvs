@@ -5,16 +5,20 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.Observable
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.view.doOnPreDraw
 import dagger.android.support.DaggerAppCompatActivity
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.ActivityMovieBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
+import lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter
 import lv.st.sbogdano.cinema.navigation.Navigator
+import lv.st.sbogdano.domain.entity.Credit
 import javax.inject.Inject
 
-class MovieActivity : DaggerAppCompatActivity() {
+class MovieActivity : DaggerAppCompatActivity(), CastAdapter.Callbacks {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -38,6 +42,7 @@ class MovieActivity : DaggerAppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         binder.movieDetailViewModel = movieDetailViewModel
+        binder.castCallbacks = this
 
         val movie = navigator.getMovie(this)
         movieDetailViewModel.loadMovieDetail(movie)
@@ -51,4 +56,9 @@ class MovieActivity : DaggerAppCompatActivity() {
             }
         })
     }
+
+    override fun onItemClick(view: View, item: Credit) {
+        Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
+    }
+
 }

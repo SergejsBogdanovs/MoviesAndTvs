@@ -12,6 +12,10 @@
         <variable
             name="movieDetailViewModel"
             type="lv.st.sbogdano.cinema.movie.detail.MovieDetailViewModel" />
+
+        <variable
+            name="castCallbacks"
+            type="lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter.Callbacks" />
     </data>
 
 
@@ -105,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/overview_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimary"
@@ -136,6 +140,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/overview" />
 
+        <TextView
+            android:id="@+id/cast_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/top_billed_cast"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_2" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cast_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:castAdapter="@{movieDetailViewModel.credits}"
+            app:castCallbacks="@{castCallbacks}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cast_label"
+            app:showLongMessage="@{movieDetailViewModel.error}"
+            tools:listitem="@layout/cast_item" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

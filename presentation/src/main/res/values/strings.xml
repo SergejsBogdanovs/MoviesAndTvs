@@ -10,11 +10,15 @@
     <string name="movie_poster">Movie poster</string>
     <string name="tv_poster">Tv poster</string>
 
+    <!-- Content Item -->
+    <string name="cast_profile_image">Cast profile image</string>
+    <string name="release_date_title">Release Date</string>
+    <string name="overview_label">Overview</string>
+    <string name="top_billed_cast">Top Billed Cast</string>
+
     <!-- Bottom navigation -->
     <string name="navigation_movies">MOVIES</string>
     <string name="navigation_tv">TV</string>
     <string name="navigation_favorite">FAVORITE</string>
-    <string name="release_date_title">Release Date</string>
-    <string name="overview_label">Overview</string>
 
 </resources>
