@@ -1,9 +1,10 @@
 package lv.st.sbogdano.cinema.movie.detail.adapter
 
 import android.databinding.BindingAdapter
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.github.lzyzsd.circleprogress.ArcProgress
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter
 import lv.st.sbogdano.domain.entity.Credit
 
@@ -25,12 +26,11 @@ object ViewBindingAdapter {
     @BindingAdapter("castAdapter", "castCallbacks", requireAll = false)
     fun setCastAdapter(recyclerView: RecyclerView, items: List<Credit>?, callbacks: CastAdapter.Callbacks) {
         items?.let {
-            recyclerView.apply {
-                setHasFixedSize(true)
-                adapter = CastAdapter(it, callbacks)
-                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            }
+            val flexboxLayoutManager = FlexboxLayoutManager(recyclerView.context)
+            flexboxLayoutManager.justifyContent = JustifyContent.SPACE_BETWEEN
+            recyclerView.setHasFixedSize(true)
+            recyclerView.adapter = CastAdapter(it, callbacks)
+            recyclerView.layoutManager = flexboxLayoutManager
         }
     }
-
 }
