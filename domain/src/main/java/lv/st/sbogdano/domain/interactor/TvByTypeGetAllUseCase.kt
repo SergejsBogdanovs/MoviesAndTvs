@@ -7,8 +7,9 @@ import lv.st.sbogdano.domain.UseCase
 import lv.st.sbogdano.domain.entity.Tv
 import lv.st.sbogdano.domain.gateway.Gateway
 
-class TvByTypeGetAllUseCase(schedulers: Schedulers,
-                            private val gateway: Gateway
+class TvByTypeGetAllUseCase(
+    schedulers: Schedulers,
+    private val gateway: Gateway
 ) : UseCase<Pair<String, Boolean>, List<Tv>>(schedulers) {
 
     override fun buildObservable(params: Pair<String, Boolean>?): Observable<List<Tv>> {
@@ -16,5 +17,4 @@ class TvByTypeGetAllUseCase(schedulers: Schedulers,
         val (type, refresh) = params
         return gateway.getTvByType(type, refresh)
     }
-
 }

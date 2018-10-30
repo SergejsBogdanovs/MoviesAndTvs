@@ -10,8 +10,8 @@ import lv.st.sbogdano.cinema.databinding.CastItemBinding
 import lv.st.sbogdano.domain.entity.Credit
 
 class CastAdapter(
-        private val items: List<Credit>,
-        private val callbacks: Callbacks? = null
+    private val items: List<Credit>,
+    private val callbacks: Callbacks? = null
 ) : RecyclerView.Adapter<CastAdapter.ViewHolder>() {
 
     interface Callbacks {
@@ -30,7 +30,6 @@ class CastAdapter(
         holder.binding.credit = items[position]
         holder.binding.executePendingBindings()
     }
-
 
     inner class ViewHolder(val binding: CastItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {

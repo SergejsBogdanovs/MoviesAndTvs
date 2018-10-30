@@ -28,7 +28,7 @@
             app:isCircularImageView="@{true}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadUrl="@{credit.profilePath}"
+            app:loadUrl="@{`w154` + credit.profilePath}"
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView

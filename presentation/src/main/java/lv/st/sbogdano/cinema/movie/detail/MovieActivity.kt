@@ -47,6 +47,7 @@ class MovieActivity : DaggerAppCompatActivity(), CastAdapter.Callbacks {
         val movie = navigator.getMovie(this)
         movieDetailViewModel.loadMovieDetail(movie)
         movieDetailViewModel.loadCredits(movie)
+        movieDetailViewModel.loadVideos(movie)
 
         movieDetailViewModel.movie.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
@@ -60,5 +61,4 @@ class MovieActivity : DaggerAppCompatActivity(), CastAdapter.Callbacks {
     override fun onItemClick(view: View, item: Credit) {
         Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
     }
-
 }

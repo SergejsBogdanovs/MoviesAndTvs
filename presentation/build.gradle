@@ -49,25 +49,25 @@ android {
     }
 }
 
-// ktlint
-configurations {
-    ktlint
-}
-
-task ktlint(type: JavaExec) {
-    main = "com.github.shyiko.ktlint.Main"
-    classpath = configurations.ktlint
-    args "src/**/*.kt"
-}
-
-check.dependsOn ktlint
-
-task ktlintFormat(type: JavaExec) {
-    main = "com.github.shyiko.ktlint.Main"
-    classpath = configurations.ktlint
-    args "-F", "src/**/*.kt"
-}
+//// ktlint
+//configurations {
+//    ktlint
+//}
 //
+//task ktlint(type: JavaExec, group: "verification") {
+//    main = "com.github.shyiko.ktlint.Main"
+//    classpath = configurations.ktlint
+//    args "src/**/*.kt"
+//}
+//
+//check.dependsOn ktlint
+//
+//task ktlintFormat(type: JavaExec, group: "formatting") {
+//    main = "com.github.shyiko.ktlint.Main"
+//    classpath = configurations.ktlint
+//    args "-F", "src/**/*.kt"
+//}
+////
 
 def POSTER_BASE_URL = System.getenv("POSTER_BASE_URL") ?: posterBaseUrl
 

@@ -8,7 +8,7 @@ import java.net.HttpURLConnection
 /**
  * Retry the request in case of "Account Over Queries Per Second Limit" error
  */
-class RetryAfterInterceptor : Interceptor{
+class RetryAfterInterceptor : Interceptor {
 
     private val logger = HttpLoggingInterceptor.Logger.DEFAULT
 

@@ -20,6 +20,7 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
     }
+    apply from: "$rootDir/ktlint.gradle"
 }
 
 task clean(type: Delete) {

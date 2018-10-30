@@ -10,9 +10,9 @@ import lv.st.sbogdano.cinema.databinding.FragmentTvListItemBinding
 import lv.st.sbogdano.cinema.tv.list.model.TvListModel
 
 class TvListAdapter(
-        private val items: List<TvListModel>,
-        private val callbacks: Callbacks? = null,
-        private val imageSize: Pair<Int, Int>
+    private val items: List<TvListModel>,
+    private val callbacks: Callbacks? = null,
+    private val imageSize: Pair<Int, Int>
 )
     : RecyclerView.Adapter<TvListAdapter.ViewHolder>() {
 

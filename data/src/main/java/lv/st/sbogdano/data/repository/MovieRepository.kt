@@ -7,9 +7,10 @@ import lv.st.sbogdano.data.remote.MovieRemoteDataSource
 import lv.st.sbogdano.data.repository.mapper.MovieListMapper
 
 class MovieRepository(
-        private val movieLocalDataSource: MovieLocalDataSource,
-        private val movieRemoteDataSource: MovieRemoteDataSource,
-        private val moviesListMapper: MovieListMapper) {
+    private val movieLocalDataSource: MovieLocalDataSource,
+    private val movieRemoteDataSource: MovieRemoteDataSource,
+    private val moviesListMapper: MovieListMapper
+) {
 
     fun getAll(type: String, refresh: Boolean): Observable<List<MovieLocalModel>> {
 
@@ -21,7 +22,7 @@ class MovieRepository(
                 .doOnNext { movieLocalDataSource.insertAll(it) }
 
         return Observable.just(refresh)
-                .doOnNext{ if (it) movieLocalDataSource.deleteByType(type) }
+                .doOnNext { if (it) movieLocalDataSource.deleteByType(type) }
                 .flatMap {
                     Observable.concat(local, remote)
                             .firstElement()

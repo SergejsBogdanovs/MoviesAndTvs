@@ -14,5 +14,4 @@ interface CreditsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg credit: CreditLocalModel)
-
 }

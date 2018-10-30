@@ -29,5 +29,4 @@ class Navigator {
     }
 
     fun getMovie(activity: Activity) = activity.intent.getIntExtra(EXTRA_MOVIE, 0)
-
 }

@@ -11,5 +11,4 @@ class TvLocalDataSource(private val tvDao: TvDao) {
     fun insertAll(tvs: List<TvLocalModel>) = tvDao.insertAll(*tvs.toTypedArray())
 
     fun deleteByType(type: String) = tvDao.deleteByType(type)
-
 }

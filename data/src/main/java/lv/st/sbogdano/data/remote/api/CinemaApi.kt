@@ -11,6 +11,7 @@ import lv.st.sbogdano.data.remote.api.util.RetryAfterInterceptor
 import lv.st.sbogdano.data.remote.model.CreditRemoteModel
 import lv.st.sbogdano.data.remote.model.MovieRemoteModel
 import lv.st.sbogdano.data.remote.model.TvRemoteModel
+import lv.st.sbogdano.data.remote.model.VideoRemoteModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BASIC
@@ -19,7 +20,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-
 
 class CinemaApi(baseUrl: String) : CinemaService {
 
@@ -62,5 +62,7 @@ class CinemaApi(baseUrl: String) : CinemaService {
 
     override fun getTvsByType(type: String): Observable<List<TvRemoteModel>> = service.getTvsByType(type)
 
-    override fun getCreditsById(id: Int): Observable<List<CreditRemoteModel>>  = service.getCreditsById(id)
+    override fun getCreditsById(id: Int): Observable<List<CreditRemoteModel>> = service.getCreditsById(id)
+
+    override fun getVideosById(id: Int): Observable<List<VideoRemoteModel>> = service.getVideosById(id)
 }

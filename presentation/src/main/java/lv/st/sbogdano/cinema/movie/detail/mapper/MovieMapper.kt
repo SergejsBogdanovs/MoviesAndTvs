@@ -1,8 +1,6 @@
 package lv.st.sbogdano.cinema.movie.detail.mapper
 
-import lv.st.sbogdano.cinema.movie.detail.model.CreditModel
 import lv.st.sbogdano.cinema.movie.detail.model.MovieModel
-import lv.st.sbogdano.domain.entity.Credit
 import lv.st.sbogdano.domain.entity.Movie
 
 class MovieMapper {
@@ -12,18 +10,18 @@ class MovieMapper {
                 result.id,
                 result.posterPath,
                 result.overview,
-                result.releaseDate,
+                formatDate(result.releaseDate),
                 result.title,
                 result.popularity,
                 result.voteCount,
                 result.voteAverage)
     }
 
-    fun toModel(result: Credit): CreditModel {
-        return CreditModel(
-                result.id,
-                result.name,
-                result.character,
-                result.profilePath)
+    private fun formatDate(releaseDate: String): String {
+        val yearMonth = releaseDate.substringBeforeLast("-")
+        val year = yearMonth.substringBefore("-")
+        val month = yearMonth.substringAfter("-")
+        val day = releaseDate.substringAfterLast("-")
+        return "$year $month $day"
     }
 }

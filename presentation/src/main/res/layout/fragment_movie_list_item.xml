@@ -5,14 +5,16 @@
     tools:targetApi="lollipop">
 
     <data>
+
         <variable
             name="movie"
             type="lv.st.sbogdano.cinema.movie.list.model.MovieListModel" />
+
     </data>
 
     <FrameLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image_movie_poster"
@@ -21,8 +23,8 @@
             android:contentDescription="@string/movie_poster"
             android:scaleType="centerCrop"
             android:transitionName="@{@string/movie_image_transition + movie.id}"
-            app:loadUrl="@{movie.posterPath}"
-            tools:src="@tools:sample/backgrounds/scenic"/>
+            app:loadUrl="@{`w185` + movie.posterPath}"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
     </FrameLayout>
 

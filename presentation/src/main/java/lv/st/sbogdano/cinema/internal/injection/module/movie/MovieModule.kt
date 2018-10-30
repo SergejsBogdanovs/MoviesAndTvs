@@ -11,6 +11,7 @@ import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
 import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.MovieGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
 
 @Module
 internal abstract class MovieModule {
@@ -21,31 +22,48 @@ internal abstract class MovieModule {
         @MovieScope
         @Provides
         @JvmStatic
-        internal fun provideMovieGetByIdUseCase(schedulers: Schedulers,
-                                                gateway: Gateway): MovieGetByIdUseCase {
+        internal fun provideMovieGetByIdUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+        ): MovieGetByIdUseCase {
             return MovieGetByIdUseCase(schedulers, gateway)
         }
 
         @MovieScope
         @Provides
         @JvmStatic
-        internal fun provideCreditsGetByIdUseCase(schedulers: Schedulers,
-                                                  gateway: Gateway): CreditsGetByIdUseCase {
+        internal fun provideCreditsGetByIdUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+        ): CreditsGetByIdUseCase {
             return CreditsGetByIdUseCase(schedulers, gateway)
         }
 
         @MovieScope
         @Provides
         @JvmStatic
-        internal fun provideViewModelFactory(context: Context,
-                                             movieGetByIdUseCase: MovieGetByIdUseCase,
-                                             creditsGetByIdUseCase: CreditsGetByIdUseCase): ViewModelProvider.Factory {
+        internal fun provideVideosGetByIdUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+        ): VideosGetByIdUseCase {
+            return VideosGetByIdUseCase(schedulers, gateway)
+        }
+
+        @MovieScope
+        @Provides
+        @JvmStatic
+        internal fun provideViewModelFactory(
+            context: Context,
+            movieGetByIdUseCase: MovieGetByIdUseCase,
+            creditsGetByIdUseCase: CreditsGetByIdUseCase,
+            videosGetByIdUseCase: VideosGetByIdUseCase
+        ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                     return when {
                         modelClass.isAssignableFrom(MovieDetailViewModel::class.java) ->
-                            MovieDetailViewModel(context, movieGetByIdUseCase, creditsGetByIdUseCase) as T
+                            MovieDetailViewModel(context, movieGetByIdUseCase, creditsGetByIdUseCase, videosGetByIdUseCase ) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }

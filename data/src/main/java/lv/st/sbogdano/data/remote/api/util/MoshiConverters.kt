@@ -14,5 +14,4 @@ class MoshiConverters {
 
     @ToJson
     fun dateToTimestamp(date: Date?): String? = date?.let { format.format(date) }
-
 }

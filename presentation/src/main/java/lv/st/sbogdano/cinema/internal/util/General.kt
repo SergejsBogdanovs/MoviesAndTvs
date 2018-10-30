@@ -8,7 +8,6 @@ import lv.st.sbogdano.cinema.R
 fun <T> lazyThreadSafetyNone(initializer: () -> T): Lazy<T> = lazy(LazyThreadSafetyMode.NONE, initializer)
 
 fun imageSize(context: Context): Pair<Int, Int> {
-
     val typedValue = TypedValue()
     context.resources.getValue(R.dimen.rows_count, typedValue, true)
     val columns = context.resources.getInteger(R.integer.columns_count)

@@ -16,14 +16,16 @@ class HomeActivity : DaggerAppCompatActivity() {
 
     companion object {
 
-        @JvmField val TV = arrayOf(
+        @JvmField
+        val TV = arrayOf(
                 Pair("Popular", "popular"),
                 Pair("Top Rated", "top_rated"),
                 Pair("On Tv", "on_the_air"),
                 Pair("Airing Today", "airing_today")
         )
 
-        @JvmField val MOVIES = arrayOf(
+        @JvmField
+        val MOVIES = arrayOf(
                 Pair("Popular", "popular"),
                 Pair("Top Rated", "top_rated"),
                 Pair("Upcoming", "upcoming"),

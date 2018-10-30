@@ -7,9 +7,10 @@ import lv.st.sbogdano.data.remote.TvRemoteDataSource
 import lv.st.sbogdano.data.repository.mapper.TvListMapper
 
 class TvRepository(
-        private val tvLocalDataSource: TvLocalDataSource,
-        private val tvRemoteDataSource: TvRemoteDataSource,
-        private val tvListMapper: TvListMapper) {
+    private val tvLocalDataSource: TvLocalDataSource,
+    private val tvRemoteDataSource: TvRemoteDataSource,
+    private val tvListMapper: TvListMapper
+) {
 
     fun getAll(type: String, refresh: Boolean): Observable<List<TvLocalModel>> {
 
@@ -21,7 +22,7 @@ class TvRepository(
                 .doOnNext { tvLocalDataSource.insertAll(it) }
 
         return Observable.just(refresh)
-                .doOnNext{ if (it) tvLocalDataSource.deleteByType(type) }
+                .doOnNext { if (it) tvLocalDataSource.deleteByType(type) }
                 .flatMap {
                     Observable.concat(local, remote)
                             .firstElement()
