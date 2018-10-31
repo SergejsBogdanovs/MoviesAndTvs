@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import lv.st.sbogdano.cinema.BuildConfig
 import lv.st.sbogdano.cinema.internal.util.fade
 
@@ -47,6 +49,21 @@ object ViewBindingAdapters {
                     .load(BuildConfig.POSTER_BASE_URL + it)
                     .apply(options)
                     .into(imageView)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("showVideo")
+    fun showVideo(youTubePlayerView: YouTubePlayerView, key: String?) {
+        key?.let {
+            youTubePlayerView.initialize({ youTubePlayer ->
+                youTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
+                    override fun onReady() {
+                        youTubePlayer.cueVideo(key, 0f)
+                    }
+
+                })
+            }, true)
         }
     }
 }

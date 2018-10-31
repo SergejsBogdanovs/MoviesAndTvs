@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="@color/colorPrimary"
+                app:contentScrim="@color/primary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:titleEnabled="false">
 
@@ -69,9 +69,21 @@
                 layout="@layout/content_movie"
                 app:castCallbacks="@{castCallbacks}"
                 app:movieDetailViewModel="@{movieDetailViewModel}" />
-
         </android.support.v4.widget.NestedScrollView>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_favorite"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:fabSize="auto"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="right"
+            app:srcCompat="@drawable/heart_outline" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

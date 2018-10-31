@@ -34,7 +34,7 @@ class MovieDetailViewModel(
     val loading = ObservableBoolean()
     val movie = ObservableField<MovieModel>()
     val credits = ObservableArrayList<Credit>()
-    val videos = ObservableArrayList<Video>()
+    val video = ObservableField<Video>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
@@ -72,11 +72,11 @@ class MovieDetailViewModel(
                         loading.set(true)
                     }
 
-                    override fun onNext(t: List<Credit>) {
+                    override fun onNext(result: List<Credit>) {
                         loading.set(false)
                         credits.clear()
-                        credits.addAll(t)
-                        empty.set(t.isEmpty())
+                        credits.addAll(result)
+                        empty.set(result.isEmpty())
                     }
 
                     override fun onError(e: Throwable) {
@@ -93,10 +93,9 @@ class MovieDetailViewModel(
     private fun getVideosById(id: Int): Disposable {
         return videosGetByIdUseCase.execute(id)
                 .subscribeWith(object : DisposableObserver<List<Video>>() {
-                    override fun onNext(t: List<Video>) {
-                        videos.clear()
-                        videos.addAll(t)
-                        empty.set(t.isEmpty())
+                    override fun onNext(result: List<Video>) {
+                        video.set(result.first())
+                        empty.set(result.isEmpty())
                     }
 
                     override fun onError(e: Throwable) {

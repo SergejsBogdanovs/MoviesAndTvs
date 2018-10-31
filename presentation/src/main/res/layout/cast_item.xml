@@ -38,7 +38,7 @@
             android:layout_marginTop="8dp"
             android:text="@{credit.name}"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primary"
             android:textSize="@dimen/cast_text_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/cast_profile_image"

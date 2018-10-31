@@ -27,7 +27,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:actionBarSize"
-                android:background="@color/colorPrimary"
+                android:background="@color/primary"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
+            android:background="@color/primary"
             app:itemIconTint="@drawable/bottom_nav_colors"
             app:itemTextColor="@drawable/bottom_nav_colors"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"

@@ -33,12 +33,12 @@
             android:layout_marginTop="8dp"
             custom:arc_bottom_text="USER SCORE"
             custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
-            custom:arc_finished_color="@color/colorAccent"
+            custom:arc_finished_color="@color/accent"
             custom:arc_max="@integer/arc_max_vote_average"
             custom:arc_progress="@{movieDetailViewModel.movie.voteAverage}"
-            custom:arc_text_color="@color/colorPrimary"
+            custom:arc_text_color="@color/primary"
             custom:arc_text_size="@dimen/content_movie_text_size"
-            custom:arc_unfinished_color="@color/colorPrimary"
+            custom:arc_unfinished_color="@color/primary"
             custom:layout_constraintStart_toStartOf="parent"
             custom:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +49,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="@{movieDetailViewModel.movie.releaseDate}"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primary"
             android:textSize="@dimen/content_movie_text_size"
             custom:layout_constraintBottom_toBottomOf="@+id/vote_progress"
             custom:layout_constraintEnd_toStartOf="@+id/vote_progress"
@@ -66,7 +66,7 @@
             android:layout_marginEnd="8dp"
             android:text="@string/release_date_title"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primary"
             android:textSize="@dimen/arc_bottom_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/user_score_progress"
             app:layout_constraintEnd_toStartOf="@+id/vote_progress"
@@ -82,13 +82,13 @@
             android:layout_marginEnd="8dp"
             custom:arc_bottom_text="VOTES"
             custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
-            custom:arc_finished_color="@color/colorAccent"
+            custom:arc_finished_color="@color/accent"
             custom:arc_max="@integer/arc_max_votes"
             custom:arc_progress="@{movieDetailViewModel.movie.voteCount}"
             custom:arc_suffix_text=" "
-            custom:arc_text_color="@color/colorPrimary"
+            custom:arc_text_color="@color/primary"
             custom:arc_text_size="@dimen/content_movie_text_size"
-            custom:arc_unfinished_color="@color/colorPrimary"
+            custom:arc_unfinished_color="@color/primary"
             custom:layout_constraintEnd_toEndOf="parent"
             custom:layout_constraintTop_toTopOf="parent" />
 
@@ -99,7 +99,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:background="@color/colorAccent"
+            android:background="@color/accent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_score_progress" />
@@ -112,7 +112,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/overview_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_1" />
 
@@ -135,7 +135,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:background="@color/colorAccent"
+            android:background="@color/accent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/overview" />
@@ -148,7 +148,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/top_billed_cast"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_2" />
 
@@ -163,8 +163,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cast_label"
-            app:showLongMessage="@{movieDetailViewModel.error}"
-            tools:listitem="@layout/cast_item" />
+            app:showLongMessage="@{movieDetailViewModel.error}" />
 
         <View
             android:id="@+id/divider_3"
@@ -173,10 +172,47 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:background="@color/colorAccent"
+            android:background="@color/accent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cast_list" />
+
+        <TextView
+            android:id="@+id/trailer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/trailer_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_3" />
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
+            android:id="@+id/trailer_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:showVideo="@{movieDetailViewModel.video.key}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trailer_label" />
+
+        <View
+            android:id="@+id/divider_4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/accent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trailer_view" />
+
 
     </android.support.constraint.ConstraintLayout>
 </layout>
