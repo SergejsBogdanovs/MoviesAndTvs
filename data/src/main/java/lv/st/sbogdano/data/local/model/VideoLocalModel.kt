@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "Video")
 data class VideoLocalModel(
         @PrimaryKey
-        val id: Int,
+        val id: String,
         val key: String,
         val name: String
 )
