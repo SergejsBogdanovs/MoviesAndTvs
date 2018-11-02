@@ -56,7 +56,7 @@ ext {
     presentationKaptDependencies = [
             "android.arch.lifecycle:compiler:$lifecycleVersion",
             "com.google.dagger:dagger-compiler:$daggerVersion",
-            "com.google.dagger:dagger-android-processor:$daggerVersion"
+            "com.google.dagger:dagger-android-processor:$daggerVersion",
     ]
 
     presentationDependencies = [
@@ -81,7 +81,6 @@ ext {
             "com.github.lzyzsd:circleprogress:$circleprogressVersion",
             "com.google.android:flexbox:$flexboxLayoutVersion",
             "com.pierfrancescosoffritti.androidyoutubeplayer:core:$androidyoutubeplayerVersion"
-
     ]
 
     presentationTestDependencies = [
