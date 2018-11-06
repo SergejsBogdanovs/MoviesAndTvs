@@ -53,7 +53,7 @@ object ViewBindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("showVideo")
+    @BindingAdapter("playVideo")
     fun playVideo(youTubePlayerView: YouTubePlayerView, key: String?) {
         key?.let {
             youTubePlayerView.initialize({ youTubePlayer ->
