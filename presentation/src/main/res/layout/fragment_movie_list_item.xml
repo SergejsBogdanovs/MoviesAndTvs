@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/movie_poster"
             android:scaleType="centerCrop"
-            android:transitionName="@{@string/movie_image_transition + movie.id}"
+            android:transitionName="@{@string/movie_video_transition + movie.id}"
             app:loadUrl="@{`w185` + movie.posterPath}"
             tools:src="@tools:sample/backgrounds/scenic" />
 

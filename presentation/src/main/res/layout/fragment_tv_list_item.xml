@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/tv_poster"
             android:scaleType="centerCrop"
-            android:transitionName="@{@string/tv_image_transition + tv.id}"
+            android:transitionName="@{@string/tv_video_transition + tv.id}"
             app:loadUrl="@{`w185` + tv.posterPath}"
             tools:src="@tools:sample/backgrounds/scenic"/>
 

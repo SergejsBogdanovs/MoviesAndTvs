@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="movie_image_transition" translatable="false">movie_image_transition</string>
-    <string name="tv_image_transition" translatable="false">tv_image_transition</string>
+    <string name="movie_video_transition" translatable="false">movie_video_transition</string>
+    <string name="tv_video_transition" translatable="false">tv_video_transition</string>
 </resources>
