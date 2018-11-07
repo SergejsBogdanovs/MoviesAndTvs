@@ -16,6 +16,7 @@
     <string name="overview_label">Overview</string>
     <string name="top_billed_cast">Top Billed Cast</string>
     <string name="trailer_label">Trailer</string>
+    <string name="reviews">Reviews</string>
 
     <!-- Bottom navigation -->
     <string name="navigation_movies">MOVIES</string>

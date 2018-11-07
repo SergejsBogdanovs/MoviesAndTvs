@@ -1,13 +1,7 @@
 package lv.st.sbogdano.data.gateway.mapper
 
-import lv.st.sbogdano.data.local.model.CreditLocalModel
-import lv.st.sbogdano.data.local.model.MovieLocalModel
-import lv.st.sbogdano.data.local.model.TvLocalModel
-import lv.st.sbogdano.data.local.model.VideoLocalModel
-import lv.st.sbogdano.domain.entity.Credit
-import lv.st.sbogdano.domain.entity.Movie
-import lv.st.sbogdano.domain.entity.Tv
-import lv.st.sbogdano.domain.entity.Video
+import lv.st.sbogdano.data.local.model.*
+import lv.st.sbogdano.domain.entity.*
 
 class GatewayMapper {
 
@@ -44,5 +38,11 @@ class GatewayMapper {
             videoLocalModel.id,
             videoLocalModel.key,
             videoLocalModel.name
+    )
+
+    fun toEntity(reviewLocalModel: ReviewLocalModel) = Review(
+            reviewLocalModel.id,
+            reviewLocalModel.author,
+            reviewLocalModel.content
     )
 }

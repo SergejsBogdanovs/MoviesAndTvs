@@ -2,10 +2,7 @@ package lv.st.sbogdano.data.remote.api
 
 import com.serjltt.moshi.adapters.Wrapped
 import io.reactivex.Observable
-import lv.st.sbogdano.data.remote.model.CreditRemoteModel
-import lv.st.sbogdano.data.remote.model.MovieRemoteModel
-import lv.st.sbogdano.data.remote.model.TvRemoteModel
-import lv.st.sbogdano.data.remote.model.VideoRemoteModel
+import lv.st.sbogdano.data.remote.model.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -26,4 +23,8 @@ interface CinemaService {
     @GET("movie/{movie_id}/videos")
     @Wrapped(path = ["results"])
     fun getVideosById(@Path("movie_id") id: Int): Observable<List<VideoRemoteModel>>
+
+    @GET("movie/{movie_id}/reviews")
+    @Wrapped(path = ["results"])
+    fun getReviewsById(@Path("movie_id") id: Int): Observable<List<ReviewRemoteModel>>
 }

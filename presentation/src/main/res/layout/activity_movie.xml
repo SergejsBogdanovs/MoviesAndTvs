@@ -12,12 +12,12 @@
 
         <variable
             name="castCallbacks"
-            type="lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter.Callbacks" />
+            type="lv.st.sbogdano.cinema.movie.detail.adapter.casts.CastAdapter.Callbacks" />
 
     </data>
 
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_content"
+        android:id="@+id/movie_detail_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"

@@ -15,7 +15,7 @@
 
         <variable
             name="castCallbacks"
-            type="lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter.Callbacks" />
+            type="lv.st.sbogdano.cinema.movie.detail.adapter.casts.CastAdapter.Callbacks" />
     </data>
 
 
@@ -177,6 +177,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cast_list" />
 
+        <TextView
+            android:id="@+id/reviews_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/reviews"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_3" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reviews_label"
+            app:reviewsAdapter="@{movieDetailViewModel.reviews}"
+            app:showLongMessage="@{movieDetailViewModel.error}" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

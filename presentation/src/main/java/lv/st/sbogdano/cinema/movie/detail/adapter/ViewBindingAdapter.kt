@@ -1,12 +1,15 @@
 package lv.st.sbogdano.cinema.movie.detail.adapter
 
 import android.databinding.BindingAdapter
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.github.lzyzsd.circleprogress.ArcProgress
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter
+import lv.st.sbogdano.cinema.movie.detail.adapter.casts.CastAdapter
+import lv.st.sbogdano.cinema.movie.detail.adapter.reviews.ReviewsAdapter
 import lv.st.sbogdano.domain.entity.Credit
+import lv.st.sbogdano.domain.entity.Review
 
 object ViewBindingAdapter {
 
@@ -31,6 +34,16 @@ object ViewBindingAdapter {
             recyclerView.setHasFixedSize(true)
             recyclerView.adapter = CastAdapter(it, callbacks)
             recyclerView.layoutManager = flexboxLayoutManager
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("reviewsAdapter")
+    fun setReviewsAdapter(recyclerView: RecyclerView, items: List<Review>?) {
+        items?.let {
+            recyclerView.setHasFixedSize(true)
+            recyclerView.adapter = ReviewsAdapter(it)
+            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
         }
     }
 }

@@ -5,14 +5,17 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import io.reactivex.Maybe
-import lv.st.sbogdano.data.local.model.VideoLocalModel
+import lv.st.sbogdano.data.local.model.TvLocalModel
 
 @Dao
-interface VideosDao {
+interface TvsDao {
 
-    @Query("SELECT * FROM Videos where id = :id")
-    fun getAllById(id: Int): Maybe<List<VideoLocalModel>>
+    @Query("SELECT * FROM Tvs WHERE type = :type")
+    fun getAll(type: String): Maybe<List<TvLocalModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg video: VideoLocalModel)
+    fun insertAll(vararg tv: TvLocalModel)
+
+    @Query("DELETE FROM Tvs WHERE type = :type")
+    fun deleteByType(type: String)
 }

@@ -8,10 +8,7 @@ import lv.st.sbogdano.data.BuildConfig
 import lv.st.sbogdano.data.remote.api.util.AuthenticatorInterceptor
 import lv.st.sbogdano.data.remote.api.util.MoshiConverters
 import lv.st.sbogdano.data.remote.api.util.RetryAfterInterceptor
-import lv.st.sbogdano.data.remote.model.CreditRemoteModel
-import lv.st.sbogdano.data.remote.model.MovieRemoteModel
-import lv.st.sbogdano.data.remote.model.TvRemoteModel
-import lv.st.sbogdano.data.remote.model.VideoRemoteModel
+import lv.st.sbogdano.data.remote.model.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BASIC
@@ -65,4 +62,7 @@ class CinemaApi(baseUrl: String) : CinemaService {
     override fun getCreditsById(id: Int): Observable<List<CreditRemoteModel>> = service.getCreditsById(id)
 
     override fun getVideosById(id: Int): Observable<List<VideoRemoteModel>> = service.getVideosById(id)
+
+    override fun getReviewsById(id: Int): Observable<List<ReviewRemoteModel>> = service.getReviewsById(id)
+
 }

@@ -54,4 +54,13 @@ class DomainModule {
     ): VideosGetByIdUseCase {
         return VideosGetByIdUseCase(schedulers, gateway)
     }
+
+    @Provides
+    @Singleton
+    internal fun provideReviewsGetByIdAllUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+    ): ReviewGetByIdUseCase {
+        return ReviewGetByIdUseCase(schedulers, gateway)
+    }
 }

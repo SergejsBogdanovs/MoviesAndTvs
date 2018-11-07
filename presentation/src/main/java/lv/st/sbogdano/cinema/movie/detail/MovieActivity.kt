@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_movie.*
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.ActivityMovieBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
-import lv.st.sbogdano.cinema.movie.detail.adapter.cast.CastAdapter
+import lv.st.sbogdano.cinema.movie.detail.adapter.casts.CastAdapter
 import lv.st.sbogdano.cinema.navigation.Navigator
 import lv.st.sbogdano.domain.entity.Credit
 import javax.inject.Inject
@@ -51,6 +51,7 @@ class MovieActivity : DaggerAppCompatActivity(), CastAdapter.Callbacks {
         movieDetailViewModel.loadMovieDetail(movie)
         movieDetailViewModel.loadCredits(movie)
         movieDetailViewModel.loadVideos(movie)
+        movieDetailViewModel.loadReviews(movie)
 
         movieDetailViewModel.movie.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {

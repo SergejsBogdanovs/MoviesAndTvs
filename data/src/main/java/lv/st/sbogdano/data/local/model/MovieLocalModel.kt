@@ -2,7 +2,7 @@ package lv.st.sbogdano.data.local.model
 
 import android.arch.persistence.room.Entity
 
-@Entity(tableName = "Movie", primaryKeys = ["id", "type"])
+@Entity(tableName = "Movies", primaryKeys = ["id", "type"])
 data class MovieLocalModel(
     var id: Int,
     var posterPath: String?,

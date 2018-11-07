@@ -1,10 +1,7 @@
 package lv.st.sbogdano.domain.gateway
 
 import io.reactivex.Observable
-import lv.st.sbogdano.domain.entity.Credit
-import lv.st.sbogdano.domain.entity.Movie
-import lv.st.sbogdano.domain.entity.Tv
-import lv.st.sbogdano.domain.entity.Video
+import lv.st.sbogdano.domain.entity.*
 
 interface Gateway {
 
@@ -17,4 +14,6 @@ interface Gateway {
     fun getCreditsById(id: Int): Observable<List<Credit>>
 
     fun getVideosById(id: Int): Observable<List<Video>>
+
+    fun getReviewsById(id: Int): Observable<List<Review>>
 }

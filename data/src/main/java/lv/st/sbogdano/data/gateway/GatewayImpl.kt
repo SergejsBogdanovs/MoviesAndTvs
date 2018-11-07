@@ -2,21 +2,16 @@ package lv.st.sbogdano.data.gateway
 
 import io.reactivex.Observable
 import lv.st.sbogdano.data.gateway.mapper.GatewayMapper
-import lv.st.sbogdano.data.repository.CreditsRepository
-import lv.st.sbogdano.data.repository.MovieRepository
-import lv.st.sbogdano.data.repository.TvRepository
-import lv.st.sbogdano.data.repository.VideosRepository
-import lv.st.sbogdano.domain.entity.Credit
-import lv.st.sbogdano.domain.entity.Movie
-import lv.st.sbogdano.domain.entity.Tv
-import lv.st.sbogdano.domain.entity.Video
+import lv.st.sbogdano.data.repository.*
+import lv.st.sbogdano.domain.entity.*
 import lv.st.sbogdano.domain.gateway.Gateway
 
 class GatewayImpl(
     private val movieRepository: MovieRepository,
     private val tvRepository: TvRepository,
     private val creditsRepository: CreditsRepository,
-    private val videosRepository: VideosRepository
+    private val videosRepository: VideosRepository,
+    private val reviewsRepository: ReviewsRepository
 ) : Gateway {
 
     private val mapper = GatewayMapper()
@@ -45,4 +40,9 @@ class GatewayImpl(
             videosRepository.getAllById(id)
                     .doOnError { println("Videos by Id($id) Error") }
                     .map { it.map { videoLocalModel -> mapper.toEntity(videoLocalModel) } }
+
+    override fun getReviewsById(id: Int): Observable<List<Review>> =
+            reviewsRepository.getAllById(id)
+                    .doOnError { println("Reviews by Id($id) Error") }
+                    .map { it.map { reviewLocalModel -> mapper.toEntity(reviewLocalModel) } }
 }

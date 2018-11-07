@@ -8,17 +8,17 @@ import io.reactivex.Maybe
 import lv.st.sbogdano.data.local.model.MovieLocalModel
 
 @Dao
-interface MovieDao {
+interface MoviesDao {
 
-    @Query("SELECT * FROM Movie WHERE type = :type")
+    @Query("SELECT * FROM Movies WHERE type = :type")
     fun getAll(type: String): Maybe<List<MovieLocalModel>>
 
-    @Query("SELECT * FROM Movie WHERE id = :id")
+    @Query("SELECT * FROM Movies WHERE id = :id")
     fun getById(id: Int): Maybe<MovieLocalModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg movie: MovieLocalModel)
 
-    @Query("DELETE FROM Movie WHERE type = :type")
+    @Query("DELETE FROM Movies WHERE type = :type")
     fun deleteByType(type: String)
 }

@@ -5,29 +5,14 @@ import dagger.Module
 import dagger.Provides
 import lv.st.sbogdano.data.BuildConfig
 import lv.st.sbogdano.data.gateway.GatewayImpl
-import lv.st.sbogdano.data.local.CreditsLocalDataSource
-import lv.st.sbogdano.data.local.MovieLocalDataSource
-import lv.st.sbogdano.data.local.TvLocalDataSource
-import lv.st.sbogdano.data.local.VideosLocalDataSource
-import lv.st.sbogdano.data.local.dao.CreditsDao
-import lv.st.sbogdano.data.local.dao.MovieDao
-import lv.st.sbogdano.data.local.dao.TvDao
-import lv.st.sbogdano.data.local.dao.VideosDao
+import lv.st.sbogdano.data.local.*
+import lv.st.sbogdano.data.local.dao.*
 import lv.st.sbogdano.data.local.database.CinemaDatabase
-import lv.st.sbogdano.data.remote.CreditsRemoteDataSource
-import lv.st.sbogdano.data.remote.MovieRemoteDataSource
-import lv.st.sbogdano.data.remote.TvRemoteDataSource
-import lv.st.sbogdano.data.remote.VideosRemoteDataSource
+import lv.st.sbogdano.data.remote.*
 import lv.st.sbogdano.data.remote.api.CinemaApi
 import lv.st.sbogdano.data.remote.api.CinemaService
-import lv.st.sbogdano.data.repository.CreditsRepository
-import lv.st.sbogdano.data.repository.MovieRepository
-import lv.st.sbogdano.data.repository.TvRepository
-import lv.st.sbogdano.data.repository.VideosRepository
-import lv.st.sbogdano.data.repository.mapper.CreditsListMapper
-import lv.st.sbogdano.data.repository.mapper.MovieListMapper
-import lv.st.sbogdano.data.repository.mapper.TvListMapper
-import lv.st.sbogdano.data.repository.mapper.VideosListMapper
+import lv.st.sbogdano.data.repository.*
+import lv.st.sbogdano.data.repository.mapper.*
 import lv.st.sbogdano.domain.gateway.Gateway
 import javax.inject.Singleton
 
@@ -49,19 +34,20 @@ internal class DataModule {
         movieRepository: MovieRepository,
         tvRepository: TvRepository,
         creditsRepository: CreditsRepository,
-        videosRepository: VideosRepository
+        videosRepository: VideosRepository,
+        reviewsRepository: ReviewsRepository
     ): Gateway {
-        return GatewayImpl(movieRepository, tvRepository, creditsRepository, videosRepository)
+        return GatewayImpl(movieRepository, tvRepository, creditsRepository, videosRepository, reviewsRepository)
     }
 
     // -------------------------------------DAOs-----------------------------------------------------//
     @Provides
     @Singleton
-    internal fun provideMovieDao(cinemaDatabase: CinemaDatabase): MovieDao = cinemaDatabase.movieDao()
+    internal fun provideMovieDao(cinemaDatabase: CinemaDatabase): MoviesDao = cinemaDatabase.moviesDao()
 
     @Provides
     @Singleton
-    internal fun provideTvDao(cinemaDatabase: CinemaDatabase): TvDao = cinemaDatabase.tvDao()
+    internal fun provideTvDao(cinemaDatabase: CinemaDatabase): TvsDao = cinemaDatabase.tvsDao()
 
     @Provides
     @Singleton
@@ -71,17 +57,21 @@ internal class DataModule {
     @Singleton
     internal fun provideVideosDao(cinemaDatabase: CinemaDatabase): VideosDao = cinemaDatabase.videosDao()
 
+    @Provides
+    @Singleton
+    internal fun provideReviewsDao(cinemaDatabase: CinemaDatabase): ReviewsDao = cinemaDatabase.reviewsDao()
+
     // -------------------------------------LOCAL DATA SOURCES---------------------------------------//
     @Provides
     @Singleton
-    internal fun provideMovieLocalDataSource(movieDao: MovieDao): MovieLocalDataSource {
-        return MovieLocalDataSource(movieDao)
+    internal fun provideMovieLocalDataSource(moviesDao: MoviesDao): MovieLocalDataSource {
+        return MovieLocalDataSource(moviesDao)
     }
 
     @Provides
     @Singleton
-    internal fun provideTvLocalDataSource(tvDao: TvDao): TvLocalDataSource {
-        return TvLocalDataSource(tvDao)
+    internal fun provideTvLocalDataSource(tvsDao: TvsDao): TvLocalDataSource {
+        return TvLocalDataSource(tvsDao)
     }
 
     @Provides
@@ -94,6 +84,12 @@ internal class DataModule {
     @Singleton
     internal fun provideVideosLocalDataSource(videosDao: VideosDao): VideosLocalDataSource {
         return VideosLocalDataSource(videosDao)
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideReviewsLocalDataSource(reviewsDao: ReviewsDao): ReviewsLocalDataSource {
+        return ReviewsLocalDataSource(reviewsDao)
     }
 
     // -------------------------------------REMOTE DATA SOURCES--------------------------------------//
@@ -119,6 +115,12 @@ internal class DataModule {
     @Singleton
     internal fun provideVideosRemoteDataSource(cinemaService: CinemaService): VideosRemoteDataSource {
         return VideosRemoteDataSource(cinemaService)
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideReviewsRemoteDataSource(cinemaService: CinemaService): ReviewsRemoteDataSource {
+        return ReviewsRemoteDataSource(cinemaService)
     }
 
     // -------------------------------------REPOSITORIES---------------------------------------------//
@@ -156,5 +158,14 @@ internal class DataModule {
         videosRemoteDataSource: VideosRemoteDataSource
     ): VideosRepository {
         return VideosRepository(videosLocalDataSource, videosRemoteDataSource, VideosListMapper())
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideReviewsRepository(
+        reviewsLocalDataSource: ReviewsLocalDataSource,
+        reviewsRemoteDataSource: ReviewsRemoteDataSource
+    ): ReviewsRepository {
+        return ReviewsRepository(reviewsLocalDataSource, reviewsRemoteDataSource, ReviewsListMapper())
     }
 }
