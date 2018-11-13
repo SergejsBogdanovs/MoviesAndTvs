@@ -9,5 +9,4 @@ class ReviewsListMapper {
             ReviewLocalModel(review.id, review.author, review.content)
 
     fun toLocal(items: List<ReviewRemoteModel>) = items.map { toLocal(it) }
-
 }

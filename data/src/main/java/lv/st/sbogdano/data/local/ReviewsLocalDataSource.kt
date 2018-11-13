@@ -9,5 +9,4 @@ class ReviewsLocalDataSource(private val reviewsDao: ReviewsDao) {
     fun getAllById(id: Int): Observable<List<ReviewLocalModel>> = reviewsDao.getAllById(id).toObservable()
 
     fun insertAll(reviews: List<ReviewLocalModel>) = reviewsDao.insertAll(*reviews.toTypedArray())
-
 }

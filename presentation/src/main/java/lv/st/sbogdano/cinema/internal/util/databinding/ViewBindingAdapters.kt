@@ -61,7 +61,6 @@ object ViewBindingAdapters {
                     override fun onReady() {
                         youTubePlayer.cueVideo(key, 0f)
                     }
-
                 })
             }, true)
         }

@@ -54,8 +54,8 @@ internal abstract class MovieModule {
         @Provides
         @JvmStatic
         internal fun provideReviewsGetByIdAllUseCase(
-                schedulers: Schedulers,
-                gateway: Gateway
+            schedulers: Schedulers,
+            gateway: Gateway
         ): ReviewGetByIdUseCase {
             return ReviewGetByIdUseCase(schedulers, gateway)
         }

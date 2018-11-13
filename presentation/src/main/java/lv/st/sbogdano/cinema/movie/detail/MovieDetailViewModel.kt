@@ -21,11 +21,11 @@ import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
 
 class MovieDetailViewModel(
-        context: Context,
-        private val movieGetByIdUseCase: MovieGetByIdUseCase,
-        private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
-        private val videosGetByIdUseCase: VideosGetByIdUseCase,
-        private val reviewGetByIdUseCase: ReviewGetByIdUseCase
+    context: Context,
+    private val movieGetByIdUseCase: MovieGetByIdUseCase,
+    private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
+    private val videosGetByIdUseCase: VideosGetByIdUseCase,
+    private val reviewGetByIdUseCase: ReviewGetByIdUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = MovieMapper()
@@ -134,5 +134,4 @@ class MovieDetailViewModel(
                     }
                 })
     }
-
 }

@@ -7,8 +7,8 @@ import lv.st.sbogdano.domain.entity.Credit
 import lv.st.sbogdano.domain.gateway.Gateway
 
 class CreditsGetByIdUseCase(
-        schedulers: Schedulers,
-        private val gateway: Gateway
+    schedulers: Schedulers,
+    private val gateway: Gateway
 ) : UseCase<Int, List<Credit>>(schedulers) {
 
     override fun buildObservable(params: Int?): Observable<List<Credit>> {

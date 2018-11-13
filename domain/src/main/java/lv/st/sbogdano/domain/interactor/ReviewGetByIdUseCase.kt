@@ -7,12 +7,11 @@ import lv.st.sbogdano.domain.entity.Review
 import lv.st.sbogdano.domain.gateway.Gateway
 
 class ReviewGetByIdUseCase(
-        schedulers: Schedulers,
-        private val gateway: Gateway
+    schedulers: Schedulers,
+    private val gateway: Gateway
 ) : UseCase<Int, List<Review>>(schedulers) {
 
     override fun buildObservable(params: Int?): Observable<List<Review>> {
         return gateway.getReviewsById(params!!)
     }
-
 }

@@ -13,8 +13,8 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideMoviesByTypeGetAllUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): MoviesByTypeGetAllUseCase {
         return MoviesByTypeGetAllUseCase(schedulers, gateway)
     }
@@ -22,8 +22,8 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideMovieGetByIdUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): MovieGetByIdUseCase {
         return MovieGetByIdUseCase(schedulers, gateway)
     }
@@ -31,8 +31,8 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideTvByTypeGetAllUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): TvByTypeGetAllUseCase {
         return TvByTypeGetAllUseCase(schedulers, gateway)
     }
@@ -40,8 +40,8 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideCreditsGetByIdAllUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): CreditsGetByIdUseCase {
         return CreditsGetByIdUseCase(schedulers, gateway)
     }
@@ -49,8 +49,8 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideVideosGetByIdAllUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): VideosGetByIdUseCase {
         return VideosGetByIdUseCase(schedulers, gateway)
     }
@@ -58,8 +58,8 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideReviewsGetByIdAllUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): ReviewGetByIdUseCase {
         return ReviewGetByIdUseCase(schedulers, gateway)
     }

@@ -7,9 +7,9 @@ import lv.st.sbogdano.data.remote.ReviewsRemoteDataSource
 import lv.st.sbogdano.data.repository.mapper.ReviewsListMapper
 
 class ReviewsRepository(
-        private val reviewsLocalDataSource: ReviewsLocalDataSource,
-        private val reviewsRemoteDataSource: ReviewsRemoteDataSource,
-        private val reviewsListMapper: ReviewsListMapper
+    private val reviewsLocalDataSource: ReviewsLocalDataSource,
+    private val reviewsRemoteDataSource: ReviewsRemoteDataSource,
+    private val reviewsListMapper: ReviewsListMapper
 ) {
 
     fun getAllById(id: Int): Observable<List<ReviewLocalModel>> {

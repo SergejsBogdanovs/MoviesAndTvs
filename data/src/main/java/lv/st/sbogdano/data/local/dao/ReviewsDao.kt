@@ -15,5 +15,4 @@ interface ReviewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg review: ReviewLocalModel)
-
 }

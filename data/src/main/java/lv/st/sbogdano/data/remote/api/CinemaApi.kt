@@ -64,5 +64,4 @@ class CinemaApi(baseUrl: String) : CinemaService {
     override fun getVideosById(id: Int): Observable<List<VideoRemoteModel>> = service.getVideosById(id)
 
     override fun getReviewsById(id: Int): Observable<List<ReviewRemoteModel>> = service.getReviewsById(id)
-
 }

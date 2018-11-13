@@ -25,6 +25,5 @@ class ReviewsAdapter(
         holder.binding.executePendingBindings()
     }
 
-    inner class ViewHolder(val binding: ReviewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    }
+    inner class ViewHolder(val binding: ReviewItemBinding) : RecyclerView.ViewHolder(binding.root)
 }

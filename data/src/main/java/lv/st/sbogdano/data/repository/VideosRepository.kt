@@ -7,9 +7,9 @@ import lv.st.sbogdano.data.remote.VideosRemoteDataSource
 import lv.st.sbogdano.data.repository.mapper.VideosListMapper
 
 class VideosRepository(
-        private val videosLocalDataSource: VideosLocalDataSource,
-        private val videosRemoteDataSource: VideosRemoteDataSource,
-        private val videosListMapper: VideosListMapper
+    private val videosLocalDataSource: VideosLocalDataSource,
+    private val videosRemoteDataSource: VideosRemoteDataSource,
+    private val videosListMapper: VideosListMapper
 ) {
 
     fun getAllById(id: Int): Observable<List<VideoLocalModel>> {
