@@ -13,9 +13,13 @@ interface TvsDao {
     @Query("SELECT * FROM Tvs WHERE type = :type")
     fun getAll(type: String): Maybe<List<TvLocalModel>>
 
+    @Query("SELECT * FROM Tvs WHERE id = :id")
+    fun getById(id: Int): Maybe<TvLocalModel>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg tv: TvLocalModel)
 
     @Query("DELETE FROM Tvs WHERE type = :type")
     fun deleteByType(type: String)
+
 }

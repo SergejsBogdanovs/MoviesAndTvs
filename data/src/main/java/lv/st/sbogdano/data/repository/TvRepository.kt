@@ -29,4 +29,6 @@ class TvRepository(
                             .toObservable()
                 }
     }
+
+    fun getById(id: Int): Observable<TvLocalModel> = tvLocalDataSource.getById(id)
 }

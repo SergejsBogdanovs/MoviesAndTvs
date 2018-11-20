@@ -1,4 +1,4 @@
-package lv.st.sbogdano.cinema.movie.detail.mapper
+package lv.st.sbogdano.cinema.tv.detail.mapper
 
 import lv.st.sbogdano.cinema.tv.detail.model.TvModel
 import lv.st.sbogdano.domain.entity.Tv

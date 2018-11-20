@@ -12,12 +12,14 @@ class CreditsRepository(
     private val creditsListMapper: CreditsListMapper
 ) {
 
-    fun getAllById(id: Int): Observable<List<CreditLocalModel>> {
+    fun getAllById(params: Pair<Int, String>): Observable<List<CreditLocalModel>> {
+
+        val (id, path) = params
 
         val local = creditsLocalDataSource.getAllById(id)
                 .filter { !it.isEmpty() }
 
-        val remote = creditsRemoteDataSource.getAllById(id)
+        val remote = creditsRemoteDataSource.getAllById(id, path)
                 .map { it.take(5) }
                 .map { creditsListMapper.toLocal(it) }
                 .doOnNext { creditsLocalDataSource.insertAll(it) }

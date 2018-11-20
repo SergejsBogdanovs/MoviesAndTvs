@@ -13,6 +13,7 @@
     <!-- Content Item -->
     <string name="cast_profile_image">Cast profile image</string>
     <string name="release_date_title">Release Date</string>
+    <string name="first_air_date_title">First On Air Date</string>
     <string name="overview_label">Overview</string>
     <string name="top_billed_cast">Top Billed Cast</string>
     <string name="trailer_label">Trailer</string>

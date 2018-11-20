@@ -1,12 +1,12 @@
 package lv.st.sbogdano.cinema.movie.detail.mapper
 
-import lv.st.sbogdano.cinema.movie.detail.model.TvModel
+import lv.st.sbogdano.cinema.movie.detail.model.MovieModel
 import lv.st.sbogdano.domain.entity.Movie
 
 class MovieMapper {
 
-    fun toModel(result: Movie): TvModel {
-        return TvModel(
+    fun toModel(result: Movie): MovieModel {
+        return MovieModel(
                 result.id,
                 result.posterPath,
                 result.overview,

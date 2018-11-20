@@ -4,8 +4,8 @@ data class TvModel(
     val id: Int,
     val posterPath: String?,
     val overview: String,
-    val releaseDate: String,
-    val title: String,
+    val firstAirDate: String,
+    val name: String,
     val popularity: Float,
     val voteCount: Int,
     val voteAverage: Float

@@ -9,22 +9,27 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.cinema.movie.detail.mapper.TvMapper
+import lv.st.sbogdano.cinema.tv.detail.mapper.TvMapper
 import lv.st.sbogdano.cinema.tv.detail.model.TvModel
-import lv.st.sbogdano.domain.entity.*
+import lv.st.sbogdano.domain.entity.Credit
+import lv.st.sbogdano.domain.entity.Review
+import lv.st.sbogdano.domain.entity.Tv
+import lv.st.sbogdano.domain.entity.Video
 import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.TvGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
 
 class TvDetailViewModel(
-    context: Context,
-    private val tvGetByIdUseCase: TvGetByIdUseCase,
-    private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
-    private val videosGetByIdUseCase: VideosGetByIdUseCase,
-    private val reviewGetByIdUseCase: ReviewGetByIdUseCase
+        context: Context,
+        private val tvGetByIdUseCase: TvGetByIdUseCase,
+        private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
+        private val videosGetByIdUseCase: VideosGetByIdUseCase,
+        private val reviewGetByIdUseCase: ReviewGetByIdUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = TvMapper()
+    private val path = "tv"
 
     val loading = ObservableBoolean()
     val tv = ObservableField<TvModel>()
@@ -63,7 +68,8 @@ class TvDetailViewModel(
     }
 
     private fun getCreditsById(id: Int): Disposable {
-        return creditsGetByIdUseCase.execute(id)
+        val params = Pair(id, path)
+        return creditsGetByIdUseCase.execute(params)
                 .subscribeWith(object : DisposableObserver<List<Credit>>() {
                     override fun onStart() {
                         loading.set(true)
@@ -88,7 +94,8 @@ class TvDetailViewModel(
     }
 
     private fun getVideosById(id: Int): Disposable {
-        return videosGetByIdUseCase.execute(id)
+        val params = Pair(id, path)
+        return videosGetByIdUseCase.execute(params)
                 .subscribeWith(object : DisposableObserver<List<Video>>() {
                     override fun onNext(result: List<Video>) {
                         video.set(result.first())
@@ -106,7 +113,8 @@ class TvDetailViewModel(
     }
 
     private fun getReviewsById(id: Int): Disposable {
-        return reviewGetByIdUseCase.execute(id)
+        val params = Pair(id, path)
+        return reviewGetByIdUseCase.execute(params)
                 .subscribeWith(object : DisposableObserver<List<Review>>() {
 
                     override fun onStart() {

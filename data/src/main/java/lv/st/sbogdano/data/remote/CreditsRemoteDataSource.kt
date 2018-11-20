@@ -6,5 +6,5 @@ import lv.st.sbogdano.data.remote.model.CreditRemoteModel
 
 class CreditsRemoteDataSource(private val cinemaService: CinemaService) {
 
-    fun getAllById(id: Int): Observable<List<CreditRemoteModel>> = cinemaService.getCreditsById(id)
+    fun getAllById(id: Int, path: String): Observable<List<CreditRemoteModel>> = cinemaService.getCreditsById(id, path)
 }

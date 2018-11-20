@@ -29,6 +29,7 @@ class MovieDetailViewModel(
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = MovieMapper()
+    private val path = "movie"
 
     val loading = ObservableBoolean()
     val movie = ObservableField<MovieModel>()
@@ -67,7 +68,8 @@ class MovieDetailViewModel(
     }
 
     private fun getCreditsById(id: Int): Disposable {
-        return creditsGetByIdUseCase.execute(id)
+        val params = Pair(id, path)
+        return creditsGetByIdUseCase.execute(params)
                 .subscribeWith(object : DisposableObserver<List<Credit>>() {
                     override fun onStart() {
                         loading.set(true)
@@ -92,7 +94,8 @@ class MovieDetailViewModel(
     }
 
     private fun getVideosById(id: Int): Disposable {
-        return videosGetByIdUseCase.execute(id)
+        val params = Pair(id, path)
+        return videosGetByIdUseCase.execute(params)
                 .subscribeWith(object : DisposableObserver<List<Video>>() {
                     override fun onNext(result: List<Video>) {
                         video.set(result.first())
@@ -110,7 +113,8 @@ class MovieDetailViewModel(
     }
 
     private fun getReviewsById(id: Int): Disposable {
-        return reviewGetByIdUseCase.execute(id)
+        val params = Pair(id, path)
+        return reviewGetByIdUseCase.execute(params)
                 .subscribeWith(object : DisposableObserver<List<Review>>() {
 
                     override fun onStart() {

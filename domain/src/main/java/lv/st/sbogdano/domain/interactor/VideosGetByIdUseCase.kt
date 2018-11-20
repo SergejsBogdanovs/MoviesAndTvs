@@ -9,9 +9,9 @@ import lv.st.sbogdano.domain.gateway.Gateway
 class VideosGetByIdUseCase(
     schedulers: Schedulers,
     private val gateway: Gateway
-) : UseCase<Int, List<Video>>(schedulers) {
+) : UseCase<Pair<Int, String>, List<Video>>(schedulers) {
 
-    override fun buildObservable(params: Int?): Observable<List<Video>> {
+    override fun buildObservable(params: Pair<Int, String>?): Observable<List<Video>> {
         return gateway.getVideosById(params!!)
     }
 }

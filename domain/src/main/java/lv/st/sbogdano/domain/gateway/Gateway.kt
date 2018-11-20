@@ -11,9 +11,12 @@ interface Gateway {
 
     fun getMovieById(id: Int): Observable<Movie>
 
-    fun getCreditsById(id: Int): Observable<List<Credit>>
+    fun getTvById(id: Int): Observable<Tv>
 
-    fun getVideosById(id: Int): Observable<List<Video>>
+    fun getCreditsById(params: Pair<Int, String>): Observable<List<Credit>>
 
-    fun getReviewsById(id: Int): Observable<List<Review>>
+    fun getVideosById(params: Pair<Int, String>): Observable<List<Video>>
+
+    fun getReviewsById(params: Pair<Int, String>): Observable<List<Review>>
+
 }

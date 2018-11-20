@@ -6,5 +6,5 @@ import lv.st.sbogdano.data.remote.model.VideoRemoteModel
 
 class VideosRemoteDataSource(private val cinemaService: CinemaService) {
 
-    fun getAllById(id: Int): Observable<List<VideoRemoteModel>> = cinemaService.getVideosById(id)
+    fun getAllById(id: Int, path: String): Observable<List<VideoRemoteModel>> = cinemaService.getVideosById(id, path)
 }

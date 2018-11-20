@@ -12,12 +12,14 @@ class ReviewsRepository(
     private val reviewsListMapper: ReviewsListMapper
 ) {
 
-    fun getAllById(id: Int): Observable<List<ReviewLocalModel>> {
+    fun getAllById(params: Pair<Int, String>): Observable<List<ReviewLocalModel>> {
+
+        val (id, path) = params
 
         val local = reviewsLocalDataSource.getAllById(id)
                 .filter { !it.isEmpty() }
 
-        val remote = reviewsRemoteDataSource.getAllById(id)
+        val remote = reviewsRemoteDataSource.getAllById(id, path)
                 .map { reviewsListMapper.toLocal(it) }
                 .doOnNext { reviewsLocalDataSource.insertAll(it) }
 

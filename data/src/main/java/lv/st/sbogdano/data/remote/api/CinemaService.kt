@@ -16,15 +16,15 @@ interface CinemaService {
     @Wrapped(path = ["results"])
     fun getTvsByType(@Path("type") type: String): Observable<List<TvRemoteModel>>
 
-    @GET("movie/{movie_id}/credits")
+    @GET("{path}/{id}/credits")
     @Wrapped(path = ["cast"])
-    fun getCreditsById(@Path("movie_id") id: Int): Observable<List<CreditRemoteModel>>
+    fun getCreditsById(@Path("id") id: Int, @Path("path") path: String): Observable<List<CreditRemoteModel>>
 
-    @GET("movie/{movie_id}/videos")
+    @GET("{path}/{id}/videos")
     @Wrapped(path = ["results"])
-    fun getVideosById(@Path("movie_id") id: Int): Observable<List<VideoRemoteModel>>
+    fun getVideosById(@Path("id") id: Int, @Path("path") path: String): Observable<List<VideoRemoteModel>>
 
-    @GET("movie/{movie_id}/reviews")
+    @GET("{path}/{id}/reviews")
     @Wrapped(path = ["results"])
-    fun getReviewsById(@Path("movie_id") id: Int): Observable<List<ReviewRemoteModel>>
+    fun getReviewsById(@Path("id") id: Int, @Path("path") path: String): Observable<List<ReviewRemoteModel>>
 }

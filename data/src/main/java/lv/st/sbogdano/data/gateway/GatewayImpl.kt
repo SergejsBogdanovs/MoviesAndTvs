@@ -31,18 +31,23 @@ class GatewayImpl(
                     .doOnError { println("Movie by Id($id) Error") }
                     .map { mapper.toEntity(it) }
 
-    override fun getCreditsById(id: Int): Observable<List<Credit>> =
-            creditsRepository.getAllById(id)
-                    .doOnError { println("Credits by Id($id) Error") }
+    override fun getTvById(id: Int): Observable<Tv> =
+            tvRepository.getById(id)
+                    .doOnError { println("Tv by Id($id) Error") }
+                    .map { mapper.toEntity(it) }
+
+    override fun getCreditsById(params: Pair<Int, String>): Observable<List<Credit>> =
+            creditsRepository.getAllById(params)
+                    .doOnError { println("Credits by Id(${params.first}) Error") }
                     .map { it.map { creditLocalModel -> mapper.toEntity(creditLocalModel) } }
 
-    override fun getVideosById(id: Int): Observable<List<Video>> =
-            videosRepository.getAllById(id)
-                    .doOnError { println("Videos by Id($id) Error") }
+    override fun getVideosById(params: Pair<Int, String>): Observable<List<Video>> =
+            videosRepository.getAllById(params)
+                    .doOnError { println("Videos by Id(${params.first}) Error") }
                     .map { it.map { videoLocalModel -> mapper.toEntity(videoLocalModel) } }
 
-    override fun getReviewsById(id: Int): Observable<List<Review>> =
-            reviewsRepository.getAllById(id)
-                    .doOnError { println("Reviews by Id($id) Error") }
+    override fun getReviewsById(params: Pair<Int, String>): Observable<List<Review>> =
+            reviewsRepository.getAllById(params)
+                    .doOnError { println("Reviews by Id(${params.first}) Error") }
                     .map { it.map { reviewLocalModel -> mapper.toEntity(reviewLocalModel) } }
 }

@@ -12,12 +12,14 @@ class VideosRepository(
     private val videosListMapper: VideosListMapper
 ) {
 
-    fun getAllById(id: Int): Observable<List<VideoLocalModel>> {
+    fun getAllById(params: Pair<Int, String>): Observable<List<VideoLocalModel>> {
+
+        val (id, path) = params
 
         val local = videosLocalDataSource.getAllById(id)
                 .filter { !it.isEmpty() }
 
-        val remote = videosRemoteDataSource.getAllById(id)
+        val remote = videosRemoteDataSource.getAllById(id, path)
                 .map { it.take(1) }
                 .map { videosListMapper.toLocal(it) }
                 .doOnNext { videosLocalDataSource.insertAll(it) }
