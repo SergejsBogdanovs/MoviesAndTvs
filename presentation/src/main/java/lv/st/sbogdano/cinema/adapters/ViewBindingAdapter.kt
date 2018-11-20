@@ -1,4 +1,4 @@
-package lv.st.sbogdano.cinema.movie.detail.adapter
+package lv.st.sbogdano.cinema.adapters
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.LinearLayoutManager
@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView
 import com.github.lzyzsd.circleprogress.ArcProgress
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import lv.st.sbogdano.cinema.movie.detail.adapter.casts.CastAdapter
-import lv.st.sbogdano.cinema.movie.detail.adapter.reviews.ReviewsAdapter
+import lv.st.sbogdano.cinema.adapters.casts.CastAdapter
+import lv.st.sbogdano.cinema.adapters.reviews.ReviewsAdapter
 import lv.st.sbogdano.domain.entity.Credit
 import lv.st.sbogdano.domain.entity.Review
 

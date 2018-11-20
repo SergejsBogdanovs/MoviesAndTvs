@@ -1,4 +1,4 @@
-package lv.st.sbogdano.cinema.movie.detail.adapter.casts
+package lv.st.sbogdano.cinema.adapters.casts
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
