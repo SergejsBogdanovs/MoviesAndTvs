@@ -4,10 +4,11 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.util.Pair
+import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentTvListBinding
@@ -57,6 +58,8 @@ class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks {
     }
 
     override fun onItemClick(view: View, item: TvListModel) {
-        Toast.makeText(activity?.applicationContext, "Hello world", Toast.LENGTH_SHORT).show()
+        val imageView = view.findViewById<View>(R.id.image_tv_poster)
+        val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
+        activity?.let { navigator.navigateToTv(it, item.id, sharedView) }
     }
 }

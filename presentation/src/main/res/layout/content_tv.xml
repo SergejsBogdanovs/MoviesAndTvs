@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".tv.detail.TvActivity"
+    tools:shownIn="@layout/activity_tv"
+    tools:targetApi="lollipop">
+
+    <data>
+
+        <variable
+            name="tvDetailViewModel"
+            type="lv.st.sbogdano.cinema.tv.detail.TvDetailViewModel" />
+
+        <variable
+            name="castCallbacks"
+            type="lv.st.sbogdano.cinema.adapters.casts.CastAdapter.Callbacks" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.github.lzyzsd.circleprogress.ArcProgress
+            android:id="@+id/user_score_progress"
+            android:layout_width="@dimen/arc_layout_width"
+            android:layout_height="@dimen/arc_layout_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            custom:arc_bottom_text="USER SCORE"
+            custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
+            custom:arc_finished_color="@color/accent"
+            custom:arc_max="@integer/arc_max_vote_average"
+            custom:arc_progress="@{tvDetailViewModel.tv.voteAverage}"
+            custom:arc_text_color="@color/primary"
+            custom:arc_text_size="@dimen/content_movie_text_size"
+            custom:arc_unfinished_color="@color/primary"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{tvDetailViewModel.tv.releaseDate}"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/content_movie_text_size"
+            custom:layout_constraintBottom_toBottomOf="@+id/vote_progress"
+            custom:layout_constraintEnd_toStartOf="@+id/vote_progress"
+            custom:layout_constraintStart_toEndOf="@+id/user_score_progress"
+            custom:layout_constraintTop_toTopOf="@+id/vote_progress"
+            tools:text="2018-10-16" />
+
+        <TextView
+            android:id="@+id/release_date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/release_date_title"
+            android:textAllCaps="true"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/arc_bottom_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/user_score_progress"
+            app:layout_constraintEnd_toStartOf="@+id/vote_progress"
+            app:layout_constraintStart_toEndOf="@+id/user_score_progress"
+            app:layout_constraintTop_toBottomOf="@+id/release_date"
+            app:layout_constraintVertical_bias="0.74" />
+
+        <com.github.lzyzsd.circleprogress.ArcProgress
+            android:id="@+id/vote_progress"
+            android:layout_width="@dimen/arc_layout_width"
+            android:layout_height="@dimen/arc_layout_height"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            custom:arc_bottom_text="VOTES"
+            custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
+            custom:arc_finished_color="@color/accent"
+            custom:arc_max="@integer/arc_max_votes"
+            custom:arc_progress="@{tvDetailViewModel.tv.voteCount}"
+            custom:arc_suffix_text=" "
+            custom:arc_text_color="@color/primary"
+            custom:arc_text_size="@dimen/content_movie_text_size"
+            custom:arc_unfinished_color="@color/primary"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/accent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_score_progress" />
+
+        <TextView
+            android:id="@+id/overview_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/overview_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_1" />
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{tvDetailViewModel.tv.overview}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overview_label" />
+
+        <View
+            android:id="@+id/divider_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/accent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overview" />
+
+        <TextView
+            android:id="@+id/cast_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/top_billed_cast"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_2" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cast_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:castAdapter="@{tvDetailViewModel.credits}"
+            app:castCallbacks="@{castCallbacks}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cast_label"
+            app:showLongMessage="@{tvDetailViewModel.error}" />
+
+        <View
+            android:id="@+id/divider_3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/accent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cast_list" />
+
+        <TextView
+            android:id="@+id/reviews_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/reviews"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider_3" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reviews_label"
+            app:reviewsAdapter="@{tvDetailViewModel.reviews}"
+            app:showLongMessage="@{tvDetailViewModel.error}" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
