@@ -11,9 +11,9 @@ references:
   save_gradle_cache: &save_gradle_cache
     save_cache:
       key: *gradle_key
-        paths:
-          - ~/.gradle
-          - ~/.m2
+      paths:
+        - ~/.gradle
+        - ~/.m2
 
   ##Dependencies
   android_dependencies: &android_dependencies
