@@ -65,5 +65,4 @@ class TvActivity : DaggerAppCompatActivity(), CastAdapter.Callbacks {
     override fun onItemClick(view: View, item: Credit) {
         Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
     }
-
 }

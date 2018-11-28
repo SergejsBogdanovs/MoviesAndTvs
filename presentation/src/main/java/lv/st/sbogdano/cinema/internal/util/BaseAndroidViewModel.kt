@@ -25,5 +25,3 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
 private operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
     this.add(disposable)
 }
-
-

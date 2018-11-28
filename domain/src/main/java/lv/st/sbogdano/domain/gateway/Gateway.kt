@@ -18,5 +18,4 @@ interface Gateway {
     fun getVideosById(params: Pair<Int, String>): Observable<List<Video>>
 
     fun getReviewsById(params: Pair<Int, String>): Observable<List<Review>>
-
 }

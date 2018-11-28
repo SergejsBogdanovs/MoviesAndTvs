@@ -13,5 +13,4 @@ class TvLocalDataSource(private val tvsDao: TvsDao) {
     fun deleteByType(type: String) = tvsDao.deleteByType(type)
 
     fun getById(id: Int): Observable<TvLocalModel> = tvsDao.getById(id).toObservable()
-
 }

@@ -21,5 +21,4 @@ interface TvsDao {
 
     @Query("DELETE FROM Tvs WHERE type = :type")
     fun deleteByType(type: String)
-
 }

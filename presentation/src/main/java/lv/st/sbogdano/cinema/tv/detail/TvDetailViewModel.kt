@@ -21,11 +21,11 @@ import lv.st.sbogdano.domain.interactor.TvGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
 
 class TvDetailViewModel(
-        context: Context,
-        private val tvGetByIdUseCase: TvGetByIdUseCase,
-        private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
-        private val videosGetByIdUseCase: VideosGetByIdUseCase,
-        private val reviewGetByIdUseCase: ReviewGetByIdUseCase
+    context: Context,
+    private val tvGetByIdUseCase: TvGetByIdUseCase,
+    private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
+    private val videosGetByIdUseCase: VideosGetByIdUseCase,
+    private val reviewGetByIdUseCase: ReviewGetByIdUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = TvMapper()
