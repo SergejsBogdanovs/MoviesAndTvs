@@ -20,7 +20,7 @@ references:
     jars-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "presentation/build.gradle" }}-{{ checksum "domain/build.gradle" }}-{{ checksum "data/build.gradle" }}
 
   gems_key: &gems_key
-    gems-{{ checksum "Gemfile.lock" }
+    gems-{{ checksum "Gemfile.lock" }}
 
   restore_gradle_cache: &restore_gradle_cache
     restore_cache:
