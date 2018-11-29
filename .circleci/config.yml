@@ -3,7 +3,7 @@ references:
 
   ## Workspaces
   workspace: &workspace
-    ~/src
+    ~/workspace
 
   ## Docker image configurations
   android_config: &android_config
