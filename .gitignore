@@ -68,3 +68,6 @@ freeline_project_description.json
 fastlane
 firebase
 instrumentation_output.txt
+
+#vendor
+vendor
