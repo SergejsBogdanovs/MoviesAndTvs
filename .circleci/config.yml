@@ -60,12 +60,12 @@ jobs:
     <<: *android_config
     steps:
       - checkout
+      - *save_gradle_cache
+      - *save_gems_cache
       - *restore_gradle_cache
       - *restore_gems_cache
       - *ruby_dependencies
       - *android_dependencies
-      - *save_gradle_cache
-      - *save_gems_cache
       - run:
           name: Run unit tests
           command: bundle exec fastlane unit_tests
