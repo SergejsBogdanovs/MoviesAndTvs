@@ -70,12 +70,23 @@ jobs:
           name: Run unit tests
           command: bundle exec fastlane unit_tests
       - store_artifacts:
-          path: build/reports
-          destination: /reports/
+          path: presentation/build/reports/
+          destination: /presentation/reports/
+      - store_artifacts:
+          path: domain/build/reports/
+          destination: /domain/reports/
+      - store_artifacts:
+          path: data/build/reports/
+          destination: /data/reports/
       - store_test_results:
-          path: build/test_results
-          destination: /test_results/
-
+          path: presentation/build/test-results/
+          destination: /presentation/test-results/
+      - store_test_results:
+          path: domain/build/test-results/
+          destination: /domain/test-results/
+      - store_test_results:
+          path: data/build/test-results/
+          destination: /data/test-results/
   ## Run instrumentation tests
   test_instrumentation:
     <<: *android_config
