@@ -123,5 +123,4 @@ workflows:
       - test_instrumentation:
           requires:
             - test_unit
-            - test_instrumentation
 

@@ -47,7 +47,7 @@ ext {
 
     // Testing
     jUnitVersion = '4.12'
-    mockitoVersion = '2.22.+'
+    mockitoVersion = '2.23.+'
     espressoVersion = '3.0.+'
     jacocoVersion = '0.7.9'
 

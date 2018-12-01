@@ -14,8 +14,8 @@ import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentMovieListBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.movie.list.adapter.MovieListAdapter
-import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
 import lv.st.sbogdano.cinema.navigation.Navigator
+import lv.st.sbogdano.domain.entity.Movie
 import javax.inject.Inject
 
 class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks {
@@ -57,7 +57,7 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks {
         viewModel.loadMovieList(movieType)
     }
 
-    override fun onItemClick(view: View, item: MovieListModel) {
+    override fun onItemClick(view: View, item: Movie) {
         val imageView = view.findViewById<View>(R.id.image_movie_poster)
         val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
         activity?.let { navigator.navigateToMovie(it, item.id, sharedView) }
