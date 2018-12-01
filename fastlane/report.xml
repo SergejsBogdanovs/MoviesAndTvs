@@ -5,12 +5,42 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.012527">
+      <testcase classname="fastlane.lanes" name="0: update_fastlane" time="2.088938">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: update_fastlane" time="2.213062">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.001011">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: Switch to android assemble lane" time="0.000924">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: Switch to android assemble_build lane" time="0.000807">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: gradle" time="3.27686">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: Switch to android assemble_test_application lane" time="0.001037">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: gradle" time="2.560265">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: run_tests_firebase_testlab" time="317.888595">
         
       </testcase>
     
