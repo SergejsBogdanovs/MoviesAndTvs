@@ -9,6 +9,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
+import lv.st.sbogdano.cinema.movie.list.mapper.MovieListMapper
+import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
 import lv.st.sbogdano.domain.entity.Movie
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 
@@ -17,10 +19,10 @@ class MovieListViewModel(
     private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
-    //private val mapper = MovieListMapper()
+    private val mapper = MovieListMapper()
 
     val loading = ObservableBoolean()
-    val result = ObservableArrayList<Movie>()
+    val result = ObservableArrayList<MovieListModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
@@ -46,7 +48,7 @@ class MovieListViewModel(
                     override fun onNext(t: List<Movie>) {
                         loading.set(false)
                         result.clear()
-                        result.addAll(t)
+                        result.addAll(t.map { mapper.toModel(it) })
                         empty.set(t.isEmpty())
                     }
 

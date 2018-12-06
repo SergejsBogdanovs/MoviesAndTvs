@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import io.reactivex.Observable
 import lv.st.sbogdano.cinema.movie.list.MovieListViewModel
+import lv.st.sbogdano.cinema.movie.list.mapper.MovieListMapper
 import lv.st.sbogdano.domain.entity.Movie
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 import org.hamcrest.core.Is.`is`
@@ -29,6 +30,7 @@ class MovieListTest {
     private lateinit var moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
 
     private lateinit var movieListViewModel: MovieListViewModel
+    private lateinit var mapper: MovieListMapper
 
     private val type = "popular"
     private val refresh = true
@@ -38,6 +40,7 @@ class MovieListTest {
     fun setup() {
         `when`(context.applicationContext).thenReturn(application)
         movieListViewModel = MovieListViewModel(context, moviesByTypeGetAllUseCase)
+        mapper = MovieListMapper()
     }
 
     @Test
@@ -61,7 +64,7 @@ class MovieListTest {
         movieListViewModel.loadMovieList(type, true)
 
         // Should
-        assertThat(movieListViewModel.result, `is`(items))
+        assertThat(movieListViewModel.result[0], `is`(mapper.toModel(items[0])))
     }
 
     @Test

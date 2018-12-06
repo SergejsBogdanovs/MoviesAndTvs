@@ -1,12 +1,10 @@
 package lv.st.sbogdano.cinema.movie.type
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import lv.st.sbogdano.cinema.movie.list.MovieListFragment
 
 class MovieTypePagerAdapter(
-    fm: FragmentManager
+    fm: android.support.v4.app.FragmentManager
 ) : FragmentStatePagerAdapter(fm) {
 
     private val movies = arrayOf(
@@ -16,7 +14,7 @@ class MovieTypePagerAdapter(
             Pair("Now Playing", "now_playing")
     )
 
-    override fun getItem(position: Int): Fragment {
+    override fun getItem(position: Int): android.support.v4.app.Fragment {
         return MovieListFragment.newInstance(movies[position].second)
     }
 
