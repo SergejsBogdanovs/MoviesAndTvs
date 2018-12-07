@@ -45,10 +45,10 @@ class MovieListTest {
 
     @Test
     @Throws(Exception::class)
-    fun `Given movie items, When load movies, Should update result`() {
+    fun `Given movies, When load movies, Should update result`() {
 
         // Given
-        val items = listOf(Movie(
+        val movies = listOf(Movie(
                 1,
                 "posterPath",
                 "overview",
@@ -58,13 +58,28 @@ class MovieListTest {
                 1,
                 1.0f))
 
-        `when`(moviesByTypeGetAllUseCase.execute(params)).thenReturn(Observable.just(items))
+        `when`(moviesByTypeGetAllUseCase.execute(params)).thenReturn(Observable.just(movies))
 
         // When
         movieListViewModel.loadMovieList(type, true)
 
         // Should
-        assertThat(movieListViewModel.result[0], `is`(mapper.toModel(items[0])))
+        assertThat(movieListViewModel.result.first(), `is`(mapper.toModel(movies.first())))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun `Given empty list of movies, When load empty list of movies, Should update empty`() {
+
+        // Given
+        val movies = emptyList<Movie>()
+        `when`(moviesByTypeGetAllUseCase.execute(params)).thenReturn(Observable.just(movies))
+
+        // When
+        movieListViewModel.loadMovieList(type, true)
+
+        // Should
+        assertThat(movieListViewModel.empty.get(), `is`(true))
     }
 
     @Test
