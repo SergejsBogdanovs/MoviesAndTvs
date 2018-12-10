@@ -2,19 +2,15 @@ package lv.st.sbogdano.cinema
 
 import android.content.Context
 import android.support.multidex.MultiDex
-import android.util.Log
 import com.facebook.stetho.Stetho
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
 import lv.st.sbogdano.cinema.internal.injection.DaggerApplication
+import timber.log.Timber
 import java.io.IOException
 import java.net.SocketException
 
 class MainApplication : DaggerApplication() {
-
-    companion object {
-        private const val LOG_TAG = "Cinema"
-    }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -26,6 +22,8 @@ class MainApplication : DaggerApplication() {
 
         Stetho.initializeWithDefaults(this)
 
+        Timber.plant(Timber.DebugTree())
+
         setupReactiveX()
     }
 
@@ -34,7 +32,7 @@ class MainApplication : DaggerApplication() {
         // https://github.com/ReactiveX/RxJava/wiki/What%27s-different-in-2.0#error-handling
         RxJavaPlugins.setErrorHandler { e ->
             if (e is UndeliverableException) {
-                Log.w(LOG_TAG, "Undeliverable exception received, not sure what to do", e.cause)
+                Timber.w(e.cause, "Undeliverable exception received, not sure what to do")
                 return@setErrorHandler
             }
             if (e is IOException || e is SocketException) {

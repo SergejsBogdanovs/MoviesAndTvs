@@ -26,36 +26,40 @@ class HomeActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binder.toolbar)
 
-        setMovieTypeAdapter()
+        view_pager.adapter = MovieTypePagerAdapter(fm)
 
         binder.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_movies -> {
                     setMovieTypeAdapter()
-                    true
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_tv -> {
                     setTvTypeAdapter()
-                    true
+                    return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_favorite -> {
                     setFavoriteAdapter()
-                    true
+                    return@setOnNavigationItemSelectedListener true
                 }
-                else -> false
             }
+            false
+        }
+    }
+
+    private fun setMovieTypeAdapter() {
+        if (binder.bottomNavigation.selectedItemId != R.id.nav_movies) {
+            view_pager.adapter = MovieTypePagerAdapter(fm)
+        }
+    }
+
+    private fun setTvTypeAdapter() {
+        if (binder.bottomNavigation.selectedItemId != R.id.nav_tv) {
+            view_pager.adapter = TvTypePagerAdapter(fm)
         }
     }
 
     private fun setFavoriteAdapter() {
         Toast.makeText(this, "Hello Favorite", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun setTvTypeAdapter() {
-        view_pager.adapter = TvTypePagerAdapter(fm)
-    }
-
-    private fun setMovieTypeAdapter() {
-        view_pager.adapter = MovieTypePagerAdapter(fm)
     }
 }
