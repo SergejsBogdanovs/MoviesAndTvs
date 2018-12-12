@@ -1,4 +1,4 @@
-package lv.st.sbogdano.cinema.movie.list.adapter
+package lv.st.sbogdano.cinema.adapters.movies
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -10,16 +10,16 @@ import lv.st.sbogdano.cinema.databinding.FragmentMovieListItemBinding
 import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
 
 class MovieListAdapter(
-    private val items: List<MovieListModel>,
-    private val callbacks: Callbacks? = null,
-    private val imageSize: Pair<Int, Int>
+        private val items: List<MovieListModel>,
+        private val callbacks: Callbacks? = null,
+        private val imageSize: Pair<Int, Int>
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     interface Callbacks {
         fun onItemClick(view: View, item: MovieListModel)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding: FragmentMovieListItemBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_list_item, parent, false)
         setImageViewLayoutParams(binding)
@@ -37,7 +37,7 @@ class MovieListAdapter(
 
     override fun getItemCount() = items.size
 
-    override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.movie = items[position]
         holder.binding.executePendingBindings()
     }

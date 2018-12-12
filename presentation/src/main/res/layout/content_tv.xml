@@ -15,7 +15,7 @@
 
         <variable
             name="castCallbacks"
-            type="lv.st.sbogdano.cinema.adapters.casts.CastAdapter.Callbacks" />
+            type="lv.st.sbogdano.cinema.adapters.casts.CastsAdapter.Callbacks" />
     </data>
 
 

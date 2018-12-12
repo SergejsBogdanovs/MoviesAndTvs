@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.github.lzyzsd.circleprogress.ArcProgress
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import lv.st.sbogdano.cinema.BuildConfig
@@ -65,4 +66,14 @@ object ViewBindingAdapters {
             }, true)
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("arc_progress")
+    fun setArcProgress(view: ArcProgress, progress: Number) {
+        when(progress) {
+            is Int -> view.progress = progress
+            is Float -> view.progress = (progress * 10).toInt()
+        }
+    }
+
 }

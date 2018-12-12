@@ -12,7 +12,7 @@
 
         <variable
             name="tvCallbacks"
-            type="lv.st.sbogdano.cinema.tv.list.adapter.TvListAdapter.Callbacks" />
+            type="lv.st.sbogdano.cinema.adapters.tvs.TvListAdapter.Callbacks" />
     </data>
 
     <FrameLayout

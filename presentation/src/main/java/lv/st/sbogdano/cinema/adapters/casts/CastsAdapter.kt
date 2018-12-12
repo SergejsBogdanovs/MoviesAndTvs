@@ -9,16 +9,16 @@ import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.CastItemBinding
 import lv.st.sbogdano.domain.entity.Credit
 
-class CastAdapter(
+class CastsAdapter(
     private val items: List<Credit>,
     private val callbacks: Callbacks? = null
-) : RecyclerView.Adapter<CastAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CastsAdapter.ViewHolder>() {
 
     interface Callbacks {
         fun onItemClick(view: View, item: Credit)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastsAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding: CastItemBinding = DataBindingUtil.inflate(inflater, R.layout.cast_item, parent, false)
         return ViewHolder(binding)
@@ -26,7 +26,7 @@ class CastAdapter(
 
     override fun getItemCount() = items.size
 
-    override fun onBindViewHolder(holder: CastAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CastsAdapter.ViewHolder, position: Int) {
         holder.binding.credit = items[position]
         holder.binding.executePendingBindings()
     }

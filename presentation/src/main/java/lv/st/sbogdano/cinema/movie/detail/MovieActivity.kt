@@ -12,14 +12,14 @@ import androidx.view.doOnPreDraw
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_movie.*
 import lv.st.sbogdano.cinema.R
-import lv.st.sbogdano.cinema.adapters.casts.CastAdapter
+import lv.st.sbogdano.cinema.adapters.casts.CastsAdapter
 import lv.st.sbogdano.cinema.databinding.ActivityMovieBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
 import lv.st.sbogdano.domain.entity.Credit
 import javax.inject.Inject
 
-class MovieActivity : DaggerAppCompatActivity(), CastAdapter.Callbacks {
+class MovieActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

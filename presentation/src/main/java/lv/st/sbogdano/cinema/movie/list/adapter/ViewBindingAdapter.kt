@@ -3,11 +3,12 @@ package lv.st.sbogdano.cinema.movie.list.adapter
 import android.databinding.BindingAdapter
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import lv.st.sbogdano.cinema.adapters.movies.MovieListAdapter
 import lv.st.sbogdano.cinema.internal.util.imageSize
 import lv.st.sbogdano.cinema.internal.util.numberOfColumns
 import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
 
-object ViewBindingAdapters {
+object ViewBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("movieAdapter", "movieCallbacks", requireAll = false)

@@ -12,5 +12,5 @@ class MovieLocalDataSource(private val moviesDao: MoviesDao) {
 
     fun deleteByType(type: String) = moviesDao.deleteByType(type)
 
-    fun getById(id: Int) = moviesDao.getById(id).toObservable()
+    fun getById(id: Int) = moviesDao.getById(id).toObservable()!!
 }
