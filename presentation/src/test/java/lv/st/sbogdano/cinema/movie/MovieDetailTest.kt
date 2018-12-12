@@ -114,7 +114,6 @@ class MovieDetailTest {
         assertThat(movieDetailViewModel.error.get(), `is`(error))
     }
 
-
     @Test
     @Throws(Exception::class)
     fun `Given credits items, When get credits by id, Should update result`() {
@@ -239,7 +238,6 @@ class MovieDetailTest {
         assertThat(movieDetailViewModel.reviews, `is`(reviews))
     }
 
-
     @Test
     @Throws(Exception::class)
     fun `Given empty reviews, When load empty reviews, Should update empty`() {
@@ -285,5 +283,4 @@ class MovieDetailTest {
         // Should
         assertThat(movieDetailViewModel.error.get(), `is`(error))
     }
-
 }

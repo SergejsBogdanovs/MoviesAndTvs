@@ -33,8 +33,8 @@ class DomainModule {
     internal fun provideTvByTypeGetAllUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): TvByTypeGetAllUseCase {
-        return TvByTypeGetAllUseCase(schedulers, gateway)
+    ): TvsByTypeGetAllUseCase {
+        return TvsByTypeGetAllUseCase(schedulers, gateway)
     }
 
     @Provides

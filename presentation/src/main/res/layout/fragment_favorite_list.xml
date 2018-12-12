@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".favorite.list.FavoriteListFragment">
+
+    <data>
+
+    <variable
+        name="viewModel"
+        type="lv.st.sbogdano.cinema.favorite.list.FavoriteListViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_favorites"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+            <!--app:fadeView="@{!viewModel.loading}"-->
+            <!--app:favoriteAdapter="@{viewModel.result}"-->
+            <!--app:favoriteCallbacks="@{movieCallbacks}"-->
+            <!--app:showLongMessage="@{viewModel.error}"-->
+            <!--tools:listitem="@layout/fragment_favorite_list_item" />-->
+
+        <!--Empty state-->
+        <LinearLayout
+            android:id="@+id/view_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:visibility="visible">
+        <!--//app:visible="@{viewModel.empty}"-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/empty_icon"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/movie_list_empty"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

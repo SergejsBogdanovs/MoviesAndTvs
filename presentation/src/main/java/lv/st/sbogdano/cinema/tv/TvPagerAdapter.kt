@@ -1,11 +1,11 @@
-package lv.st.sbogdano.cinema.tv.type
+package lv.st.sbogdano.cinema.tv
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import lv.st.sbogdano.cinema.tv.list.TvListFragment
 
-class TvTypePagerAdapter(
+class TvPagerAdapter(
     fm: FragmentManager
 ) : FragmentStatePagerAdapter(fm) {
 
@@ -16,9 +16,7 @@ class TvTypePagerAdapter(
             Pair("Airing Today", "airing_today")
     )
 
-    override fun getItem(postition: Int): Fragment {
-        return TvListFragment.newInstance(tvs[postition].second)
-    }
+    override fun getItem(postition: Int): Fragment = TvListFragment.newInstance(tvs[postition].second)
 
     override fun getCount() = tvs.size
 

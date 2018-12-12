@@ -6,6 +6,8 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
+import lv.st.sbogdano.cinema.favorite.list.FavoriteListFragment
+import lv.st.sbogdano.cinema.favorite.list.FavoriteListViewModel
 import lv.st.sbogdano.cinema.internal.injection.scope.HomeScope
 import lv.st.sbogdano.cinema.movie.list.MovieListFragment
 import lv.st.sbogdano.cinema.movie.list.MovieListViewModel
@@ -13,8 +15,9 @@ import lv.st.sbogdano.cinema.tv.list.TvListFragment
 import lv.st.sbogdano.cinema.tv.list.TvListViewModel
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
+import lv.st.sbogdano.domain.interactor.FavoritesByTypeGetAllUseCase
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
-import lv.st.sbogdano.domain.interactor.TvByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.TvsByTypeGetAllUseCase
 
 @Module
 internal abstract class HomeModule {
@@ -24,6 +27,9 @@ internal abstract class HomeModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeTvListFragment(): TvListFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeFavoriteListFragment(): FavoriteListFragment
 
     @Module
     companion object {
@@ -41,20 +47,31 @@ internal abstract class HomeModule {
         @HomeScope
         @Provides
         @JvmStatic
-        internal fun provideTvByTypeGetAllUseCase(
+        internal fun provideTvsByTypeGetAllUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): TvByTypeGetAllUseCase {
-            return TvByTypeGetAllUseCase(schedulers, gateway)
+        ): TvsByTypeGetAllUseCase {
+            return TvsByTypeGetAllUseCase(schedulers, gateway)
+        }
+
+        @HomeScope
+        @Provides
+        @JvmStatic
+        internal fun provideFavoritesByTypeGetAllUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+        ): FavoritesByTypeGetAllUseCase {
+            return FavoritesByTypeGetAllUseCase(schedulers, gateway)
         }
 
         @HomeScope
         @Provides
         @JvmStatic
         internal fun provideViewModelFactory(
-            context: Context,
-            moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase,
-            tvByTypeGetAllUseCase: TvByTypeGetAllUseCase
+                context: Context,
+                moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase,
+                tvsByTypeGetAllUseCase: TvsByTypeGetAllUseCase,
+                favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
@@ -64,7 +81,10 @@ internal abstract class HomeModule {
                             MovieListViewModel(context, moviesByTypeGetAllUseCase) as T
 
                         modelClass.isAssignableFrom(TvListViewModel::class.java) ->
-                            TvListViewModel(context, tvByTypeGetAllUseCase) as T
+                            TvListViewModel(context, tvsByTypeGetAllUseCase) as T
+
+                        modelClass.isAssignableFrom(FavoriteListViewModel::class.java) ->
+                            FavoriteListViewModel(context, favoritesByTypeGetAllUseCase) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }

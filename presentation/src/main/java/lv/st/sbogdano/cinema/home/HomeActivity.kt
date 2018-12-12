@@ -3,14 +3,14 @@ package lv.st.sbogdano.cinema.home
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
-import android.widget.Toast
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.ActivityHomeBinding
+import lv.st.sbogdano.cinema.favorite.FavoritePagerAdapter
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
-import lv.st.sbogdano.cinema.movie.type.MovieTypePagerAdapter
-import lv.st.sbogdano.cinema.tv.type.TvTypePagerAdapter
+import lv.st.sbogdano.cinema.movie.MoviePagerAdapter
+import lv.st.sbogdano.cinema.tv.TvPagerAdapter
 
 class HomeActivity : DaggerAppCompatActivity() {
 
@@ -26,7 +26,7 @@ class HomeActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binder.toolbar)
 
-        view_pager.adapter = MovieTypePagerAdapter(fm)
+        view_pager.adapter = MoviePagerAdapter(fm)
 
         binder.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -49,17 +49,19 @@ class HomeActivity : DaggerAppCompatActivity() {
 
     private fun setMovieTypeAdapter() {
         if (binder.bottomNavigation.selectedItemId != R.id.nav_movies) {
-            view_pager.adapter = MovieTypePagerAdapter(fm)
+            view_pager.adapter = MoviePagerAdapter(fm)
         }
     }
 
     private fun setTvTypeAdapter() {
         if (binder.bottomNavigation.selectedItemId != R.id.nav_tv) {
-            view_pager.adapter = TvTypePagerAdapter(fm)
+            view_pager.adapter = TvPagerAdapter(fm)
         }
     }
 
     private fun setFavoriteAdapter() {
-        Toast.makeText(this, "Hello Favorite", Toast.LENGTH_SHORT).show()
+        if (binder.bottomNavigation.selectedItemId != R.id.nav_favorite) {
+            view_pager.adapter = FavoritePagerAdapter(fm)
+        }
     }
 }

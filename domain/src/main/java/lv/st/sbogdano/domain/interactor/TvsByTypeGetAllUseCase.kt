@@ -7,7 +7,7 @@ import lv.st.sbogdano.domain.UseCase
 import lv.st.sbogdano.domain.entity.Tv
 import lv.st.sbogdano.domain.gateway.Gateway
 
-class TvByTypeGetAllUseCase(
+class TvsByTypeGetAllUseCase(
     schedulers: Schedulers,
     private val gateway: Gateway
 ) : UseCase<Pair<String, Boolean>, List<Tv>>(schedulers) {

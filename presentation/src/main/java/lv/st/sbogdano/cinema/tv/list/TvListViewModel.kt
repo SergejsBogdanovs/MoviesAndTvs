@@ -12,11 +12,11 @@ import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
 import lv.st.sbogdano.cinema.tv.list.model.TvListModel
 import lv.st.sbogdano.cinema.tv.list.mapper.TvMapper
 import lv.st.sbogdano.domain.entity.Tv
-import lv.st.sbogdano.domain.interactor.TvByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.TvsByTypeGetAllUseCase
 
 class TvListViewModel(
     context: Context,
-    private val tvByTypeGetAllUseCase: TvByTypeGetAllUseCase
+    private val tvsByTypeGetAllUseCase: TvsByTypeGetAllUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = TvMapper()
@@ -37,7 +37,7 @@ class TvListViewModel(
 
     private fun findTvByType(type: String, refresh: Boolean): Disposable {
         val params = Pair(type, refresh)
-        return tvByTypeGetAllUseCase.execute(params)
+        return tvsByTypeGetAllUseCase.execute(params)
                 .subscribeWith(object : DisposableObserver<List<Tv>>() {
 
                     override fun onStart() {

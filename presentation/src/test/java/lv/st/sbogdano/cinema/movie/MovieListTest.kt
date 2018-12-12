@@ -17,7 +17,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
-
 @Suppress("IllegalIdentifier")
 @RunWith(MockitoJUnitRunner::class)
 class MovieListTest {
