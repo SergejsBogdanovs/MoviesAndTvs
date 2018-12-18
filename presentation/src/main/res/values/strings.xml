@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Cinema</string>
 
-    <!--Warning/Error Messages-->
+    <!-- Messages-->
     <string name="unknown_error">Unknown error</string>
     <string name="empty_icon">¯\\\\_(ツ)_/¯</string>
     <string name="movie_list_empty">Sorry, we couldn\'t find any movie\n of this type</string>
+    <string name="tv_list_empty">Sorry, we couldn\'t find any tv\n of this type</string>
+    <string name="added_to_favorites">Added to favorites!</string>
 
     <!-- List items -->
     <string name="movie_poster">Movie poster</string>

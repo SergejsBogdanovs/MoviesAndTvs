@@ -6,11 +6,11 @@
     <data>
 
         <variable
-            name="review"
-            type="lv.st.sbogdano.domain.entity.Review" />
+            name="reviewDomainModel"
+            type="lv.st.sbogdano.domain.model.ReviewDomainModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{review.author}"
+            android:text="@{reviewDomainModel.author}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,11 +35,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
-            android:text="@{review.content}"
+            android:text="@{reviewDomainModel.content}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/author"
-            tools:text="Review" />
-    </android.support.constraint.ConstraintLayout>
+            tools:text="ReviewDomainModel" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

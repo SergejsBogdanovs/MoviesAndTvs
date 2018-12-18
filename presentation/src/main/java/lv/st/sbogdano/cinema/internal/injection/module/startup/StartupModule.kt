@@ -1,8 +1,8 @@
 package lv.st.sbogdano.cinema.internal.injection.module.startup
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
 import lv.st.sbogdano.cinema.internal.injection.scope.StartupScope

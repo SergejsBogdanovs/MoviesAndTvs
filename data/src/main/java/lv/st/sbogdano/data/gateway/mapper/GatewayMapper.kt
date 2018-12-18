@@ -1,11 +1,11 @@
 package lv.st.sbogdano.data.gateway.mapper
 
 import lv.st.sbogdano.data.local.model.*
-import lv.st.sbogdano.domain.entity.*
+import lv.st.sbogdano.domain.model.*
 
 class GatewayMapper {
 
-    fun toEntity(movieLocalModel: MovieLocalModel) = Movie(
+    fun toDomainModel(movieLocalModel: MovieLocalModel) = MovieDomainModel(
             movieLocalModel.id,
             movieLocalModel.posterPath,
             movieLocalModel.overview,
@@ -16,7 +16,7 @@ class GatewayMapper {
             movieLocalModel.voteAverage
     )
 
-    fun toEntity(tvLocalModel: TvLocalModel) = Tv(
+    fun toDomainModel(tvLocalModel: TvLocalModel) = TvDomainModel(
             tvLocalModel.id,
             tvLocalModel.posterPath,
             tvLocalModel.overview,
@@ -27,22 +27,38 @@ class GatewayMapper {
             tvLocalModel.voteAverage
     )
 
-    fun toEntity(creditLocalModel: CreditLocalModel) = Credit(
+    fun toDomainModel(creditLocalModel: CreditLocalModel) = CreditDomainModel(
             creditLocalModel.id,
             creditLocalModel.name,
             creditLocalModel.character,
             creditLocalModel.profilePath
     )
 
-    fun toEntity(videoLocalModel: VideoLocalModel) = Video(
+    fun toDomainModel(videoLocalModel: VideoLocalModel) = VideoDomainModel(
             videoLocalModel.id,
             videoLocalModel.key,
             videoLocalModel.name
     )
 
-    fun toEntity(reviewLocalModel: ReviewLocalModel) = Review(
+    fun toDomainModel(reviewLocalModel: ReviewLocalModel) = ReviewDomainModel(
             reviewLocalModel.id,
             reviewLocalModel.author,
             reviewLocalModel.content
     )
+
+    fun toLocalModel(params: Pair<MovieDomainModel, String>): MovieLocalModel {
+        val (movieDomainModel, type) = params
+
+        return MovieLocalModel(
+                movieDomainModel.id,
+                movieDomainModel.posterPath,
+                movieDomainModel.overview,
+                movieDomainModel.releaseDate,
+                movieDomainModel.title,
+                movieDomainModel.popularity,
+                movieDomainModel.voteCount,
+                movieDomainModel.voteAverage,
+                type,
+                true)
+    }
 }

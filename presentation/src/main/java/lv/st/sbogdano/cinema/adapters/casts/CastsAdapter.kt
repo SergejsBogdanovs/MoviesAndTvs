@@ -1,21 +1,21 @@
 package lv.st.sbogdano.cinema.adapters.casts
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.CastItemBinding
-import lv.st.sbogdano.domain.entity.Credit
+import lv.st.sbogdano.domain.model.CreditDomainModel
 
 class CastsAdapter(
-    private val items: List<Credit>,
-    private val callbacks: Callbacks? = null
+        private val items: List<CreditDomainModel>,
+        private val callbacks: Callbacks? = null
 ) : RecyclerView.Adapter<CastsAdapter.ViewHolder>() {
 
     interface Callbacks {
-        fun onItemClick(view: View, item: Credit)
+        fun onItemClick(view: View, item: CreditDomainModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastsAdapter.ViewHolder {
@@ -27,7 +27,7 @@ class CastsAdapter(
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: CastsAdapter.ViewHolder, position: Int) {
-        holder.binding.credit = items[position]
+        holder.binding.creditDomainModel = items[position]
         holder.binding.executePendingBindings()
     }
 

@@ -7,14 +7,13 @@ import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
 import lv.st.sbogdano.cinema.internal.util.SingleLiveData
-import lv.st.sbogdano.domain.entity.Movie
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
+import lv.st.sbogdano.domain.model.MovieDomainModel
 
 class StartupViewModel(
     context: Context,
     private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
-)
-    : BaseAndroidViewModel(context.applicationContext as Application) {
+) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val _result = SingleLiveData<Boolean>()
     val result = _result
@@ -26,11 +25,11 @@ class StartupViewModel(
     private fun getMoviesByType(type: String, refresh: Boolean): Disposable {
         val params = Pair(type, refresh)
         return moviesByTypeGetAllUseCase.execute(params)
-                .subscribeWith(object : DisposableObserver<List<Movie>>() {
+                .subscribeWith(object : DisposableObserver<List<MovieDomainModel>>() {
                     override fun onComplete() {
                     }
 
-                    override fun onNext(t: List<Movie>) {
+                    override fun onNext(t: List<MovieDomainModel>) {
                         result.value = true
                     }
 

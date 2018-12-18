@@ -1,6 +1,6 @@
 package lv.st.sbogdano.data.local.model
 
-import android.arch.persistence.room.Entity
+import androidx.room.Entity
 
 @Entity(tableName = "Tvs", primaryKeys = ["id", "type"])
 data class TvLocalModel(

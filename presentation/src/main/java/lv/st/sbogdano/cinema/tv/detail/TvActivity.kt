@@ -1,14 +1,14 @@
 package lv.st.sbogdano.cinema.tv.detail
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
-import android.databinding.Observable
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.view.doOnPreDraw
+import androidx.core.view.doOnPreDraw
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.Observable
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_movie.*
 import lv.st.sbogdano.cinema.R
@@ -16,7 +16,7 @@ import lv.st.sbogdano.cinema.adapters.casts.CastsAdapter
 import lv.st.sbogdano.cinema.databinding.ActivityTvBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
-import lv.st.sbogdano.domain.entity.Credit
+import lv.st.sbogdano.domain.model.CreditDomainModel
 import javax.inject.Inject
 
 class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
@@ -48,10 +48,10 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
         lifecycle.addObserver(trailer_view)
 
         val tv = navigator.getTv(this)
-        tvDetailViewModel.loadTvDetail(tv)
-        tvDetailViewModel.loadCredits(tv)
-        tvDetailViewModel.loadVideos(tv)
-        tvDetailViewModel.loadReviews(tv)
+        tvDetailViewModel.loadTvDetail(tv.id)
+        tvDetailViewModel.loadCredits(tv.id)
+        tvDetailViewModel.loadVideos(tv.id)
+        tvDetailViewModel.loadReviews(tv.id)
 
         tvDetailViewModel.tv.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
@@ -62,7 +62,7 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
         })
     }
 
-    override fun onItemClick(view: View, item: Credit) {
+    override fun onItemClick(view: View, item: CreditDomainModel) {
         Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
     }
 }

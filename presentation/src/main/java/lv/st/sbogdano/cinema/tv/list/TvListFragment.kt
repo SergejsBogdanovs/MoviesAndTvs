@@ -1,21 +1,21 @@
 package lv.st.sbogdano.cinema.tv.list
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.util.Pair
-import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.adapters.tvs.TvListAdapter
 import lv.st.sbogdano.cinema.databinding.FragmentTvListBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
-import lv.st.sbogdano.cinema.tv.list.model.TvListModel
+import lv.st.sbogdano.cinema.tv.model.Tv
 import javax.inject.Inject
 
 class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks {
@@ -57,9 +57,9 @@ class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks {
         viewModel.loadTvList(tvType)
     }
 
-    override fun onItemClick(view: View, item: TvListModel) {
+    override fun onItemClick(view: View, item: Tv) {
         val imageView = view.findViewById<View>(R.id.image_tv_poster)
         val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
-        activity?.let { navigator.navigateToTv(it, item.id, sharedView) }
+        activity?.let { navigator.navigateToTv(it, item, sharedView) }
     }
 }

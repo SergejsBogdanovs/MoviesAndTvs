@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="credit"
-            type="lv.st.sbogdano.domain.entity.Credit" />
+            name="creditDomainModel"
+            type="lv.st.sbogdano.domain.model.CreditDomainModel" />
 
         <variable
             name="isCircularImageView"
@@ -15,7 +15,7 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -28,7 +28,7 @@
             app:isCircularImageView="@{true}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadUrl="@{`w154` + credit.profilePath}"
+            app:loadUrl="@{`w154` + creditDomainModel.profilePath}"
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{credit.name}"
+            android:text="@{creditDomainModel.name}"
             android:textAlignment="center"
             android:textColor="@color/primary"
             android:textSize="@dimen/cast_text_size"
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{credit.character}"
+            android:text="@{creditDomainModel.character}"
             android:textAlignment="center"
             android:textSize="@dimen/cast_text_size"
             app:layout_constraintEnd_toEndOf="@+id/cast_profile_image"
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name"
             tools:text="character" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

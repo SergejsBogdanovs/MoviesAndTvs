@@ -1,6 +1,6 @@
-package lv.st.sbogdano.domain.entity
+package lv.st.sbogdano.domain.model
 
-data class Review(
+data class ReviewDomainModel(
     val id: String,
     val author: String,
     val content: String

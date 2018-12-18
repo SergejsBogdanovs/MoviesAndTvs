@@ -1,8 +1,8 @@
 package lv.st.sbogdano.data.local.model
 
-import android.arch.persistence.room.Entity
+import androidx.room.Entity
 
-@Entity(tableName = "Movies", primaryKeys = ["id", "type"])
+@Entity(tableName = "Movies", primaryKeys = ["id", "type", "favorite"])
 data class MovieLocalModel(
     var id: Int,
     var posterPath: String?,
@@ -12,5 +12,6 @@ data class MovieLocalModel(
     var popularity: Float,
     var voteCount: Int,
     var voteAverage: Float,
-    var type: String
+    var type: String,
+    var favorite: Boolean = false
 )

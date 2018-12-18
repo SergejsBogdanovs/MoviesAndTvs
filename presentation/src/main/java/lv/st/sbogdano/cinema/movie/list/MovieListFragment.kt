@@ -1,20 +1,20 @@
 package lv.st.sbogdano.cinema.movie.list
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.util.Pair
-import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.adapters.movies.MovieListAdapter
 import lv.st.sbogdano.cinema.databinding.FragmentMovieListBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
-import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
+import lv.st.sbogdano.cinema.movie.model.Movie
 import lv.st.sbogdano.cinema.navigation.Navigator
 import javax.inject.Inject
 
@@ -57,9 +57,9 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks {
         viewModel.loadMovieList(movieType)
     }
 
-    override fun onItemClick(view: View, item: MovieListModel) {
+    override fun onItemClick(view: View, item: Movie) {
         val imageView = view.findViewById<View>(R.id.image_movie_poster)
         val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
-        activity?.let { navigator.navigateToMovie(it, item.id, sharedView) }
+        activity?.let { navigator.navigateToMovie(it, item, sharedView) }
     }
 }

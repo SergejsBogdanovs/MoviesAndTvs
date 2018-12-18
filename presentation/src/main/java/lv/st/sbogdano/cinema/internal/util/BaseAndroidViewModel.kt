@@ -2,8 +2,8 @@ package lv.st.sbogdano.cinema.internal.util
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 

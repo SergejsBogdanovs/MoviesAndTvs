@@ -4,15 +4,15 @@ import android.app.Application
 import android.content.Context
 import io.reactivex.Observable
 import lv.st.sbogdano.cinema.movie.detail.MovieDetailViewModel
-import lv.st.sbogdano.cinema.movie.detail.mapper.MovieMapper
-import lv.st.sbogdano.domain.entity.Credit
-import lv.st.sbogdano.domain.entity.Movie
-import lv.st.sbogdano.domain.entity.Review
-import lv.st.sbogdano.domain.entity.Video
+import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
 import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.MovieGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
+import lv.st.sbogdano.domain.model.CreditDomainModel
+import lv.st.sbogdano.domain.model.MovieDomainModel
+import lv.st.sbogdano.domain.model.ReviewDomainModel
+import lv.st.sbogdano.domain.model.VideoDomainModel
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -64,7 +64,7 @@ class MovieDetailTest {
     fun `Given movie item, When get movie by id, Should update result`() {
 
         // Given
-        val movie = Movie(
+        val movie = MovieDomainModel(
                 1,
                 "posterPath",
                 "overview",
@@ -119,7 +119,7 @@ class MovieDetailTest {
     fun `Given credits items, When get credits by id, Should update result`() {
 
         // Given
-        val credits = listOf(Credit(1, "name", "character", "profilePath"))
+        val credits = listOf(CreditDomainModel(1, "name", "character", "profilePath"))
 
         `when`(creditsGetByIdUseCase.execute(params)).thenReturn(Observable.just(credits))
 
@@ -135,7 +135,7 @@ class MovieDetailTest {
     fun `Given empty credits, When load empty credits, Should update empty`() {
 
         // Given
-        val credits = emptyList<Credit>()
+        val credits = emptyList<CreditDomainModel>()
         `when`(creditsGetByIdUseCase.execute(params)).thenReturn(Observable.just(credits))
 
         // When
@@ -181,7 +181,7 @@ class MovieDetailTest {
     fun `Given videos items, When get videos by id, Should update result`() {
 
         // Given
-        val videos = listOf(Video("id", "key", "name"))
+        val videos = listOf(VideoDomainModel("id", "key", "name"))
         `when`(videosGetByIdUseCase.execute(params)).thenReturn(Observable.just(videos))
 
         // When
@@ -227,7 +227,7 @@ class MovieDetailTest {
     fun `Given reviews items, When get reviews by id, Should update result`() {
 
         // Given
-        val reviews = listOf(Review("id", "author", "content"))
+        val reviews = listOf(ReviewDomainModel("id", "author", "content"))
 
         `when`(reviewGetByIdUseCase.execute(params)).thenReturn(Observable.just(reviews))
 
@@ -243,7 +243,7 @@ class MovieDetailTest {
     fun `Given empty reviews, When load empty reviews, Should update empty`() {
 
         // Given
-        val reviews = emptyList<Review>()
+        val reviews = emptyList<ReviewDomainModel>()
         `when`(reviewGetByIdUseCase.execute(params)).thenReturn(Observable.just(reviews))
 
         // When

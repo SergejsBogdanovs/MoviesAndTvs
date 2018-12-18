@@ -1,13 +1,12 @@
 package lv.st.sbogdano.cinema.home
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.ActivityHomeBinding
-import lv.st.sbogdano.cinema.favorite.FavoritePagerAdapter
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.movie.MoviePagerAdapter
 import lv.st.sbogdano.cinema.tv.TvPagerAdapter
@@ -60,8 +59,8 @@ class HomeActivity : DaggerAppCompatActivity() {
     }
 
     private fun setFavoriteAdapter() {
-        if (binder.bottomNavigation.selectedItemId != R.id.nav_favorite) {
-            view_pager.adapter = FavoritePagerAdapter(fm)
-        }
+//        if (binder.bottomNavigation.selectedItemId != R.id.nav_favorite) {
+//            view_pager.adapter = FavoritePagerAdapter(fm)
+//        }
     }
 }

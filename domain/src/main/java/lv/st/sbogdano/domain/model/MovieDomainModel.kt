@@ -1,11 +1,11 @@
-package lv.st.sbogdano.cinema.tv.detail.model
+package lv.st.sbogdano.domain.model
 
-data class TvModel(
+data class MovieDomainModel(
     val id: Int,
     val posterPath: String?,
     val overview: String,
-    val firstAirDate: String,
-    val name: String,
+    val releaseDate: String,
+    val title: String,
     val popularity: Float,
     val voteCount: Int,
     val voteAverage: Float

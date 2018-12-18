@@ -1,8 +1,8 @@
 package lv.st.sbogdano.cinema.tv
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import lv.st.sbogdano.cinema.tv.list.TvListFragment
 
 class TvPagerAdapter(
@@ -12,7 +12,7 @@ class TvPagerAdapter(
     private val tvs = arrayOf(
             Pair("Popular", "popular"),
             Pair("Top Rated", "top_rated"),
-            Pair("On Tv", "on_the_air"),
+            Pair("On TvDomainModel", "on_the_air"),
             Pair("Airing Today", "airing_today")
     )
 

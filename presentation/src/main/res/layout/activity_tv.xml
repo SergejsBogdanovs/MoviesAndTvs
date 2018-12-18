@@ -15,21 +15,21 @@
 
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/tv_detail_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:fitsSystemWindows="true">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/appbar_height_large"
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -47,17 +47,17 @@
                     app:layout_collapseMode="parallax"
                     app:playVideo="@{tvDetailViewModel.video.key}" />
 
-                <android.support.v7.widget.Toolbar
+                <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?android:actionBarSize"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -67,9 +67,9 @@
                 layout="@layout/content_tv"
                 app:castCallbacks="@{castCallbacks}"
                 app:tvDetailViewModel="@{tvDetailViewModel}" />
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_favorite"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:layout_width="wrap_content"
@@ -81,6 +81,6 @@
             android:layout_gravity="end|bottom"
             app:srcCompat="@drawable/heart_outline" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

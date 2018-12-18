@@ -1,6 +1,6 @@
-package lv.st.sbogdano.domain.entity
+package lv.st.sbogdano.domain.model
 
-data class Credit(
+data class CreditDomainModel(
     val id: Int,
     val name: String,
     val character: String,

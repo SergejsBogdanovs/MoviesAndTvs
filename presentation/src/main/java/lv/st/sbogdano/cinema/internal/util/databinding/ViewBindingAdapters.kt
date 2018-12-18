@@ -1,13 +1,13 @@
 package lv.st.sbogdano.cinema.internal.util.databinding
 
-import android.databinding.BindingAdapter
-import android.support.design.widget.BaseTransientBottomBar
-import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.github.lzyzsd.circleprogress.ArcProgress
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import lv.st.sbogdano.cinema.BuildConfig

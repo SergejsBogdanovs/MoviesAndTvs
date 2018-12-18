@@ -1,11 +1,11 @@
 package lv.st.sbogdano.cinema.startup
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.BaseTransientBottomBar
-import android.support.design.widget.Snackbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
 import lv.st.sbogdano.cinema.internal.util.PreferencesHelper
 import lv.st.sbogdano.cinema.internal.util.databinding.ViewBindingAdapters

@@ -1,15 +1,15 @@
 package lv.st.sbogdano.cinema.adapters.reviews
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.ReviewItemBinding
-import lv.st.sbogdano.domain.entity.Review
+import lv.st.sbogdano.domain.model.ReviewDomainModel
 
 class ReviewsAdapter(
-    private val items: List<Review>
+    private val items: List<ReviewDomainModel>
 ) : RecyclerView.Adapter<ReviewsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewsAdapter.ViewHolder {
@@ -21,7 +21,7 @@ class ReviewsAdapter(
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ReviewsAdapter.ViewHolder, position: Int) {
-        holder.binding.review = items[position]
+        holder.binding.reviewDomainModel = items[position]
         holder.binding.executePendingBindings()
     }
 

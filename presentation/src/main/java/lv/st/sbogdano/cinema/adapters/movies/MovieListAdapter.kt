@@ -1,22 +1,22 @@
 package lv.st.sbogdano.cinema.adapters.movies
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentMovieListItemBinding
-import lv.st.sbogdano.cinema.movie.list.model.MovieListModel
+import lv.st.sbogdano.cinema.movie.model.Movie
 
 class MovieListAdapter(
-        private val items: List<MovieListModel>,
+        private val items: List<Movie>,
         private val callbacks: Callbacks? = null,
         private val imageSize: Pair<Int, Int>
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     interface Callbacks {
-        fun onItemClick(view: View, item: MovieListModel)
+        fun onItemClick(view: View, item: Movie)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

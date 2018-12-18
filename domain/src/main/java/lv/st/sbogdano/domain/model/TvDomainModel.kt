@@ -1,6 +1,6 @@
-package lv.st.sbogdano.domain.entity
+package lv.st.sbogdano.domain.model
 
-data class Tv(
+data class TvDomainModel(
     var id: Int,
     var posterPath: String?,
     var overview: String,

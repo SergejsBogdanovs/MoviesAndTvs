@@ -63,4 +63,14 @@ class DomainModule {
     ): ReviewGetByIdUseCase {
         return ReviewGetByIdUseCase(schedulers, gateway)
     }
+
+    @Provides
+    @Singleton
+    internal fun provideAddToFavoritesUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+    ): AddToFavoritesUseCase {
+        return AddToFavoritesUseCase(schedulers, gateway)
+    }
+
 }

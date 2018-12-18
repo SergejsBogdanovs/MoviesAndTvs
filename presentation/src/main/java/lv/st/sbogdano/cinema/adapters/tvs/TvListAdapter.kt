@@ -1,22 +1,22 @@
 package lv.st.sbogdano.cinema.adapters.tvs
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.databinding.FragmentTvListItemBinding
-import lv.st.sbogdano.cinema.tv.list.model.TvListModel
+import lv.st.sbogdano.cinema.tv.model.Tv
 
 class TvListAdapter(
-        private val items: List<TvListModel>,
+        private val items: List<Tv>,
         private val callbacks: Callbacks? = null,
         private val imageSize: Pair<Int, Int>
 ) : RecyclerView.Adapter<TvListAdapter.ViewHolder>() {
 
     interface Callbacks {
-        fun onItemClick(view: View, item: TvListModel)
+        fun onItemClick(view: View, item: Tv)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

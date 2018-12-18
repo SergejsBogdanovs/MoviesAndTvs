@@ -31,4 +31,7 @@ class MovieRepository(
     }
 
     fun getById(id: Int): Observable<MovieLocalModel> = movieLocalDataSource.getById(id)
+
+    fun addToFavorites(movieLocalModel: MovieLocalModel): Observable<Long> =
+            Observable.just(movieLocalDataSource.addToFavorites(movieLocalModel))
 }

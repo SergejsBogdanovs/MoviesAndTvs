@@ -1,12 +1,12 @@
-package lv.st.sbogdano.cinema.movie.detail.mapper
+package lv.st.sbogdano.cinema.movie.mapper
 
-import lv.st.sbogdano.cinema.movie.detail.model.MovieModel
-import lv.st.sbogdano.domain.entity.Movie
+import lv.st.sbogdano.cinema.movie.model.Movie
+import lv.st.sbogdano.domain.model.MovieDomainModel
 
 class MovieMapper {
 
-    fun toModel(result: Movie): MovieModel {
-        return MovieModel(
+    fun toModel(result: MovieDomainModel): Movie {
+        return Movie(
                 result.id,
                 result.posterPath,
                 result.overview,
@@ -24,4 +24,15 @@ class MovieMapper {
         val day = releaseDate.substringAfterLast("-")
         return "$year $month $day"
     }
+
+    fun toDomainModel(movie: Movie): MovieDomainModel = MovieDomainModel(
+            movie.id,
+            movie.posterPath,
+            movie.overview,
+            movie.releaseDate,
+            movie.title,
+            movie.popularity,
+            movie.voteCount,
+            movie.voteAverage)
+
 }

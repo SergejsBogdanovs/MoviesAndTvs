@@ -3,8 +3,8 @@ package lv.st.sbogdano.data.gateway
 import io.reactivex.Observable
 import lv.st.sbogdano.data.gateway.mapper.GatewayMapper
 import lv.st.sbogdano.data.repository.*
-import lv.st.sbogdano.domain.entity.*
 import lv.st.sbogdano.domain.gateway.Gateway
+import lv.st.sbogdano.domain.model.*
 
 class GatewayImpl(
     private val movieRepository: MovieRepository,
@@ -16,38 +16,42 @@ class GatewayImpl(
 
     private val mapper = GatewayMapper()
 
-    override fun getMoviesByType(type: String, refresh: Boolean): Observable<List<Movie>> =
+    override fun getMoviesByType(type: String, refresh: Boolean): Observable<List<MovieDomainModel>> =
             movieRepository.getAll(type, refresh)
                     .doOnError { println("Movies by Type($type) error") }
-                    .map { it.map { movieLocalModel -> mapper.toEntity(movieLocalModel) } }
+                    .map { it.map { movieLocalModel -> mapper.toDomainModel(movieLocalModel) } }
 
-    override fun getTvByType(type: String, refresh: Boolean): Observable<List<Tv>> =
+    override fun getTvByType(type: String, refresh: Boolean): Observable<List<TvDomainModel>> =
             tvRepository.getAll(type, refresh)
-                    .doOnError { println("Tv by Type($type) error") }
-                    .map { it.map { tvLocalModel -> mapper.toEntity(tvLocalModel) } }
+                    .doOnError { println("TvDomainModel by Type($type) error") }
+                    .map { it.map { tvLocalModel -> mapper.toDomainModel(tvLocalModel) } }
 
-    override fun getMovieById(id: Int): Observable<Movie> =
+    override fun getMovieById(id: Int): Observable<MovieDomainModel> =
             movieRepository.getById(id)
-                    .doOnError { println("Movie by Id($id) Error") }
-                    .map { mapper.toEntity(it) }
+                    .doOnError { println("MovieDomainModel by Id($id) Error") }
+                    .map { mapper.toDomainModel(it) }
 
-    override fun getTvById(id: Int): Observable<Tv> =
+    override fun getTvById(id: Int): Observable<TvDomainModel> =
             tvRepository.getById(id)
-                    .doOnError { println("Tv by Id($id) Error") }
-                    .map { mapper.toEntity(it) }
+                    .doOnError { println("TvDomainModel by Id($id) Error") }
+                    .map { mapper.toDomainModel(it) }
 
-    override fun getCreditsById(params: Pair<Int, String>): Observable<List<Credit>> =
+    override fun getCreditsById(params: Pair<Int, String>): Observable<List<CreditDomainModel>> =
             creditsRepository.getAllById(params)
                     .doOnError { println("Credits by Id(${params.first}) Error") }
-                    .map { it.map { creditLocalModel -> mapper.toEntity(creditLocalModel) } }
+                    .map { it.map { creditLocalModel -> mapper.toDomainModel(creditLocalModel) } }
 
-    override fun getVideosById(params: Pair<Int, String>): Observable<List<Video>> =
+    override fun getVideosById(params: Pair<Int, String>): Observable<List<VideoDomainModel>> =
             videosRepository.getAllById(params)
                     .doOnError { println("Videos by Id(${params.first}) Error") }
-                    .map { it.map { videoLocalModel -> mapper.toEntity(videoLocalModel) } }
+                    .map { it.map { videoLocalModel -> mapper.toDomainModel(videoLocalModel) } }
 
-    override fun getReviewsById(params: Pair<Int, String>): Observable<List<Review>> =
+    override fun getReviewsById(params: Pair<Int, String>): Observable<List<ReviewDomainModel>> =
             reviewsRepository.getAllById(params)
                     .doOnError { println("Reviews by Id(${params.first}) Error") }
-                    .map { it.map { reviewLocalModel -> mapper.toEntity(reviewLocalModel) } }
+                    .map { it.map { reviewLocalModel -> mapper.toDomainModel(reviewLocalModel) } }
+
+    override fun addToFavorites(params: Pair<MovieDomainModel, String>): Observable<Long> =
+            movieRepository.addToFavorites(mapper.toLocalModel(params))
+                    .doOnError { println("Error while adding movie to favorites") }
 }

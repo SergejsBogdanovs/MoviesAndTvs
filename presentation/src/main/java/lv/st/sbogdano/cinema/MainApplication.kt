@@ -1,7 +1,7 @@
 package lv.st.sbogdano.cinema
 
 import android.content.Context
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import com.facebook.stetho.Stetho
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins

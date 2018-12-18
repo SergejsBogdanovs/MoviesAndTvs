@@ -1,8 +1,8 @@
 package lv.st.sbogdano.cinema.internal.util
 
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.ViewPropertyAnimatorListenerAdapter
 import android.view.View
+import androidx.core.view.ViewCompat
+import androidx.core.view.ViewPropertyAnimatorListenerAdapter
 
 fun View.fade(show: Boolean) {
 

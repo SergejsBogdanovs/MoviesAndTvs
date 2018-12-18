@@ -2,17 +2,17 @@ package lv.st.sbogdano.cinema.tv.list
 
 import android.app.Application
 import android.content.Context
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.cinema.tv.list.model.TvListModel
-import lv.st.sbogdano.cinema.tv.list.mapper.TvMapper
-import lv.st.sbogdano.domain.entity.Tv
+import lv.st.sbogdano.cinema.tv.mapper.TvMapper
+import lv.st.sbogdano.cinema.tv.model.Tv
 import lv.st.sbogdano.domain.interactor.TvsByTypeGetAllUseCase
+import lv.st.sbogdano.domain.model.TvDomainModel
 
 class TvListViewModel(
     context: Context,
@@ -22,7 +22,7 @@ class TvListViewModel(
     private val mapper = TvMapper()
 
     val loading = ObservableBoolean()
-    val result = ObservableArrayList<TvListModel>()
+    val result = ObservableArrayList<Tv>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
@@ -38,14 +38,14 @@ class TvListViewModel(
     private fun findTvByType(type: String, refresh: Boolean): Disposable {
         val params = Pair(type, refresh)
         return tvsByTypeGetAllUseCase.execute(params)
-                .subscribeWith(object : DisposableObserver<List<Tv>>() {
+                .subscribeWith(object : DisposableObserver<List<TvDomainModel>>() {
 
                     override fun onStart() {
                         loading.set(true)
                         empty.set(false)
                     }
 
-                    override fun onNext(t: List<Tv>) {
+                    override fun onNext(t: List<TvDomainModel>) {
                         loading.set(false)
                         result.clear()
                         result.addAll(t.map { mapper.toModel(it) })

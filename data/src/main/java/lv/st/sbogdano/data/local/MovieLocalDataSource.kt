@@ -8,9 +8,11 @@ class MovieLocalDataSource(private val moviesDao: MoviesDao) {
 
     fun getAll(type: String): Observable<List<MovieLocalModel>> = moviesDao.getAll(type).toObservable()
 
-    fun insertAll(movies: List<MovieLocalModel>) = moviesDao.insertAll(*movies.toTypedArray())
+    fun getById(id: Int) = moviesDao.getById(id).toObservable()!!
+
+    fun insertAll(movieLocalModels: List<MovieLocalModel>) = moviesDao.insertAll(*movieLocalModels.toTypedArray())
 
     fun deleteByType(type: String) = moviesDao.deleteByType(type)
 
-    fun getById(id: Int) = moviesDao.getById(id).toObservable()!!
+    fun addToFavorites(movieLocalModel: MovieLocalModel): Long = moviesDao.insertToFavorites(movieLocalModel)
 }

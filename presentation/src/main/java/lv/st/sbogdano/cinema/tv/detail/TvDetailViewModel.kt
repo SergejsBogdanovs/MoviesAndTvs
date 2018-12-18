@@ -2,23 +2,23 @@ package lv.st.sbogdano.cinema.tv.detail
 
 import android.app.Application
 import android.content.Context
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.cinema.tv.detail.mapper.TvMapper
-import lv.st.sbogdano.cinema.tv.detail.model.TvModel
-import lv.st.sbogdano.domain.entity.Credit
-import lv.st.sbogdano.domain.entity.Review
-import lv.st.sbogdano.domain.entity.Tv
-import lv.st.sbogdano.domain.entity.Video
+import lv.st.sbogdano.cinema.tv.mapper.TvMapper
+import lv.st.sbogdano.cinema.tv.model.Tv
 import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.TvGetByIdUseCase
 import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
+import lv.st.sbogdano.domain.model.CreditDomainModel
+import lv.st.sbogdano.domain.model.ReviewDomainModel
+import lv.st.sbogdano.domain.model.TvDomainModel
+import lv.st.sbogdano.domain.model.VideoDomainModel
 
 class TvDetailViewModel(
     context: Context,
@@ -32,10 +32,10 @@ class TvDetailViewModel(
     private val path = "tv"
 
     val loading = ObservableBoolean()
-    val tv = ObservableField<TvModel>()
-    val credits = ObservableArrayList<Credit>()
-    val reviews = ObservableArrayList<Review>()
-    val video = ObservableField<Video>()
+    val tv = ObservableField<Tv>()
+    val credits = ObservableArrayList<CreditDomainModel>()
+    val reviews = ObservableArrayList<ReviewDomainModel>()
+    val video = ObservableField<VideoDomainModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
 
@@ -46,12 +46,12 @@ class TvDetailViewModel(
 
     private fun getTvById(id: Int): Disposable {
         return tvGetByIdUseCase.execute(id)
-                .subscribeWith(object : DisposableObserver<Tv>() {
+                .subscribeWith(object : DisposableObserver<TvDomainModel>() {
                     override fun onStart() {
                         loading.set(true)
                     }
 
-                    override fun onNext(result: Tv) {
+                    override fun onNext(result: TvDomainModel) {
                         loading.set(false)
                         tv.set(mapper.toModel(result))
                     }
@@ -70,12 +70,12 @@ class TvDetailViewModel(
     private fun getCreditsById(id: Int): Disposable {
         val params = Pair(id, path)
         return creditsGetByIdUseCase.execute(params)
-                .subscribeWith(object : DisposableObserver<List<Credit>>() {
+                .subscribeWith(object : DisposableObserver<List<CreditDomainModel>>() {
                     override fun onStart() {
                         loading.set(true)
                     }
 
-                    override fun onNext(result: List<Credit>) {
+                    override fun onNext(result: List<CreditDomainModel>) {
                         loading.set(false)
                         credits.clear()
                         credits.addAll(result)
@@ -96,8 +96,8 @@ class TvDetailViewModel(
     private fun getVideosById(id: Int): Disposable {
         val params = Pair(id, path)
         return videosGetByIdUseCase.execute(params)
-                .subscribeWith(object : DisposableObserver<List<Video>>() {
-                    override fun onNext(result: List<Video>) {
+                .subscribeWith(object : DisposableObserver<List<VideoDomainModel>>() {
+                    override fun onNext(result: List<VideoDomainModel>) {
                         video.set(result.first())
                         empty.set(result.isEmpty())
                     }
@@ -115,13 +115,13 @@ class TvDetailViewModel(
     private fun getReviewsById(id: Int): Disposable {
         val params = Pair(id, path)
         return reviewGetByIdUseCase.execute(params)
-                .subscribeWith(object : DisposableObserver<List<Review>>() {
+                .subscribeWith(object : DisposableObserver<List<ReviewDomainModel>>() {
 
                     override fun onStart() {
                         loading.set(true)
                     }
 
-                    override fun onNext(result: List<Review>) {
+                    override fun onNext(result: List<ReviewDomainModel>) {
                         loading.set(false)
                         reviews.clear()
                         reviews.addAll(result)

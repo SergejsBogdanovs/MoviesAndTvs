@@ -2,13 +2,15 @@ package lv.st.sbogdano.cinema.navigation
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.util.Pair
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import lv.st.sbogdano.cinema.home.HomeActivity
 import lv.st.sbogdano.cinema.movie.detail.MovieActivity
+import lv.st.sbogdano.cinema.movie.model.Movie
 import lv.st.sbogdano.cinema.tv.detail.TvActivity
+import lv.st.sbogdano.cinema.tv.model.Tv
 
 class Navigator {
 
@@ -23,21 +25,21 @@ class Navigator {
         activity.startActivity(intent)
     }
 
-    fun navigateToMovie(activity: Activity, movie: Int, sharedView: Pair<View, String>) {
+    fun navigateToMovie(activity: Activity, movie: Movie, sharedView: Pair<View, String>) {
         val intent = Intent(activity, MovieActivity::class.java)
         intent.putExtra(EXTRA_MOVIE, movie)
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedView).toBundle()
         ActivityCompat.startActivity(activity, intent, options)
     }
 
-    fun navigateToTv(activity: Activity, tv: Int, sharedView: Pair<View, String>) {
+    fun navigateToTv(activity: Activity, tv: Tv, sharedView: Pair<View, String>) {
         val intent = Intent(activity, TvActivity::class.java)
         intent.putExtra(EXTRA_TV, tv)
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedView).toBundle()
         ActivityCompat.startActivity(activity, intent, options)
     }
 
-    fun getMovie(activity: Activity) = activity.intent.getIntExtra(EXTRA_MOVIE, 0)
+    fun getMovie(activity: Activity) = activity.intent.getParcelableExtra<Movie>(EXTRA_MOVIE)!!
 
-    fun getTv(activity: Activity) = activity.intent.getIntExtra(EXTRA_TV, 0)
+    fun getTv(activity: Activity) = activity.intent.getParcelableExtra<Tv>(EXTRA_TV)!!
 }

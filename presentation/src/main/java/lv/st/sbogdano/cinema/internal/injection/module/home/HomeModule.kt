@@ -1,13 +1,11 @@
 package lv.st.sbogdano.cinema.internal.injection.module.home
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import lv.st.sbogdano.cinema.favorite.list.FavoriteListFragment
-import lv.st.sbogdano.cinema.favorite.list.FavoriteListViewModel
 import lv.st.sbogdano.cinema.internal.injection.scope.HomeScope
 import lv.st.sbogdano.cinema.movie.list.MovieListFragment
 import lv.st.sbogdano.cinema.movie.list.MovieListViewModel
@@ -28,8 +26,8 @@ internal abstract class HomeModule {
     @ContributesAndroidInjector
     internal abstract fun contributeTvListFragment(): TvListFragment
 
-    @ContributesAndroidInjector
-    internal abstract fun contributeFavoriteListFragment(): FavoriteListFragment
+//    @ContributesAndroidInjector
+//    internal abstract fun contributeFavoriteListFragment(): FavoriteListFragment
 
     @Module
     companion object {
@@ -70,8 +68,8 @@ internal abstract class HomeModule {
         internal fun provideViewModelFactory(
                 context: Context,
                 moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase,
-                tvsByTypeGetAllUseCase: TvsByTypeGetAllUseCase,
-                favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllUseCase
+                tvsByTypeGetAllUseCase: TvsByTypeGetAllUseCase
+//                favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
@@ -83,8 +81,8 @@ internal abstract class HomeModule {
                         modelClass.isAssignableFrom(TvListViewModel::class.java) ->
                             TvListViewModel(context, tvsByTypeGetAllUseCase) as T
 
-                        modelClass.isAssignableFrom(FavoriteListViewModel::class.java) ->
-                            FavoriteListViewModel(context, favoritesByTypeGetAllUseCase) as T
+//                        modelClass.isAssignableFrom(FavoriteListViewModel::class.java) ->
+//                            FavoriteListViewModel(context, favoritesByTypeGetAllUseCase) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }

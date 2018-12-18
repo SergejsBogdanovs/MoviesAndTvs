@@ -1,18 +1,15 @@
 package lv.st.sbogdano.cinema.internal.injection.module.movie
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
 import lv.st.sbogdano.cinema.internal.injection.scope.MovieScope
 import lv.st.sbogdano.cinema.movie.detail.MovieDetailViewModel
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
-import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.MovieGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.*
 
 @Module
 internal abstract class MovieModule {
@@ -63,12 +60,23 @@ internal abstract class MovieModule {
         @MovieScope
         @Provides
         @JvmStatic
+        internal fun provideAddToFavoritesUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+        ): AddToFavoritesUseCase {
+            return AddToFavoritesUseCase(schedulers, gateway)
+        }
+
+        @MovieScope
+        @Provides
+        @JvmStatic
         internal fun provideViewModelFactory(
             context: Context,
             movieGetByIdUseCase: MovieGetByIdUseCase,
             creditsGetByIdUseCase: CreditsGetByIdUseCase,
             videosGetByIdUseCase: VideosGetByIdUseCase,
-            reviewGetByIdUseCase: ReviewGetByIdUseCase
+            reviewGetByIdUseCase: ReviewGetByIdUseCase,
+            addToFavoritesUseCase: AddToFavoritesUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
@@ -80,7 +88,8 @@ internal abstract class MovieModule {
                                     movieGetByIdUseCase,
                                     creditsGetByIdUseCase,
                                     videosGetByIdUseCase,
-                                    reviewGetByIdUseCase) as T
+                                    reviewGetByIdUseCase,
+                                    addToFavoritesUseCase) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }

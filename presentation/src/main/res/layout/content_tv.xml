@@ -19,7 +19,7 @@
     </data>
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
@@ -39,8 +39,8 @@
             custom:arc_text_color="@color/primary"
             custom:arc_text_size="@dimen/content_movie_text_size"
             custom:arc_unfinished_color="@color/primary"
-            custom:layout_constraintStart_toStartOf="parent"
-            custom:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/first_air_date"
@@ -51,10 +51,10 @@
             android:text="@{tvDetailViewModel.tv.firstAirDate}"
             android:textColor="@color/primary"
             android:textSize="@dimen/content_movie_text_size"
-            custom:layout_constraintBottom_toBottomOf="@+id/vote_progress"
-            custom:layout_constraintEnd_toStartOf="@+id/vote_progress"
-            custom:layout_constraintStart_toEndOf="@+id/user_score_progress"
-            custom:layout_constraintTop_toTopOf="@+id/vote_progress"
+            app:layout_constraintBottom_toBottomOf="@+id/vote_progress"
+            app:layout_constraintEnd_toStartOf="@+id/vote_progress"
+            app:layout_constraintStart_toEndOf="@+id/user_score_progress"
+            app:layout_constraintTop_toTopOf="@+id/vote_progress"
             tools:text="2018-10-16" />
 
         <TextView
@@ -89,8 +89,8 @@
             custom:arc_text_color="@color/primary"
             custom:arc_text_size="@dimen/content_movie_text_size"
             custom:arc_unfinished_color="@color/primary"
-            custom:layout_constraintEnd_toEndOf="parent"
-            custom:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider_1"
@@ -152,7 +152,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_2" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cast_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_3" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -200,5 +200,5 @@
             app:reviewsAdapter="@{tvDetailViewModel.reviews}"
             app:showLongMessage="@{tvDetailViewModel.error}" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
