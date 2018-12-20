@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="lollipop">
+
+    <data>
+
+        <variable
+            name="favorite"
+            type="lv.st.sbogdano.cinema.favorite.model.Favorite" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/movie_poster"
+            android:scaleType="centerCrop"
+            android:transitionName="@{@string/favorite_video_transition + favorite.id}"
+            app:loadUrl="@{`w185` + favorite.posterPath}"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+    </FrameLayout>
+
+</layout>

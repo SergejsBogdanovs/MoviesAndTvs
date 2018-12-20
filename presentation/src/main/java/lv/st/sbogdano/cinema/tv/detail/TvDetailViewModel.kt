@@ -9,12 +9,10 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
+import lv.st.sbogdano.cinema.internal.util.SingleLiveData
 import lv.st.sbogdano.cinema.tv.mapper.TvMapper
 import lv.st.sbogdano.cinema.tv.model.Tv
-import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.TvGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.*
 import lv.st.sbogdano.domain.model.CreditDomainModel
 import lv.st.sbogdano.domain.model.ReviewDomainModel
 import lv.st.sbogdano.domain.model.TvDomainModel
@@ -25,11 +23,14 @@ class TvDetailViewModel(
     private val tvGetByIdUseCase: TvGetByIdUseCase,
     private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
     private val videosGetByIdUseCase: VideosGetByIdUseCase,
-    private val reviewGetByIdUseCase: ReviewGetByIdUseCase
+    private val reviewGetByIdUseCase: ReviewGetByIdUseCase,
+    private val addToFavoritesUseCase: AddToFavoritesUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = TvMapper()
     private val path = "tv"
+    private val _isInserted = SingleLiveData<Boolean>()
+    val isInserted = _isInserted
 
     val loading = ObservableBoolean()
     val tv = ObservableField<Tv>()
@@ -43,6 +44,7 @@ class TvDetailViewModel(
     fun loadCredits(id: Int) = addDisposable(getCreditsById(id))
     fun loadVideos(id: Int) = addDisposable(getVideosById(id))
     fun loadReviews(id: Int) = addDisposable(getReviewsById(id))
+    fun addTvToFavorites(tv: Tv) = addDisposable(addToFavorites(tv))
 
     private fun getTvById(id: Int): Disposable {
         return tvGetByIdUseCase.execute(id)
@@ -135,6 +137,24 @@ class TvDetailViewModel(
                     }
 
                     override fun onComplete() {
+                    }
+                })
+    }
+
+    private fun addToFavorites(tv: Tv): Disposable {
+        val favoriteDomainModel = mapper.toDomainModel(tv, path)
+        return addToFavoritesUseCase.execute(favoriteDomainModel)
+                .subscribeWith(object : DisposableObserver<Long>() {
+                    override fun onComplete() {
+                    }
+
+                    override fun onNext(t: Long) {
+                        isInserted.value = true
+                    }
+
+                    override fun onError(e: Throwable) {
+                        error.set(e.localizedMessage ?: e.message
+                        ?: context.getString(R.string.unknown_error))
                     }
                 })
     }

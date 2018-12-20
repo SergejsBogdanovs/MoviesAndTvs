@@ -17,5 +17,6 @@ class MovieListMapper {
             type
     )
 
-    fun toLocal(items: List<MovieRemoteModel>, type: String) = items.map { toLocal(it, type) }
+    fun toLocal(items: List<MovieRemoteModel>, type: String) =
+            items.map { toLocal(it, type) }
 }

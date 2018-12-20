@@ -1,6 +1,7 @@
 package lv.st.sbogdano.cinema.tv.mapper
 
 import lv.st.sbogdano.cinema.tv.model.Tv
+import lv.st.sbogdano.domain.model.FavoriteDomainModel
 import lv.st.sbogdano.domain.model.TvDomainModel
 
 class TvMapper {
@@ -24,4 +25,7 @@ class TvMapper {
         val day = firstAirDate.substringAfterLast("-")
         return "$year $month $day"
     }
+
+    fun toDomainModel(tv: Tv, type: String)
+            = FavoriteDomainModel(tv.id, tv.posterPath, type)
 }

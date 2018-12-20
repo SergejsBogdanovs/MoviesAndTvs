@@ -13,7 +13,8 @@ class GatewayMapper {
             movieLocalModel.title,
             movieLocalModel.popularity,
             movieLocalModel.voteCount,
-            movieLocalModel.voteAverage
+            movieLocalModel.voteAverage,
+            movieLocalModel.type
     )
 
     fun toDomainModel(tvLocalModel: TvLocalModel) = TvDomainModel(
@@ -46,19 +47,14 @@ class GatewayMapper {
             reviewLocalModel.content
     )
 
-    fun toLocalModel(params: Pair<MovieDomainModel, String>): MovieLocalModel {
-        val (movieDomainModel, type) = params
+    fun toLocalModel(favoriteDomainModel: FavoriteDomainModel) = FavoriteLocalModel(
+            favoriteDomainModel.id,
+            favoriteDomainModel.posterPath,
+            favoriteDomainModel.type)
 
-        return MovieLocalModel(
-                movieDomainModel.id,
-                movieDomainModel.posterPath,
-                movieDomainModel.overview,
-                movieDomainModel.releaseDate,
-                movieDomainModel.title,
-                movieDomainModel.popularity,
-                movieDomainModel.voteCount,
-                movieDomainModel.voteAverage,
-                type,
-                true)
-    }
+    fun toDomainModel(favoriteLocalModel: FavoriteLocalModel) = FavoriteDomainModel(
+            favoriteLocalModel.id,
+            favoriteLocalModel.posterPath,
+            favoriteLocalModel.type
+    )
 }

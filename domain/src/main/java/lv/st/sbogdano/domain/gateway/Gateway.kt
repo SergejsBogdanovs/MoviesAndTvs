@@ -7,7 +7,7 @@ interface Gateway {
 
     fun getMoviesByType(type: String, refresh: Boolean): Observable<List<MovieDomainModel>>
 
-    fun getTvByType(type: String, refresh: Boolean): Observable<List<TvDomainModel>>
+    fun getTvsByType(type: String, refresh: Boolean): Observable<List<TvDomainModel>>
 
     fun getMovieById(id: Int): Observable<MovieDomainModel>
 
@@ -19,5 +19,7 @@ interface Gateway {
 
     fun getReviewsById(params: Pair<Int, String>): Observable<List<ReviewDomainModel>>
 
-    fun addToFavorites(params: Pair<MovieDomainModel, String>): Observable<Long>
+    fun addToFavorites(params: FavoriteDomainModel): Observable<Long>
+
+    fun getFavoritesByType(type: String): Observable<List<FavoriteDomainModel>>
 }

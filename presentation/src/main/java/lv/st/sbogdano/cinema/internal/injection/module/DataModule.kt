@@ -35,9 +35,16 @@ internal class DataModule {
         tvRepository: TvRepository,
         creditsRepository: CreditsRepository,
         videosRepository: VideosRepository,
-        reviewsRepository: ReviewsRepository
+        reviewsRepository: ReviewsRepository,
+        favoritesRepository: FavoritesRepository
     ): Gateway {
-        return GatewayImpl(movieRepository, tvRepository, creditsRepository, videosRepository, reviewsRepository)
+        return GatewayImpl(
+                movieRepository,
+                tvRepository,
+                creditsRepository,
+                videosRepository,
+                reviewsRepository,
+                favoritesRepository)
     }
 
     // -------------------------------------DAOs-----------------------------------------------------//
@@ -60,6 +67,10 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideReviewsDao(cinemaDatabase: CinemaDatabase): ReviewsDao = cinemaDatabase.reviewsDao()
+
+    @Provides
+    @Singleton
+    internal fun provideFavoritesDao(cinemaDatabase: CinemaDatabase): FavoritesDao = cinemaDatabase.favoritesDao()
 
     // -------------------------------------LOCAL DATA SOURCES---------------------------------------//
     @Provides
@@ -90,6 +101,12 @@ internal class DataModule {
     @Singleton
     internal fun provideReviewsLocalDataSource(reviewsDao: ReviewsDao): ReviewsLocalDataSource {
         return ReviewsLocalDataSource(reviewsDao)
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideFavoritesLocalDataSource(favoritesDao: FavoritesDao): FavoritesLocalDataSource {
+        return FavoritesLocalDataSource(favoritesDao)
     }
 
     // -------------------------------------REMOTE DATA SOURCES--------------------------------------//
@@ -167,5 +184,13 @@ internal class DataModule {
         reviewsRemoteDataSource: ReviewsRemoteDataSource
     ): ReviewsRepository {
         return ReviewsRepository(reviewsLocalDataSource, reviewsRemoteDataSource, ReviewsListMapper())
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideFavoritesRepository(
+        favoritesLocalDataSource: FavoritesLocalDataSource
+    ): FavoritesRepository {
+        return FavoritesRepository(favoritesLocalDataSource)
     }
 }

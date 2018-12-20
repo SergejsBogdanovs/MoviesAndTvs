@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.Observable
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerAppCompatActivity
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_movie.*
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.adapters.casts.CastsAdapter
 import lv.st.sbogdano.cinema.databinding.ActivityTvBinding
+import lv.st.sbogdano.cinema.internal.util.databinding.ViewBindingAdapters
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
 import lv.st.sbogdano.domain.model.CreditDomainModel
@@ -53,6 +55,8 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
         tvDetailViewModel.loadVideos(tv.id)
         tvDetailViewModel.loadReviews(tv.id)
 
+        binder.fabFavorite.setOnClickListener { tvDetailViewModel.addTvToFavorites(tv) }
+
         tvDetailViewModel.tv.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 (window.decorView as ViewGroup).doOnPreDraw {
@@ -60,6 +64,11 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
                 }
             }
         })
+
+        tvDetailViewModel.isInserted.observe(this, Observer {
+            ViewBindingAdapters.showLongMessage(window.decorView, getString(R.string.added_to_favorites))
+        })
+
     }
 
     override fun onItemClick(view: View, item: CreditDomainModel) {

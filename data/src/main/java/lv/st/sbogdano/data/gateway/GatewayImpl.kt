@@ -11,7 +11,8 @@ class GatewayImpl(
     private val tvRepository: TvRepository,
     private val creditsRepository: CreditsRepository,
     private val videosRepository: VideosRepository,
-    private val reviewsRepository: ReviewsRepository
+    private val reviewsRepository: ReviewsRepository,
+    private val favoritesRepository: FavoritesRepository
 ) : Gateway {
 
     private val mapper = GatewayMapper()
@@ -21,7 +22,7 @@ class GatewayImpl(
                     .doOnError { println("Movies by Type($type) error") }
                     .map { it.map { movieLocalModel -> mapper.toDomainModel(movieLocalModel) } }
 
-    override fun getTvByType(type: String, refresh: Boolean): Observable<List<TvDomainModel>> =
+    override fun getTvsByType(type: String, refresh: Boolean): Observable<List<TvDomainModel>> =
             tvRepository.getAll(type, refresh)
                     .doOnError { println("TvDomainModel by Type($type) error") }
                     .map { it.map { tvLocalModel -> mapper.toDomainModel(tvLocalModel) } }
@@ -51,7 +52,12 @@ class GatewayImpl(
                     .doOnError { println("Reviews by Id(${params.first}) Error") }
                     .map { it.map { reviewLocalModel -> mapper.toDomainModel(reviewLocalModel) } }
 
-    override fun addToFavorites(params: Pair<MovieDomainModel, String>): Observable<Long> =
-            movieRepository.addToFavorites(mapper.toLocalModel(params))
+    override fun addToFavorites(params: FavoriteDomainModel): Observable<Long> =
+            favoritesRepository.addToFavorites(mapper.toLocalModel(params))
                     .doOnError { println("Error while adding movie to favorites") }
+
+    override fun getFavoritesByType(type: String): Observable<List<FavoriteDomainModel>> =
+            favoritesRepository.getAll(type)
+                    .doOnError { println("FavoritesDomainModel by Type($type) error") }
+                    .map { it.map { favoriteLocalModel -> mapper.toDomainModel(favoriteLocalModel) } }
 }

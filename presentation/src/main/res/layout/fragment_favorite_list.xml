@@ -2,17 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".tv.list.TvListFragment">
+    tools:context=".favorite.list.FavoriteListFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="lv.st.sbogdano.cinema.tv.list.TvListViewModel" />
+            type="lv.st.sbogdano.cinema.favorite.list.FavoriteListViewModel" />
 
         <variable
-            name="tvCallbacks"
-            type="lv.st.sbogdano.cinema.adapters.tvs.TvListAdapter.Callbacks" />
+            name="favoriteCallback"
+            type="lv.st.sbogdano.cinema.adapters.favorites.FavoriteListAdapter.Callbacks" />
     </data>
 
     <FrameLayout
@@ -26,14 +26,14 @@
             app:refreshing="@{viewModel.loading}">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_tv"
+                android:id="@+id/list_favorites"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:fadeView="@{!viewModel.loading}"
-                app:tvAdapter="@{viewModel.result}"
-                app:tvCallbacks="@{tvCallbacks}"
+                app:favoriteAdapter="@{viewModel.result}"
+                app:favoriteCallbacks="@{favoriteCallback}"
                 app:showLongMessage="@{viewModel.error}"
-                tools:listitem="@layout/fragment_tv_list_item" />
+                tools:listitem="@layout/fragment_favorite_list_item" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

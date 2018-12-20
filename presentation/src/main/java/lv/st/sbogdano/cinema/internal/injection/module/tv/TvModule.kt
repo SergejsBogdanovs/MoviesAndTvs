@@ -9,10 +9,7 @@ import lv.st.sbogdano.cinema.internal.injection.scope.TvScope
 import lv.st.sbogdano.cinema.tv.detail.TvDetailViewModel
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
-import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.TvGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.*
 
 @Module
 internal abstract class TvModule {
@@ -63,12 +60,24 @@ internal abstract class TvModule {
         @TvScope
         @Provides
         @JvmStatic
+        internal fun provideAddToFavoritesUseCase(
+                schedulers: Schedulers,
+                gateway: Gateway
+        ): AddToFavoritesUseCase {
+            return AddToFavoritesUseCase(schedulers, gateway)
+        }
+
+
+        @TvScope
+        @Provides
+        @JvmStatic
         internal fun provideViewModelFactory(
             context: Context,
             tvGetByIdUseCase: TvGetByIdUseCase,
             creditsGetByIdUseCase: CreditsGetByIdUseCase,
             videosGetByIdUseCase: VideosGetByIdUseCase,
-            reviewGetByIdUseCase: ReviewGetByIdUseCase
+            reviewGetByIdUseCase: ReviewGetByIdUseCase,
+            addToFavoritesUseCase: AddToFavoritesUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
@@ -80,7 +89,8 @@ internal abstract class TvModule {
                                     tvGetByIdUseCase,
                                     creditsGetByIdUseCase,
                                     videosGetByIdUseCase,
-                                    reviewGetByIdUseCase) as T
+                                    reviewGetByIdUseCase,
+                                    addToFavoritesUseCase) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }

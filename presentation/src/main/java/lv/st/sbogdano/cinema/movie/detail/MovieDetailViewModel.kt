@@ -142,9 +142,9 @@ class MovieDetailViewModel(
     }
 
     private fun addToFavorites(movie: Movie): Disposable {
-        val movieDomainModel = mapper.toDomainModel(movie)
-        val params = Pair(movieDomainModel, path)
-        return addToFavoritesUseCase.execute(params)
+        val favoriteDomainModel = mapper.toDomainModel(movie, path)
+        //val params = Pair(favoriteDomainModel, path)
+        return addToFavoritesUseCase.execute(favoriteDomainModel)
                 .subscribeWith(object : DisposableObserver<Long>() {
                     override fun onComplete() {
                     }

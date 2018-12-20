@@ -12,7 +12,7 @@ class TvPagerAdapter(
     private val tvs = arrayOf(
             Pair("Popular", "popular"),
             Pair("Top Rated", "top_rated"),
-            Pair("On TvDomainModel", "on_the_air"),
+            Pair("On Tv", "on_the_air"),
             Pair("Airing Today", "airing_today")
     )
 

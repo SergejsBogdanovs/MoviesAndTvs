@@ -12,7 +12,8 @@ import lv.st.sbogdano.data.local.model.*
     TvLocalModel::class,
     CreditLocalModel::class,
     VideoLocalModel::class,
-    ReviewLocalModel::class], version = 1, exportSchema = false)
+    ReviewLocalModel::class,
+    FavoriteLocalModel::class], version = 1, exportSchema = false)
 abstract class CinemaDatabase : RoomDatabase() {
 
     abstract fun moviesDao(): MoviesDao
@@ -20,6 +21,7 @@ abstract class CinemaDatabase : RoomDatabase() {
     abstract fun creditsDao(): CreditsDao
     abstract fun videosDao(): VideosDao
     abstract fun reviewsDao(): ReviewsDao
+    abstract fun favoritesDao(): FavoritesDao
 
     companion object {
         fun newInstance(context: Context): CinemaDatabase {

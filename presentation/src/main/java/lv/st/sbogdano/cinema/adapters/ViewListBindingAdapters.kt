@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import lv.st.sbogdano.cinema.adapters.casts.CastsAdapter
+import lv.st.sbogdano.cinema.adapters.favorites.FavoriteListAdapter
 import lv.st.sbogdano.cinema.adapters.movies.MovieListAdapter
 import lv.st.sbogdano.cinema.adapters.reviews.ReviewsAdapter
 import lv.st.sbogdano.cinema.adapters.tvs.TvListAdapter
+import lv.st.sbogdano.cinema.favorite.model.Favorite
 import lv.st.sbogdano.cinema.internal.util.imageSize
 import lv.st.sbogdano.cinema.internal.util.numberOfColumns
 import lv.st.sbogdano.cinema.movie.model.Movie
@@ -38,6 +40,18 @@ object ViewListBindingAdapters {
             recyclerView.apply {
                 setHasFixedSize(true)
                 adapter = TvListAdapter(it, callbacks, imageSize(context))
+                layoutManager = GridLayoutManager(context, numberOfColumns())
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("favoriteAdapter", "favoriteCallbacks", requireAll = false)
+    fun setFavoriteAdapter(recyclerView: RecyclerView, items: List<Favorite>?, callbacks: FavoriteListAdapter.Callbacks) {
+        items?.let {
+            recyclerView.apply {
+                setHasFixedSize(true)
+                adapter = FavoriteListAdapter(it, callbacks, imageSize(context))
                 layoutManager = GridLayoutManager(context, numberOfColumns())
             }
         }

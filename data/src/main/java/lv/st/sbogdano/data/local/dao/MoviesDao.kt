@@ -21,7 +21,4 @@ interface MoviesDao {
 
     @Query("DELETE FROM Movies WHERE type = :type")
     fun deleteByType(type: String)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertToFavorites(movieLocalModel: MovieLocalModel): Long
 }
