@@ -77,10 +77,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
+            android:backgroundTint="@color/accent"
             android:clickable="true"
             android:focusable="true"
             app:fabSize="auto"
             app:srcCompat="@drawable/heart_outline" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

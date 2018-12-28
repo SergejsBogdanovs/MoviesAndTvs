@@ -4,7 +4,7 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    def ext = rootProject.extensions.ext
+    def ext = rootProject.ext
     compileSdkVersion ext.android.compileSdk
 
     defaultConfig {
@@ -39,7 +39,33 @@ android.buildTypes.each { type ->
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':domain')
-    kapt dataKaptDependencies
-    implementation dataDependencies
-    testImplementation dataTestDependencies
+
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$compiler.kotlin"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    implementation "com.serjltt.moshi:moshi-lazy-adapters:$moshiLazyAdapterVersion"
+
+    // Unit tests
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
+
 }
