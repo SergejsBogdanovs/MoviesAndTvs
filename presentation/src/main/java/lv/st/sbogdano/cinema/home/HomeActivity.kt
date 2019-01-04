@@ -12,6 +12,8 @@ import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.movie.MoviePagerAdapter
 import lv.st.sbogdano.cinema.tv.TvPagerAdapter
 
+const val BOTTOM_NAV_ITEM_KEY = "bottom_navigation_item_key"
+
 class HomeActivity : DaggerAppCompatActivity() {
 
     private val binder by lazyThreadSafetyNone<ActivityHomeBinding> {
@@ -22,24 +24,34 @@ class HomeActivity : DaggerAppCompatActivity() {
         (view_pager.context as FragmentActivity).supportFragmentManager
     }
 
+    private var bottomNavigationItem: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bottomNavigationItem = savedInstanceState?.getInt(BOTTOM_NAV_ITEM_KEY) ?: R.id.nav_movies
+
         setSupportActionBar(binder.toolbar)
 
-        view_pager.adapter = MoviePagerAdapter(fm)
+        setBottomNavigationItem(bottomNavigationItem)
 
         binder.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_movies -> {
-                    setMovieTypeAdapter()
+                    if (binder.bottomNavigation.selectedItemId != R.id.nav_movies) {
+                        setMovieTypeAdapter()
+                    }
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_tv -> {
-                    setTvTypeAdapter()
+                    if (binder.bottomNavigation.selectedItemId != R.id.nav_tv) {
+                        setTvTypeAdapter()
+                    }
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.nav_favorite -> {
-                    setFavoriteAdapter()
+                    if (binder.bottomNavigation.selectedItemId != R.id.nav_favorite) {
+                        setFavoriteAdapter()
+                    }
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -47,21 +59,33 @@ class HomeActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private fun setMovieTypeAdapter() {
-        if (binder.bottomNavigation.selectedItemId != R.id.nav_movies) {
-            view_pager.adapter = MoviePagerAdapter(fm)
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.putInt(BOTTOM_NAV_ITEM_KEY, binder.bottomNavigation.selectedItemId)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        bottomNavigationItem = savedInstanceState?.getInt(BOTTOM_NAV_ITEM_KEY)
+    }
+
+    private fun setBottomNavigationItem(item: Int?) {
+        when(item) {
+            R.id.nav_movies -> setMovieTypeAdapter()
+            R.id.nav_tv -> setTvTypeAdapter()
+            R.id.nav_favorite -> setFavoriteAdapter()
         }
+    }
+
+    private fun setMovieTypeAdapter() {
+        view_pager.adapter = MoviePagerAdapter(fm)
     }
 
     private fun setTvTypeAdapter() {
-        if (binder.bottomNavigation.selectedItemId != R.id.nav_tv) {
-            view_pager.adapter = TvPagerAdapter(fm)
-        }
+        view_pager.adapter = TvPagerAdapter(fm)
     }
 
     private fun setFavoriteAdapter() {
-        if (binder.bottomNavigation.selectedItemId != R.id.nav_favorite) {
-            view_pager.adapter = FavoritePagerAdapter(fm)
-        }
+        view_pager.adapter = FavoritePagerAdapter(fm)
     }
 }
