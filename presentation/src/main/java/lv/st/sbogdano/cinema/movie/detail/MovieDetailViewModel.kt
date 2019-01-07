@@ -13,18 +13,16 @@ import lv.st.sbogdano.cinema.internal.util.SingleLiveData
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
 import lv.st.sbogdano.cinema.movie.model.Movie
 import lv.st.sbogdano.domain.interactor.*
-import lv.st.sbogdano.domain.model.CreditDomainModel
-import lv.st.sbogdano.domain.model.MovieDomainModel
-import lv.st.sbogdano.domain.model.ReviewDomainModel
-import lv.st.sbogdano.domain.model.VideoDomainModel
+import lv.st.sbogdano.domain.model.*
 
 class MovieDetailViewModel(
-    context: Context,
-    private val movieGetByIdUseCase: MovieGetByIdUseCase,
-    private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
-    private val videosGetByIdUseCase: VideosGetByIdUseCase,
-    private val reviewGetByIdUseCase: ReviewGetByIdUseCase,
-    private val addToFavoritesUseCase: AddToFavoritesUseCase
+        context: Context,
+        private val movieGetByIdUseCase: MovieGetByIdUseCase,
+        private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
+        private val videosGetByIdUseCase: VideosGetByIdUseCase,
+        private val reviewGetByIdUseCase: ReviewGetByIdUseCase,
+        private val addToFavoritesUseCase: AddToFavoritesUseCase,
+        private val getFavoriteByIdUseCase: GetFavoriteByIdUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = MovieMapper()
@@ -39,12 +37,23 @@ class MovieDetailViewModel(
     val video = ObservableField<VideoDomainModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
+    var isFavorite = ObservableBoolean()
 
-    fun loadMovieDetail(id: Int) = addDisposable(getMovieById(id))
+    fun loadMovieDetail(id: Int) {
+        addDisposable(checkIsFavorite(id))
+        addDisposable(getMovieById(id))
+    }
     fun loadCredits(id: Int) = addDisposable(getCreditsById(id))
     fun loadVideos(id: Int) = addDisposable(getVideosById(id))
     fun loadReviews(id: Int) = addDisposable(getReviewsById(id))
-    fun addMovieToFavorites(movie: Movie) = addDisposable(addToFavorites(movie))
+
+    fun addMovieToFavorites(movie: Movie) {
+        if (!isFavorite.get()) {
+            addDisposable(addToFavorites(movie))
+        } else {
+            isInserted.value = false
+        }
+    }
 
     private fun getMovieById(id: Int): Disposable {
         return movieGetByIdUseCase.execute(id)
@@ -143,14 +152,29 @@ class MovieDetailViewModel(
 
     private fun addToFavorites(movie: Movie): Disposable {
         val favoriteDomainModel = mapper.toDomainModel(movie, path)
-        //val params = Pair(favoriteDomainModel, path)
         return addToFavoritesUseCase.execute(favoriteDomainModel)
                 .subscribeWith(object : DisposableObserver<Long>() {
-                    override fun onComplete() {
-                    }
+                    override fun onComplete() {}
 
                     override fun onNext(t: Long) {
+                        isFavorite.set(true)
                         isInserted.value = true
+                    }
+
+                    override fun onError(e: Throwable) {
+                        error.set(e.localizedMessage ?: e.message
+                        ?: context.getString(R.string.unknown_error))
+                    }
+                })
+    }
+
+    private fun checkIsFavorite(movieId: Int): Disposable {
+        return getFavoriteByIdUseCase.execute(movieId)
+                .subscribeWith(object : DisposableObserver<FavoriteDomainModel>() {
+                    override fun onComplete() {}
+
+                    override fun onNext(t: FavoriteDomainModel) {
+                        isFavorite.set(true)
                     }
 
                     override fun onError(e: Throwable) {

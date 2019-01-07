@@ -9,7 +9,8 @@ class FavoritesRepository(private val favoritesLocalDataSource: FavoritesLocalDa
     fun addToFavorites(favoriteLocalModel: FavoriteLocalModel): Observable<Long> =
             favoritesLocalDataSource.addToFavorites(favoriteLocalModel)
 
-    fun getAll(type: String): Observable<List<FavoriteLocalModel>> =
-            favoritesLocalDataSource.getAll(type)
+    fun getAll(type: String): Observable<List<FavoriteLocalModel>> = favoritesLocalDataSource.getAll(type)
+
+    fun getById(id: Int?): Observable<FavoriteLocalModel> = favoritesLocalDataSource.getById(id)
 
 }

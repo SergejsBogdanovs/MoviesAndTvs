@@ -19,7 +19,9 @@ interface Gateway {
 
     fun getReviewsById(params: Pair<Int, String>): Observable<List<ReviewDomainModel>>
 
-    fun addToFavorites(params: FavoriteDomainModel): Observable<Long>
+    fun addToFavorites(favoriteDomainModel: FavoriteDomainModel): Observable<Long>
 
     fun getFavoritesByType(type: String): Observable<List<FavoriteDomainModel>>
+
+    fun getFavoriteById(id: Int?): Observable<FavoriteDomainModel>
 }

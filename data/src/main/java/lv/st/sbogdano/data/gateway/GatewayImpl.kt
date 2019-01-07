@@ -52,12 +52,17 @@ class GatewayImpl(
                     .doOnError { println("Reviews by Id(${params.first}) Error") }
                     .map { it.map { reviewLocalModel -> mapper.toDomainModel(reviewLocalModel) } }
 
-    override fun addToFavorites(params: FavoriteDomainModel): Observable<Long> =
-            favoritesRepository.addToFavorites(mapper.toLocalModel(params))
+    override fun addToFavorites(favoriteDomainModel: FavoriteDomainModel): Observable<Long> =
+            favoritesRepository.addToFavorites(mapper.toLocalModel(favoriteDomainModel))
                     .doOnError { println("Error while adding movie to favorites") }
 
     override fun getFavoritesByType(type: String): Observable<List<FavoriteDomainModel>> =
             favoritesRepository.getAll(type)
                     .doOnError { println("FavoritesDomainModel by Type($type) error") }
                     .map { it.map { favoriteLocalModel -> mapper.toDomainModel(favoriteLocalModel) } }
+
+    override fun getFavoriteById(id: Int?): Observable<FavoriteDomainModel> =
+            favoritesRepository.getById(id)
+                    .doOnError { println("Error getting FavoriteDomainModel from favorites") }
+                    .map { mapper.toDomainModel(it) }
 }

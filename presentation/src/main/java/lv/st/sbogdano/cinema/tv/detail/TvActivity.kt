@@ -66,7 +66,8 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
         })
 
         tvDetailViewModel.isInserted.observe(this, Observer {
-            ViewBindingAdapters.showLongMessage(window.decorView, getString(R.string.added_to_favorites))
+            val text = if (it) getString(R.string.added_to_favorites) else getString(R.string.already_exist)
+            ViewBindingAdapters.showShortMessage(window.decorView, text)
         })
 
     }

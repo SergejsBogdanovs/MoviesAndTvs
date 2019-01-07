@@ -67,6 +67,15 @@ internal abstract class TvModule {
             return AddToFavoritesUseCase(schedulers, gateway)
         }
 
+        @TvScope
+        @Provides
+        @JvmStatic
+        internal fun provideGetFavoriteByIdUseCase(
+                schedulers: Schedulers,
+                gateway: Gateway
+        ): GetFavoriteByIdUseCase {
+            return GetFavoriteByIdUseCase(schedulers, gateway)
+        }
 
         @TvScope
         @Provides
@@ -77,7 +86,8 @@ internal abstract class TvModule {
             creditsGetByIdUseCase: CreditsGetByIdUseCase,
             videosGetByIdUseCase: VideosGetByIdUseCase,
             reviewGetByIdUseCase: ReviewGetByIdUseCase,
-            addToFavoritesUseCase: AddToFavoritesUseCase
+            addToFavoritesUseCase: AddToFavoritesUseCase,
+            getFavoriteByIdUseCase: GetFavoriteByIdUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
@@ -90,7 +100,8 @@ internal abstract class TvModule {
                                     creditsGetByIdUseCase,
                                     videosGetByIdUseCase,
                                     reviewGetByIdUseCase,
-                                    addToFavoritesUseCase) as T
+                                    addToFavoritesUseCase,
+                                    getFavoriteByIdUseCase) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }

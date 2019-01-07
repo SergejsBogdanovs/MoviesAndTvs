@@ -80,8 +80,8 @@
             android:backgroundTint="@color/accent"
             android:clickable="true"
             android:focusable="true"
-            app:fabSize="auto"
-            app:srcCompat="@drawable/heart_outline" />
+            android:src="@{tvDetailViewModel.isFavorite() ? @drawable/cards_heart : @drawable/heart_off}"
+            app:fabSize="auto" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -13,10 +13,7 @@ import lv.st.sbogdano.cinema.internal.util.SingleLiveData
 import lv.st.sbogdano.cinema.tv.mapper.TvMapper
 import lv.st.sbogdano.cinema.tv.model.Tv
 import lv.st.sbogdano.domain.interactor.*
-import lv.st.sbogdano.domain.model.CreditDomainModel
-import lv.st.sbogdano.domain.model.ReviewDomainModel
-import lv.st.sbogdano.domain.model.TvDomainModel
-import lv.st.sbogdano.domain.model.VideoDomainModel
+import lv.st.sbogdano.domain.model.*
 
 class TvDetailViewModel(
     context: Context,
@@ -24,7 +21,8 @@ class TvDetailViewModel(
     private val creditsGetByIdUseCase: CreditsGetByIdUseCase,
     private val videosGetByIdUseCase: VideosGetByIdUseCase,
     private val reviewGetByIdUseCase: ReviewGetByIdUseCase,
-    private val addToFavoritesUseCase: AddToFavoritesUseCase
+    private val addToFavoritesUseCase: AddToFavoritesUseCase,
+    private val getFavoriteByIdUseCase: GetFavoriteByIdUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = TvMapper()
@@ -39,12 +37,22 @@ class TvDetailViewModel(
     val video = ObservableField<VideoDomainModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
+    var isFavorite = ObservableBoolean()
 
-    fun loadTvDetail(id: Int) = addDisposable(getTvById(id))
+    fun loadTvDetail(id: Int) {
+        addDisposable(checkIsFavorite(id))
+        addDisposable(getTvById(id))
+    }
     fun loadCredits(id: Int) = addDisposable(getCreditsById(id))
     fun loadVideos(id: Int) = addDisposable(getVideosById(id))
     fun loadReviews(id: Int) = addDisposable(getReviewsById(id))
-    fun addTvToFavorites(tv: Tv) = addDisposable(addToFavorites(tv))
+    fun addTvToFavorites(tv: Tv) {
+        if (!isFavorite.get()) {
+            addDisposable(addToFavorites(tv))
+        } else {
+            isInserted.value = false
+        }
+    }
 
     private fun getTvById(id: Int): Disposable {
         return tvGetByIdUseCase.execute(id)
@@ -149,7 +157,24 @@ class TvDetailViewModel(
                     }
 
                     override fun onNext(t: Long) {
+                        isFavorite.set(true)
                         isInserted.value = true
+                    }
+
+                    override fun onError(e: Throwable) {
+                        error.set(e.localizedMessage ?: e.message
+                        ?: context.getString(R.string.unknown_error))
+                    }
+                })
+    }
+
+    private fun checkIsFavorite(movieId: Int): Disposable {
+        return getFavoriteByIdUseCase.execute(movieId)
+                .subscribeWith(object : DisposableObserver<FavoriteDomainModel>() {
+                    override fun onComplete() {}
+
+                    override fun onNext(t: FavoriteDomainModel) {
+                        isFavorite.set(true)
                     }
 
                     override fun onError(e: Throwable) {

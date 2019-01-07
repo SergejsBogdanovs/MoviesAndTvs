@@ -10,4 +10,6 @@ class FavoritesLocalDataSource(private val favoritesDao: FavoritesDao) {
             favoritesDao.insertToFavorites(favoriteLocalModel).toObservable()
 
     fun getAll(type: String): Observable<List<FavoriteLocalModel>> = favoritesDao.getAll(type).toObservable()
+
+    fun getById(id: Int?): Observable<FavoriteLocalModel> = favoritesDao.getById(id).toObservable()
 }

@@ -15,4 +15,7 @@ interface FavoritesDao {
 
     @Query("SELECT * FROM Favorites WHERE type = :type")
     fun getAll(type: String): Maybe<List<FavoriteLocalModel>>
+
+    @Query("SELECT * FROM Favorites WHERE id = :id")
+    fun getById(id: Int?): Maybe<FavoriteLocalModel>
 }

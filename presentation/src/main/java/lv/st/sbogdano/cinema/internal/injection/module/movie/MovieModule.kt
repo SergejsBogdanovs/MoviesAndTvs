@@ -70,13 +70,24 @@ internal abstract class MovieModule {
         @MovieScope
         @Provides
         @JvmStatic
+        internal fun provideGetFavoriteByIdUseCase(
+            schedulers: Schedulers,
+            gateway: Gateway
+        ): GetFavoriteByIdUseCase {
+            return GetFavoriteByIdUseCase(schedulers, gateway)
+        }
+
+        @MovieScope
+        @Provides
+        @JvmStatic
         internal fun provideViewModelFactory(
             context: Context,
             movieGetByIdUseCase: MovieGetByIdUseCase,
             creditsGetByIdUseCase: CreditsGetByIdUseCase,
             videosGetByIdUseCase: VideosGetByIdUseCase,
             reviewGetByIdUseCase: ReviewGetByIdUseCase,
-            addToFavoritesUseCase: AddToFavoritesUseCase
+            addToFavoritesUseCase: AddToFavoritesUseCase,
+            getFavoriteByIdUseCase: GetFavoriteByIdUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
@@ -89,7 +100,8 @@ internal abstract class MovieModule {
                                     creditsGetByIdUseCase,
                                     videosGetByIdUseCase,
                                     reviewGetByIdUseCase,
-                                    addToFavoritesUseCase) as T
+                                    addToFavoritesUseCase,
+                                    getFavoriteByIdUseCase) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }

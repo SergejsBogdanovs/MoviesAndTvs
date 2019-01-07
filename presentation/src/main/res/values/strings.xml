@@ -7,6 +7,7 @@
     <string name="movie_list_empty">Sorry, we couldn\'t find any movie\n of this type</string>
     <string name="tv_list_empty">Sorry, we couldn\'t find any tv\n of this type</string>
     <string name="added_to_favorites">Added to favorites!</string>
+    <string name="already_exist">Already in favorites!</string>
 
     <!-- List items -->
     <string name="movie_poster">Movie poster</string>

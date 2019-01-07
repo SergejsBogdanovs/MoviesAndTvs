@@ -32,6 +32,16 @@ object ViewBindingAdapters {
     }
 
     @JvmStatic
+    @BindingAdapter("showShortMessage", "callback", requireAll = false)
+    fun showShortMessage(view: View, text: String?, callback: BaseTransientBottomBar.BaseCallback<Snackbar>? = null) {
+        text?.let {
+            val snackbar = Snackbar.make(view, it, Snackbar.LENGTH_SHORT)
+            if (callback != null) snackbar.addCallback(callback)
+            snackbar.show()
+        }
+    }
+
+    @JvmStatic
     @BindingAdapter("visible")
     fun setVisible(view: View, visible: Boolean) {
         view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
@@ -40,11 +50,8 @@ object ViewBindingAdapters {
     @JvmStatic
     @BindingAdapter("loadUrl", "isCircularImageView", requireAll = false)
     fun loadUrl(imageView: ImageView, url: String?, isCircularImageView: Boolean = false) {
-        val options = if (isCircularImageView) {
-            RequestOptions.circleCropTransform()
-        } else {
-            RequestOptions.noTransformation()
-        }
+        val options =
+                if (isCircularImageView) RequestOptions.circleCropTransform() else RequestOptions.noTransformation()
         url?.let {
             Glide.with(imageView.context)
                     .load(BuildConfig.POSTER_BASE_URL + it)
