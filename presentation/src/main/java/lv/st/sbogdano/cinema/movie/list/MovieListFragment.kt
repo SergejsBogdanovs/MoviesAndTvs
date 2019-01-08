@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.adapters.movies.MovieListAdapter
+import lv.st.sbogdano.cinema.basemodel.Movie
 import lv.st.sbogdano.cinema.databinding.FragmentMovieListBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
-import lv.st.sbogdano.cinema.movie.model.Movie
 import lv.st.sbogdano.cinema.navigation.Navigator
 import javax.inject.Inject
 

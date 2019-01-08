@@ -1,6 +1,6 @@
 package lv.st.sbogdano.cinema.movie.mapper
 
-import lv.st.sbogdano.cinema.movie.model.Movie
+import lv.st.sbogdano.cinema.basemodel.Movie
 import lv.st.sbogdano.domain.model.FavoriteDomainModel
 import lv.st.sbogdano.domain.model.MovieDomainModel
 
@@ -27,5 +27,4 @@ class MovieMapper {
 
     fun toDomainModel(movie: Movie, type: String) =
             FavoriteDomainModel(movie.id, movie.posterPath, type)
-
 }

@@ -33,7 +33,7 @@ class StartupActivity : DaggerAppCompatActivity() {
             navigator.navigateToHome(this@StartupActivity)
         })
 
-        viewModel.error.observe(this, Observer { error ->
+        viewModel.singleError.observe(this, Observer { error ->
             ViewBindingAdapters.showLongMessage(window.decorView, error,
                     object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
                         override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {

@@ -18,7 +18,7 @@ class StartupViewModel(
     private val _result = SingleLiveData<Boolean>()
     val result = _result
     private val _error = SingleLiveData<String>()
-    val error = _error
+    val singleError = _error
 
     fun startup(type: String, refresh: Boolean = true) = addDisposable(getMoviesByType(type, refresh))
 
@@ -34,7 +34,7 @@ class StartupViewModel(
                     }
 
                     override fun onError(e: Throwable) {
-                        error.value = e.localizedMessage ?: e.message ?: context.getString(R.string.unknown_error)
+                        singleError.value = e.localizedMessage ?: e.message ?: context.getString(R.string.unknown_error)
                     }
                 })
     }

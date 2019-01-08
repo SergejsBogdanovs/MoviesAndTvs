@@ -21,6 +21,8 @@ import lv.st.sbogdano.cinema.navigation.Navigator
 import lv.st.sbogdano.domain.model.CreditDomainModel
 import javax.inject.Inject
 
+const val PATH = "tv"
+
 class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
 
     @Inject
@@ -51,11 +53,11 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
 
         val tv = navigator.getTv(this)
         tvDetailViewModel.loadTvDetail(tv.id)
-        tvDetailViewModel.loadCredits(tv.id)
-        tvDetailViewModel.loadVideos(tv.id)
-        tvDetailViewModel.loadReviews(tv.id)
+        tvDetailViewModel.loadCredits(tv.id, PATH)
+        tvDetailViewModel.loadVideos(tv.id, PATH)
+        tvDetailViewModel.loadReviews(tv.id, PATH)
 
-        binder.fabFavorite.setOnClickListener { tvDetailViewModel.addTvToFavorites(tv) }
+        binder.fabFavorite.setOnClickListener { tvDetailViewModel.addItemToFavorites(tv, PATH) }
 
         tvDetailViewModel.tv.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
@@ -69,7 +71,6 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
             val text = if (it) getString(R.string.added_to_favorites) else getString(R.string.already_exist)
             ViewBindingAdapters.showShortMessage(window.decorView, text)
         })
-
     }
 
     override fun onItemClick(view: View, item: CreditDomainModel) {

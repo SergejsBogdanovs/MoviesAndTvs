@@ -56,6 +56,5 @@ class FavoriteListFragment : DaggerFragment(), FavoriteListAdapter.Callbacks {
     }
 
     override fun onItemClick(view: View, item: Favorite) {
-
     }
 }

@@ -70,7 +70,7 @@ class HomeActivity : DaggerAppCompatActivity() {
     }
 
     private fun setBottomNavigationItem(item: Int?) {
-        when(item) {
+        when (item) {
             R.id.nav_movies -> setMovieTypeAdapter()
             R.id.nav_tv -> setTvTypeAdapter()
             R.id.nav_favorite -> setFavoriteAdapter()

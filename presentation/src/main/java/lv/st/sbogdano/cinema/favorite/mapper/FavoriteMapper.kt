@@ -10,5 +10,4 @@ class FavoriteMapper {
             result.posterPath,
             result.type
     )
-
 }

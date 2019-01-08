@@ -10,8 +10,8 @@ import lv.st.sbogdano.cinema.databinding.CastItemBinding
 import lv.st.sbogdano.domain.model.CreditDomainModel
 
 class CastsAdapter(
-        private val items: List<CreditDomainModel>,
-        private val callbacks: Callbacks? = null
+    private val items: List<CreditDomainModel>,
+    private val callbacks: Callbacks? = null
 ) : RecyclerView.Adapter<CastsAdapter.ViewHolder>() {
 
     interface Callbacks {

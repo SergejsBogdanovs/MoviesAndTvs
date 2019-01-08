@@ -9,4 +9,5 @@ data class MovieDomainModel(
     val popularity: Float,
     val voteCount: Int,
     val voteAverage: Float,
-    val type: String)
+    val type: String
+)

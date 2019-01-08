@@ -8,7 +8,7 @@
 
         <variable
             name="movie"
-            type="lv.st.sbogdano.cinema.movie.model.Movie" />
+            type="lv.st.sbogdano.cinema.basemodel.Movie" />
 
     </data>
 

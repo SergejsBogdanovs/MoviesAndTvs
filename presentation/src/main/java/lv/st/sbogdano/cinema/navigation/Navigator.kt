@@ -6,11 +6,11 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import lv.st.sbogdano.cinema.basemodel.Movie
+import lv.st.sbogdano.cinema.basemodel.Tv
 import lv.st.sbogdano.cinema.home.HomeActivity
 import lv.st.sbogdano.cinema.movie.detail.MovieActivity
-import lv.st.sbogdano.cinema.movie.model.Movie
 import lv.st.sbogdano.cinema.tv.detail.TvActivity
-import lv.st.sbogdano.cinema.tv.model.Tv
 
 class Navigator {
 

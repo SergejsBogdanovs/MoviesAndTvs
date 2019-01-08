@@ -61,8 +61,8 @@ internal abstract class TvModule {
         @Provides
         @JvmStatic
         internal fun provideAddToFavoritesUseCase(
-                schedulers: Schedulers,
-                gateway: Gateway
+            schedulers: Schedulers,
+            gateway: Gateway
         ): AddToFavoritesUseCase {
             return AddToFavoritesUseCase(schedulers, gateway)
         }
@@ -71,8 +71,8 @@ internal abstract class TvModule {
         @Provides
         @JvmStatic
         internal fun provideGetFavoriteByIdUseCase(
-                schedulers: Schedulers,
-                gateway: Gateway
+            schedulers: Schedulers,
+            gateway: Gateway
         ): GetFavoriteByIdUseCase {
             return GetFavoriteByIdUseCase(schedulers, gateway)
         }

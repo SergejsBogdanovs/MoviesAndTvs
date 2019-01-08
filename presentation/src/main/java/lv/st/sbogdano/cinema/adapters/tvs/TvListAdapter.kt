@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import lv.st.sbogdano.cinema.R
+import lv.st.sbogdano.cinema.basemodel.Tv
 import lv.st.sbogdano.cinema.databinding.FragmentTvListItemBinding
-import lv.st.sbogdano.cinema.tv.model.Tv
 
 class TvListAdapter(
-        private val items: List<Tv>,
-        private val callbacks: Callbacks? = null,
-        private val imageSize: Pair<Int, Int>
+    private val items: List<Tv>,
+    private val callbacks: Callbacks? = null,
+    private val imageSize: Pair<Int, Int>
 ) : RecyclerView.Adapter<TvListAdapter.ViewHolder>() {
 
     interface Callbacks {

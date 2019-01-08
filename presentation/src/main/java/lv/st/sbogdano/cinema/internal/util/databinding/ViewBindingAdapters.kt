@@ -77,10 +77,9 @@ object ViewBindingAdapters {
     @JvmStatic
     @BindingAdapter("arc_progress")
     fun setArcProgress(view: ArcProgress, progress: Number) {
-        when(progress) {
+        when (progress) {
             is Int -> view.progress = progress
             is Float -> view.progress = (progress * 10).toInt()
         }
     }
-
 }

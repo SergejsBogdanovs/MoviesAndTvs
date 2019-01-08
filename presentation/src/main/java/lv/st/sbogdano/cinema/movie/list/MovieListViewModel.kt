@@ -3,14 +3,12 @@ package lv.st.sbogdano.cinema.movie.list
 import android.app.Application
 import android.content.Context
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
+import lv.st.sbogdano.cinema.basemodel.Movie
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
-import lv.st.sbogdano.cinema.movie.model.Movie
 import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
 import lv.st.sbogdano.domain.model.MovieDomainModel
 
@@ -21,10 +19,7 @@ class MovieListViewModel(
 
     private val mapper = MovieMapper()
 
-    val loading = ObservableBoolean()
     val result = ObservableArrayList<Movie>()
-    val error = ObservableField<String>()
-    val empty = ObservableBoolean()
 
     private var movieType = ""
 

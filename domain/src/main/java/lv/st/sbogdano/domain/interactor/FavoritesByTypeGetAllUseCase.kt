@@ -7,12 +7,11 @@ import lv.st.sbogdano.domain.gateway.Gateway
 import lv.st.sbogdano.domain.model.FavoriteDomainModel
 
 class FavoritesByTypeGetAllUseCase(
-        schedulers: Schedulers,
-        private val gateway: Gateway
+    schedulers: Schedulers,
+    private val gateway: Gateway
 ) : UseCase<String, List<FavoriteDomainModel>>(schedulers) {
 
     override fun buildObservable(params: String?): Observable<List<FavoriteDomainModel>> {
         return gateway.getFavoritesByType(params!!)
     }
-
 }

@@ -13,5 +13,4 @@ class MovieLocalDataSource(private val moviesDao: MoviesDao) {
     fun insertAll(movieLocalModels: List<MovieLocalModel>) = moviesDao.insertAll(*movieLocalModels.toTypedArray())
 
     fun deleteByType(type: String) = moviesDao.deleteByType(type)
-
 }

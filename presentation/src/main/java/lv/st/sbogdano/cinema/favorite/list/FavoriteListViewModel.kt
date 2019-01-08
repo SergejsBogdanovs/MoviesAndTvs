@@ -3,8 +3,6 @@ package lv.st.sbogdano.cinema.favorite.list
 import android.app.Application
 import android.content.Context
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
@@ -15,16 +13,13 @@ import lv.st.sbogdano.domain.interactor.FavoritesByTypeGetAllUseCase
 import lv.st.sbogdano.domain.model.FavoriteDomainModel
 
 class FavoriteListViewModel(
-        context: Context,
-        private val favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllUseCase
+    context: Context,
+    private val favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = FavoriteMapper()
 
-    val loading = ObservableBoolean()
     val result = ObservableArrayList<Favorite>()
-    val error = ObservableField<String>()
-    val empty = ObservableBoolean()
 
     private var favoriteType = ""
 
@@ -55,13 +50,10 @@ class FavoriteListViewModel(
                         loading.set(false)
                         error.set(e.localizedMessage ?: e.message
                         ?: context.getString(R.string.unknown_error))
-
                     }
 
                     override fun onComplete() {
-
                     }
-
                 })
     }
 }

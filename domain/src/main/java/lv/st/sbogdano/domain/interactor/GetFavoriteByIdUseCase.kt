@@ -7,8 +7,8 @@ import lv.st.sbogdano.domain.gateway.Gateway
 import lv.st.sbogdano.domain.model.FavoriteDomainModel
 
 class GetFavoriteByIdUseCase(
-        schedulers: Schedulers,
-        private val gateway: Gateway
+    schedulers: Schedulers,
+    private val gateway: Gateway
 ) : UseCase<Int, FavoriteDomainModel>(schedulers) {
 
     override fun buildObservable(params: Int?): Observable<FavoriteDomainModel> {

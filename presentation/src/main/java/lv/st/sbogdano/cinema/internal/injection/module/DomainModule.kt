@@ -67,8 +67,8 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideAddToFavoritesUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): AddToFavoritesUseCase {
         return AddToFavoritesUseCase(schedulers, gateway)
     }
@@ -76,10 +76,9 @@ class DomainModule {
     @Provides
     @Singleton
     internal fun provideFavoritesByTypeUseCase(
-            schedulers: Schedulers,
-            gateway: Gateway
+        schedulers: Schedulers,
+        gateway: Gateway
     ): FavoritesByTypeGetAllUseCase {
         return FavoritesByTypeGetAllUseCase(schedulers, gateway)
     }
-
 }

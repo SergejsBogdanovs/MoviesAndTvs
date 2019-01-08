@@ -21,6 +21,8 @@ import lv.st.sbogdano.cinema.navigation.Navigator
 import lv.st.sbogdano.domain.model.CreditDomainModel
 import javax.inject.Inject
 
+const val PATH = "movie"
+
 class MovieActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
 
     @Inject
@@ -51,11 +53,11 @@ class MovieActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
 
         val movie = navigator.getMovie(this)
         movieDetailViewModel.loadMovieDetail(movie.id)
-        movieDetailViewModel.loadCredits(movie.id)
-        movieDetailViewModel.loadVideos(movie.id)
-        movieDetailViewModel.loadReviews(movie.id)
+        movieDetailViewModel.loadCredits(movie.id, PATH)
+        movieDetailViewModel.loadVideos(movie.id, PATH)
+        movieDetailViewModel.loadReviews(movie.id, PATH)
 
-        binder.fabFavorite.setOnClickListener { movieDetailViewModel.addMovieToFavorites(movie) }
+        binder.fabFavorite.setOnClickListener { movieDetailViewModel.addItemToFavorites(movie, PATH) }
 
         movieDetailViewModel.movie.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {

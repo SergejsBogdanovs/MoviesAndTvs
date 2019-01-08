@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.adapters.tvs.TvListAdapter
+import lv.st.sbogdano.cinema.basemodel.Tv
 import lv.st.sbogdano.cinema.databinding.FragmentTvListBinding
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
-import lv.st.sbogdano.cinema.tv.model.Tv
 import javax.inject.Inject
 
 class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks {
