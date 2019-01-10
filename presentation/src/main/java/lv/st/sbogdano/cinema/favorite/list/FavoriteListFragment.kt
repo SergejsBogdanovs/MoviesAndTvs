@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.adapters.favorites.FavoriteListAdapter
+import lv.st.sbogdano.cinema.basemodel.Favorite
 import lv.st.sbogdano.cinema.databinding.FragmentFavoriteListBinding
-import lv.st.sbogdano.cinema.favorite.model.Favorite
 import lv.st.sbogdano.cinema.internal.util.lazyThreadSafetyNone
 import lv.st.sbogdano.cinema.navigation.Navigator
 import javax.inject.Inject
@@ -19,6 +21,9 @@ import javax.inject.Inject
 class FavoriteListFragment : DaggerFragment(), FavoriteListAdapter.Callbacks {
 
     companion object {
+
+        private const val MOVIE = "movie"
+        private const val TV = "tv"
 
         private const val ARG_FAVORITE_TYPE = "type"
 
@@ -56,5 +61,12 @@ class FavoriteListFragment : DaggerFragment(), FavoriteListAdapter.Callbacks {
     }
 
     override fun onItemClick(view: View, item: Favorite) {
+        val imageView = view.findViewById<View>(R.id.poster)
+        val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
+        when(item.type) {
+            MOVIE -> activity?.let { navigator.navigateToMovie(it, item.id, sharedView) }
+            TV -> activity?.let { navigator.navigateToTv(it, item.id, sharedView) }
+        }
     }
+
 }

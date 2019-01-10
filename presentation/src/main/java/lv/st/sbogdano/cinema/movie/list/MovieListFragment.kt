@@ -60,6 +60,6 @@ class MovieListFragment : DaggerFragment(), MovieListAdapter.Callbacks {
     override fun onItemClick(view: View, item: Movie) {
         val imageView = view.findViewById<View>(R.id.image_movie_poster)
         val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
-        activity?.let { navigator.navigateToMovie(it, item, sharedView) }
+        activity?.let { navigator.navigateToMovie(it, item.id, sharedView) }
     }
 }

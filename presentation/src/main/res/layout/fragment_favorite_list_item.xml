@@ -8,7 +8,7 @@
 
         <variable
             name="favorite"
-            type="lv.st.sbogdano.cinema.favorite.model.Favorite" />
+            type="lv.st.sbogdano.cinema.basemodel.Favorite" />
 
     </data>
 

@@ -60,6 +60,6 @@ class TvListFragment : DaggerFragment(), TvListAdapter.Callbacks {
     override fun onItemClick(view: View, item: Tv) {
         val imageView = view.findViewById<View>(R.id.image_tv_poster)
         val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
-        activity?.let { navigator.navigateToTv(it, item, sharedView) }
+        activity?.let { navigator.navigateToTv(it, item.id, sharedView) }
     }
 }

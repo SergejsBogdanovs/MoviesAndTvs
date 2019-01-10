@@ -6,8 +6,8 @@ import androidx.databinding.ObservableArrayList
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
+import lv.st.sbogdano.cinema.basemodel.Favorite
 import lv.st.sbogdano.cinema.favorite.mapper.FavoriteMapper
-import lv.st.sbogdano.cinema.favorite.model.Favorite
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
 import lv.st.sbogdano.domain.interactor.FavoritesByTypeGetAllUseCase
 import lv.st.sbogdano.domain.model.FavoriteDomainModel

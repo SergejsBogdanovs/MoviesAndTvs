@@ -11,12 +11,12 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
-import lv.st.sbogdano.cinema.basemodel.BaseModel
-import lv.st.sbogdano.cinema.basemodel.Movie
-import lv.st.sbogdano.cinema.basemodel.Tv
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
 import lv.st.sbogdano.cinema.tv.mapper.TvMapper
-import lv.st.sbogdano.domain.interactor.*
+import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.GetFavoriteByIdUseCase
+import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
 import lv.st.sbogdano.domain.model.CreditDomainModel
 import lv.st.sbogdano.domain.model.FavoriteDomainModel
 import lv.st.sbogdano.domain.model.ReviewDomainModel
@@ -28,7 +28,6 @@ abstract class BaseAndroidViewModel(
     private val creditsGetByIdUseCase: CreditsGetByIdUseCase?,
     private val videosGetByIdUseCase: VideosGetByIdUseCase?,
     private val reviewGetByIdUseCase: ReviewGetByIdUseCase?,
-    private val addToFavoritesUseCase: AddToFavoritesUseCase?,
     private val getFavoriteByIdUseCase: GetFavoriteByIdUseCase?
 ) : AndroidViewModel(application) {
 
@@ -37,18 +36,20 @@ abstract class BaseAndroidViewModel(
             null,
             null,
             null,
-            null,
-            null)
+            null
+    )
 
     protected val context: Context = application
+
+    var isFavorite = ObservableBoolean()
+    private val _isInserted = SingleLiveData<Boolean>()
+    val isInserted = _isInserted
 
     private val compositeDisposable = CompositeDisposable()
 
     protected val movieMapper = MovieMapper()
     protected val tvMapper = TvMapper()
 
-    private val _isInserted = SingleLiveData<Boolean>()
-    val isInserted = _isInserted
 
     val loading = ObservableBoolean()
     val credits = ObservableArrayList<CreditDomainModel>()
@@ -56,19 +57,11 @@ abstract class BaseAndroidViewModel(
     val video = ObservableField<VideoDomainModel>()
     val error = ObservableField<String>()
     val empty = ObservableBoolean()
-    var isFavorite = ObservableBoolean()
 
     fun loadCredits(id: Int, path: String) = addDisposable(getCreditsById(id, path))
     fun loadVideos(id: Int, path: String) = addDisposable(getVideosById(id, path))
     fun loadReviews(id: Int, path: String) = addDisposable(getReviewsById(id, path))
 
-    fun addItemToFavorites(item: BaseModel, path: String) {
-        if (!isFavorite.get()) {
-            addDisposable(addToFavorites(item, path))
-        } else {
-            isInserted.value = false
-        }
-    }
 
     private fun getCreditsById(id: Int, path: String): Disposable {
         val params = Pair(id, path)
@@ -142,29 +135,6 @@ abstract class BaseAndroidViewModel(
                 })
     }
 
-    private fun addToFavorites(item: BaseModel, path: String): Disposable {
-        val favoriteDomainModel by lazy {
-            when (item) {
-                is Movie -> movieMapper.toDomainModel(item, path)
-                is Tv -> tvMapper.toDomainModel(item, path)
-            }
-        }
-
-        return addToFavoritesUseCase!!.execute(favoriteDomainModel)
-                .subscribeWith(object : DisposableObserver<Long>() {
-                    override fun onComplete() {}
-
-                    override fun onNext(t: Long) {
-                        isFavorite.set(true)
-                        isInserted.value = true
-                    }
-
-                    override fun onError(e: Throwable) {
-                        error.set(e.localizedMessage ?: e.message
-                        ?: context.getString(R.string.unknown_error))
-                    }
-                })
-    }
 
     protected fun checkIsFavorite(movieId: Int): Disposable {
         return getFavoriteByIdUseCase!!.execute(movieId)

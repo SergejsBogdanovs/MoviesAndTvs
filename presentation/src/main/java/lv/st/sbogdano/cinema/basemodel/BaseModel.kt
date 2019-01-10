@@ -3,7 +3,7 @@ package lv.st.sbogdano.cinema.basemodel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-sealed class BaseModel
+sealed class BaseModel : Parcelable
 
 @Parcelize
 data class Movie(
@@ -29,3 +29,11 @@ data class Tv(
     val voteCount: Int,
     val voteAverage: Float
 ) : BaseModel(), Parcelable
+
+@Parcelize
+data class Favorite(
+        var id: Int,
+        var posterPath: String?,
+        var type: String
+) : BaseModel(), Parcelable
+

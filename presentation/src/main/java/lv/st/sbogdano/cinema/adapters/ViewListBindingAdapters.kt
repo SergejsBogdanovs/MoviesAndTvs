@@ -11,9 +11,9 @@ import lv.st.sbogdano.cinema.adapters.favorites.FavoriteListAdapter
 import lv.st.sbogdano.cinema.adapters.movies.MovieListAdapter
 import lv.st.sbogdano.cinema.adapters.reviews.ReviewsAdapter
 import lv.st.sbogdano.cinema.adapters.tvs.TvListAdapter
+import lv.st.sbogdano.cinema.basemodel.Favorite
 import lv.st.sbogdano.cinema.basemodel.Movie
 import lv.st.sbogdano.cinema.basemodel.Tv
-import lv.st.sbogdano.cinema.favorite.model.Favorite
 import lv.st.sbogdano.cinema.internal.util.imageSize
 import lv.st.sbogdano.cinema.internal.util.numberOfColumns
 import lv.st.sbogdano.domain.model.CreditDomainModel

@@ -83,10 +83,10 @@ internal abstract class TvModule {
         internal fun provideViewModelFactory(
             context: Context,
             tvGetByIdUseCase: TvGetByIdUseCase,
+            addToFavoritesUseCase: AddToFavoritesUseCase,
             creditsGetByIdUseCase: CreditsGetByIdUseCase,
             videosGetByIdUseCase: VideosGetByIdUseCase,
             reviewGetByIdUseCase: ReviewGetByIdUseCase,
-            addToFavoritesUseCase: AddToFavoritesUseCase,
             getFavoriteByIdUseCase: GetFavoriteByIdUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
@@ -97,10 +97,10 @@ internal abstract class TvModule {
                             TvDetailViewModel(
                                     context,
                                     tvGetByIdUseCase,
+                                    addToFavoritesUseCase,
                                     creditsGetByIdUseCase,
                                     videosGetByIdUseCase,
                                     reviewGetByIdUseCase,
-                                    addToFavoritesUseCase,
                                     getFavoriteByIdUseCase) as T
 
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

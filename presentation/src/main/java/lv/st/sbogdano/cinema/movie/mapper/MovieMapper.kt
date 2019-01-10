@@ -25,6 +25,8 @@ class MovieMapper {
         return "$year $month $day"
     }
 
-    fun toDomainModel(movie: Movie, type: String) =
-            FavoriteDomainModel(movie.id, movie.posterPath, type)
+    fun toDomainModel(movie: Movie, type: String) = FavoriteDomainModel(
+            movie.id,
+            movie.posterPath,
+            type)
 }

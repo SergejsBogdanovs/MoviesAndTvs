@@ -12,19 +12,18 @@ import lv.st.sbogdano.domain.interactor.*
 import lv.st.sbogdano.domain.model.MovieDomainModel
 
 class MovieDetailViewModel(
-    context: Context,
-    private val movieGetByIdUseCase: MovieGetByIdUseCase,
-    creditsGetByIdUseCase: CreditsGetByIdUseCase,
-    videosGetByIdUseCase: VideosGetByIdUseCase,
-    reviewGetByIdUseCase: ReviewGetByIdUseCase,
-    addToFavoritesUseCase: AddToFavoritesUseCase,
-    getFavoriteByIdUseCase: GetFavoriteByIdUseCase
+        context: Context,
+        private val movieGetByIdUseCase: MovieGetByIdUseCase,
+        private val addToFavoritesUseCase: AddToFavoritesUseCase,
+        creditsGetByIdUseCase: CreditsGetByIdUseCase,
+        videosGetByIdUseCase: VideosGetByIdUseCase,
+        reviewGetByIdUseCase: ReviewGetByIdUseCase,
+        getFavoriteByIdUseCase: GetFavoriteByIdUseCase
 ) : BaseAndroidViewModel(
         context.applicationContext as Application,
         creditsGetByIdUseCase,
         videosGetByIdUseCase,
         reviewGetByIdUseCase,
-        addToFavoritesUseCase,
         getFavoriteByIdUseCase
 ) {
 
@@ -33,6 +32,14 @@ class MovieDetailViewModel(
     fun loadMovieDetail(id: Int) {
         addDisposable(checkIsFavorite(id))
         addDisposable(getMovieById(id))
+    }
+
+    fun addItemToFavorites(id: Int, path: String) {
+        if (!isFavorite.get()) {
+            addDisposable(addToFavorites(movie.get()!!, path))
+        } else {
+            isInserted.value = false
+        }
     }
 
     private fun getMovieById(id: Int): Disposable {
@@ -54,6 +61,25 @@ class MovieDetailViewModel(
                     }
 
                     override fun onComplete() {
+                    }
+                })
+    }
+
+    private fun addToFavorites(movie: Movie, path: String): Disposable {
+        val favoriteDomainModel = movieMapper.toDomainModel(movie, path)
+
+        return addToFavoritesUseCase.execute(favoriteDomainModel)
+                .subscribeWith(object : DisposableObserver<Long>() {
+                    override fun onComplete() {}
+
+                    override fun onNext(t: Long) {
+                        isFavorite.set(true)
+                        isInserted.value = true
+                    }
+
+                    override fun onError(e: Throwable) {
+                        error.set(e.localizedMessage ?: e.message
+                        ?: context.getString(R.string.unknown_error))
                     }
                 })
     }
