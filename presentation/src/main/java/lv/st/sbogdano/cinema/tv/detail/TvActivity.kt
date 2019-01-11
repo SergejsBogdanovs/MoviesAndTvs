@@ -1,6 +1,7 @@
 package lv.st.sbogdano.cinema.tv.detail
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -75,5 +76,15 @@ class TvActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
 
     override fun onItemClick(view: View, item: CreditDomainModel) {
         Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
