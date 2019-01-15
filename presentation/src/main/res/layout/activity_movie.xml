@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="@color/primary"
+                app:contentScrim="@color/primaryColor"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:titleEnabled="false">
 
@@ -77,10 +77,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/accent"
+            android:backgroundTint="@color/secondaryColor"
             android:clickable="true"
             android:focusable="true"
-            android:src="@{movieDetailViewModel.isFavorite() ? @drawable/cards_heart : @drawable/heart_off}"
+            android:src="@{movieDetailViewModel.isFavorite() ? @drawable/heart_color : @drawable/heart_off}"
             app:fabSize="auto" />
 
 
