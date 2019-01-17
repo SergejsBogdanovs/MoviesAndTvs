@@ -31,6 +31,7 @@ ext {
     materialVersion = '1.1.0-alpha02'
     daggerVersion = '2.16'
     coreXVersion = '1.0.0'
+    vectorDrawableVersion = '1.0.1'
     rxKotlinVersion = '2.3.+'
     rxAndroidVersion = '2.1.+'
     retrofitVersion = '2.5.+'

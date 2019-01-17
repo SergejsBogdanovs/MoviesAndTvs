@@ -55,7 +55,8 @@ class MovieListTest {
                 "title",
                 1.0f,
                 1,
-                1.0f))
+                1.0f,
+                "type"))
 
         `when`(moviesByTypeGetAllUseCase.execute(params)).thenReturn(Observable.just(movies))
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="lv.st.sbogdano.cinema"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="lv.st.sbogdano.cinema">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".person.PersonActivity"></activity>
         <activity
             android:name=".startup.StartupActivity"
             android:noHistory="true"
@@ -23,9 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".home.HomeActivity" />
-
         <activity
             android:name=".movie.detail.MovieActivity"
             android:parentActivityName=".home.HomeActivity">
@@ -33,7 +32,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".home.HomeActivity" />
         </activity>
-
         <activity
             android:name=".tv.detail.TvActivity"
             android:parentActivityName=".home.HomeActivity">

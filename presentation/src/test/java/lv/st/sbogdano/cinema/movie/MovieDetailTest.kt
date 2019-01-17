@@ -5,10 +5,7 @@ import android.content.Context
 import io.reactivex.Observable
 import lv.st.sbogdano.cinema.movie.detail.MovieDetailViewModel
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
-import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.MovieGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.*
 import lv.st.sbogdano.domain.model.CreditDomainModel
 import lv.st.sbogdano.domain.model.MovieDomainModel
 import lv.st.sbogdano.domain.model.ReviewDomainModel
@@ -39,6 +36,8 @@ class MovieDetailTest {
     private lateinit var videosGetByIdUseCase: VideosGetByIdUseCase
     @Mock
     private lateinit var reviewGetByIdUseCase: ReviewGetByIdUseCase
+    @Mock
+    private lateinit var addToFavoritesUseCase: AddToFavoritesUseCase
 
     private lateinit var movieDetailViewModel: MovieDetailViewModel
     private lateinit var mapper: MovieMapper
@@ -53,9 +52,7 @@ class MovieDetailTest {
         movieDetailViewModel = MovieDetailViewModel(
                 context,
                 movieGetByIdUseCase,
-                creditsGetByIdUseCase,
-                videosGetByIdUseCase,
-                reviewGetByIdUseCase)
+                addToFavoritesUseCase)
         mapper = MovieMapper()
     }
 

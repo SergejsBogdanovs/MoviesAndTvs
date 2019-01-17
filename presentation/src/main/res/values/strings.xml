@@ -13,7 +13,7 @@
     <string name="movie_poster">Movie poster</string>
     <string name="tv_poster">Tv poster</string>
 
-    <!-- Content Item -->
+    <!-- Content Items -->
     <string name="cast_profile_image">Cast profile image</string>
     <string name="release_date_title">Release Date</string>
     <string name="first_air_date_title">First On Air Date</string>
@@ -21,6 +21,12 @@
     <string name="top_billed_cast">Top Billed Cast</string>
     <string name="trailer_label">Trailer</string>
     <string name="reviews">Reviews</string>
+    <string name="known_for_label">Known For</string>
+    <string name="gender_label">Gender</string>
+    <string name="birthday_label">Birthday</string>
+    <string name="place_of_birth_label">Place of birth</string>
+    <string name="official_site_label">Official site</string>
+
 
     <!-- Bottom navigation -->
     <string name="navigation_movies">MOVIES</string>

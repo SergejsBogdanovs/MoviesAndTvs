@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.Observable
@@ -75,7 +74,7 @@ class MovieActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
     }
 
     override fun onItemClick(view: View, item: CreditDomainModel) {
-        Toast.makeText(this, item.name, Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

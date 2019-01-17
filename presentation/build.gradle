@@ -69,7 +69,7 @@ dependencies {
 
     // UI
     implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.vectordrawable:vectordrawable:$coreXVersion"
+    implementation "androidx.vectordrawable:vectordrawable:$vectorDrawableVersion"
     implementation "androidx.recyclerview:recyclerview:$coreXVersion"
     implementation "androidx.cardview:cardview:$coreXVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
@@ -81,6 +81,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycleVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
 
     // Room
