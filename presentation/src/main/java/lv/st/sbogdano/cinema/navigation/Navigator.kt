@@ -8,6 +8,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import lv.st.sbogdano.cinema.home.HomeActivity
 import lv.st.sbogdano.cinema.movie.detail.MovieActivity
+import lv.st.sbogdano.cinema.person.PersonActivity
 import lv.st.sbogdano.cinema.tv.detail.TvActivity
 
 class Navigator {
@@ -15,6 +16,7 @@ class Navigator {
     companion object {
         private val EXTRA_MOVIE = "${MovieActivity::class.java.`package`.name}.extra.MOVIE"
         private val EXTRA_TV = "${TvActivity::class.java.`package`.name}.extra.TV"
+        private val EXTRA_PERSON = "${PersonActivity::class.java.`package`.name}.extra.PERSON"
     }
 
     fun navigateToHome(activity: Activity) {
@@ -37,7 +39,16 @@ class Navigator {
         ActivityCompat.startActivity(activity, intent, options)
     }
 
+    fun navigateToPerson(activity: Activity, id: Int, sharedView: Pair<View, String>) {
+        val intent = Intent(activity, PersonActivity::class.java)
+        intent.putExtra(EXTRA_PERSON, id)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedView).toBundle()
+        ActivityCompat.startActivity(activity, intent, options)
+    }
+
     fun getMovie(activity: Activity) = activity.intent.getIntExtra(EXTRA_MOVIE, 0)
 
     fun getTv(activity: Activity) = activity.intent.getIntExtra(EXTRA_TV, 0)
+
+    fun getPerson(activity: Activity) = activity.intent.getIntExtra(EXTRA_PERSON, 0)
 }

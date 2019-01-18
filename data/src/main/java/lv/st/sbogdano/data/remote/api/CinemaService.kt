@@ -27,4 +27,7 @@ interface CinemaService {
     @GET("{path}/{id}/reviews")
     @Wrapped(path = ["results"])
     fun getReviewsById(@Path("id") id: Int, @Path("path") path: String): Observable<List<ReviewRemoteModel>>
+
+    @GET("person/{id}")
+    fun getPersonById(@Path("id") id: Int): Observable<PersonRemoteModel>
 }

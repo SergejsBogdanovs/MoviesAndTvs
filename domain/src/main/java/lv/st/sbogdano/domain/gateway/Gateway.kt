@@ -24,4 +24,6 @@ interface Gateway {
     fun getFavoritesByType(type: String): Observable<List<FavoriteDomainModel>>
 
     fun getFavoriteById(id: Int?): Observable<FavoriteDomainModel>
+
+    fun getPersonById(id: Int): Observable<PersonDomainModel>
 }

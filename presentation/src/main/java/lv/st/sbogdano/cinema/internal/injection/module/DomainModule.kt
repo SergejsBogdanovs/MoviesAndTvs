@@ -81,4 +81,13 @@ class DomainModule {
     ): FavoritesByTypeGetAllUseCase {
         return FavoritesByTypeGetAllUseCase(schedulers, gateway)
     }
+
+    @Provides
+    @Singleton
+    internal fun providePersonsGetByIdUseCase(
+        schedulers: Schedulers,
+        gateway: Gateway
+    ): PersonGetByIdUseCase {
+        return PersonGetByIdUseCase(schedulers, gateway)
+    }
 }

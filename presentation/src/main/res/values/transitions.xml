@@ -3,4 +3,5 @@
     <string name="movie_video_transition" translatable="false">movie_video_transition</string>
     <string name="tv_video_transition" translatable="false">tv_video_transition</string>
     <string name="favorite_video_transition" translatable="false">favorite_video_transition</string>
+    <string name="cast_transition" translatable="false">cast_transition</string>
 </resources>

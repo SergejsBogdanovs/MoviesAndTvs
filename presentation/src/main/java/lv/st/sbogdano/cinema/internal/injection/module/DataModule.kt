@@ -31,12 +31,13 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideGateway(
-        movieRepository: MovieRepository,
-        tvRepository: TvRepository,
-        creditsRepository: CreditsRepository,
-        videosRepository: VideosRepository,
-        reviewsRepository: ReviewsRepository,
-        favoritesRepository: FavoritesRepository
+            movieRepository: MovieRepository,
+            tvRepository: TvRepository,
+            creditsRepository: CreditsRepository,
+            videosRepository: VideosRepository,
+            reviewsRepository: ReviewsRepository,
+            favoritesRepository: FavoritesRepository,
+            personRepository: PersonRepository
     ): Gateway {
         return GatewayImpl(
                 movieRepository,
@@ -44,7 +45,8 @@ internal class DataModule {
                 creditsRepository,
                 videosRepository,
                 reviewsRepository,
-                favoritesRepository)
+                favoritesRepository,
+                personRepository)
     }
 
     // -------------------------------------DAOs-----------------------------------------------------//
@@ -71,6 +73,10 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideFavoritesDao(cinemaDatabase: CinemaDatabase): FavoritesDao = cinemaDatabase.favoritesDao()
+
+    @Provides
+    @Singleton
+    internal fun providePersonsDao(cinemaDatabase: CinemaDatabase): PersonsDao = cinemaDatabase.personsDao()
 
     // -------------------------------------LOCAL DATA SOURCES---------------------------------------//
     @Provides
@@ -109,6 +115,12 @@ internal class DataModule {
         return FavoritesLocalDataSource(favoritesDao)
     }
 
+    @Provides
+    @Singleton
+    internal fun providePersonsLocalDataSource(personsDao: PersonsDao): PersonLocalDataSource {
+        return PersonLocalDataSource(personsDao)
+    }
+
     // -------------------------------------REMOTE DATA SOURCES--------------------------------------//
     @Provides
     @Singleton
@@ -140,12 +152,18 @@ internal class DataModule {
         return ReviewsRemoteDataSource(cinemaService)
     }
 
+    @Provides
+    @Singleton
+    internal fun providePersonsRemoteDataSource(cinemaService: CinemaService): PersonRemoteDataSource {
+        return PersonRemoteDataSource(cinemaService)
+    }
+
     // -------------------------------------REPOSITORIES---------------------------------------------//
     @Provides
     @Singleton
     internal fun provideMovieRepository(
-        movieLocalDataSource: MovieLocalDataSource,
-        movieRemoteDataSource: MovieRemoteDataSource
+            movieLocalDataSource: MovieLocalDataSource,
+            movieRemoteDataSource: MovieRemoteDataSource
     ): MovieRepository {
         return MovieRepository(movieLocalDataSource, movieRemoteDataSource, MovieListMapper())
     }
@@ -153,8 +171,8 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideTvRepository(
-        tvLocalDataSource: TvLocalDataSource,
-        tvRemoteDataSource: TvRemoteDataSource
+            tvLocalDataSource: TvLocalDataSource,
+            tvRemoteDataSource: TvRemoteDataSource
     ): TvRepository {
         return TvRepository(tvLocalDataSource, tvRemoteDataSource, TvListMapper())
     }
@@ -162,8 +180,8 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideCreditsRepository(
-        creditsLocalDataSource: CreditsLocalDataSource,
-        creditsRemoteDataSource: CreditsRemoteDataSource
+            creditsLocalDataSource: CreditsLocalDataSource,
+            creditsRemoteDataSource: CreditsRemoteDataSource
     ): CreditsRepository {
         return CreditsRepository(creditsLocalDataSource, creditsRemoteDataSource, CreditsListMapper())
     }
@@ -171,8 +189,8 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideVideosRepository(
-        videosLocalDataSource: VideosLocalDataSource,
-        videosRemoteDataSource: VideosRemoteDataSource
+            videosLocalDataSource: VideosLocalDataSource,
+            videosRemoteDataSource: VideosRemoteDataSource
     ): VideosRepository {
         return VideosRepository(videosLocalDataSource, videosRemoteDataSource, VideosListMapper())
     }
@@ -180,8 +198,8 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideReviewsRepository(
-        reviewsLocalDataSource: ReviewsLocalDataSource,
-        reviewsRemoteDataSource: ReviewsRemoteDataSource
+            reviewsLocalDataSource: ReviewsLocalDataSource,
+            reviewsRemoteDataSource: ReviewsRemoteDataSource
     ): ReviewsRepository {
         return ReviewsRepository(reviewsLocalDataSource, reviewsRemoteDataSource, ReviewsListMapper())
     }
@@ -189,8 +207,17 @@ internal class DataModule {
     @Provides
     @Singleton
     internal fun provideFavoritesRepository(
-        favoritesLocalDataSource: FavoritesLocalDataSource
+            favoritesLocalDataSource: FavoritesLocalDataSource
     ): FavoritesRepository {
         return FavoritesRepository(favoritesLocalDataSource)
+    }
+
+    @Provides
+    @Singleton
+    internal fun providePersonRepository(
+            personLocalDataSource: PersonLocalDataSource,
+            personRemoteDataSource: PersonRemoteDataSource
+    ): PersonRepository {
+        return PersonRepository(personLocalDataSource, personRemoteDataSource, PersonMapper())
     }
 }

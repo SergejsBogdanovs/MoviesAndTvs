@@ -50,7 +50,6 @@ abstract class BaseAndroidViewModel(
     protected val movieMapper = MovieMapper()
     protected val tvMapper = TvMapper()
 
-
     val loading = ObservableBoolean()
     val credits = ObservableArrayList<CreditDomainModel>()
     val reviews = ObservableArrayList<ReviewDomainModel>()

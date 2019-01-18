@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.Observable
@@ -74,7 +76,9 @@ class MovieActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
     }
 
     override fun onItemClick(view: View, item: CreditDomainModel) {
-
+        val imageView = view.findViewById<View>(R.id.cast_profile_image)
+        val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
+        navigator.navigateToPerson(this, item.id, sharedView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

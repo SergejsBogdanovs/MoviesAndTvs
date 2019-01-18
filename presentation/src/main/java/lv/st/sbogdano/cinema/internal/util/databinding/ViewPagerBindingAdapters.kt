@@ -11,4 +11,6 @@ object ViewPagerBindingAdapters {
     fun setupWithViewPager(tabLayout: TabLayout, viewPager: ViewPager) {
         tabLayout.setupWithViewPager(viewPager)
     }
+
+
 }

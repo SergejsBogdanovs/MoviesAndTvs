@@ -25,6 +25,7 @@
             android:layout_height="@dimen/cast_image_size"
             android:contentDescription="@string/cast_profile_image"
             android:scaleType="centerCrop"
+            android:transitionName="@{@string/cast_transition + creditDomainModel.id}"
             app:isCircularImageView="@{true}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
