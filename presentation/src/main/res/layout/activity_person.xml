@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".person.PersonActivity">
 
     <data>
 
         <variable
             name="personDetailViewModel"
-            type="lv.st.sbogdano.cinema.person.PersonDetailViewModel"/>
+            type="lv.st.sbogdano.cinema.person.PersonDetailViewModel" />
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+    <LinearLayout
+        android:id="@+id/person_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipChildren="false"
         android:fitsSystemWindows="true"
-        tools:context=".person.PersonActivity">
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primaryDarkColor"
-            android:paddingTop="@dimen/appbar_padding_top"
+            android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <androidx.appcompat.widget.Toolbar
@@ -30,15 +34,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:actionBarSize"
                 android:background="@color/primaryColor"
-                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <include
             layout="@layout/content_person"
-            app:personDetailViewModel="@{personDetailViewModel}"/>
+            app:personDetailViewModel="@{personDetailViewModel}" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 
 </layout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:shownIn="@layout/activity_person">
 
     <data>
 
@@ -19,8 +20,8 @@
 
         <ImageView
             android:id="@+id/person_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -30,6 +31,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:loadUrl="@{`original` + personDetailViewModel.person.profilePath}"
             tools:srcCompat="@tools:sample/avatars[4]" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -48,12 +50,12 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:text=""
+            android:text="@{personDetailViewModel.person.name}"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -77,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:text="@{personDetailViewModel.person.knownForDepartment}"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/known_for_label"
             tools:text="Acting" />
@@ -98,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text=""
+            android:text="@{personDetailViewModel.person.gender == 2 ? &quot;Male&quot; : &quot;Female&quot;}"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/gender_label"
             tools:text="Male" />
@@ -120,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text=""
+            android:text="@{personDetailViewModel.person.birthDay}"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/birthday_label"
             tools:text="1963-12-18" />
@@ -135,7 +138,8 @@
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/birthday" />
+            app:layout_constraintTop_toBottomOf="@+id/birthday"
+            app:visible="@{!personDetailViewModel.person.placeOfBirth.isEmpty()}" />
 
         <TextView
             android:id="@+id/place_of_birth"
@@ -143,6 +147,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:text="@{personDetailViewModel.person.placeOfBirth}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/place_of_birth_label"
@@ -158,34 +163,46 @@
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/place_of_birth" />
+            app:layout_constraintTop_toBottomOf="@+id/place_of_birth"
+            app:visible="@{!personDetailViewModel.person.homePage.isEmpty()}" />
 
         <TextView
             android:id="@+id/official_site"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text=""
+            android:layout_marginEnd="8dp"
+            android:autoLink="web"
+            android:text="@{personDetailViewModel.person.homePage}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/official_site_label"
             tools:text="www.site.com" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="732dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/official_site">
+            app:layout_constraintTop_toBottomOf="@+id/official_site"
+            app:sectionAdapter="@{personDetailViewModel.person.id}">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
+                style="@style/Widget.MaterialComponents.TabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:setupWithViewPager="@{viewPager}" />
+                android:background="@color/primaryTextColor"
+                app:setupWithViewPager="@{viewPager}"
+                app:tabIndicatorColor="@color/secondaryColor"
+                app:tabTextColor="@color/secondaryTextColor" />
 
         </androidx.viewpager.widget.ViewPager>
 

@@ -31,6 +31,8 @@
             android:layout_height="@dimen/arc_layout_height"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             custom:arc_bottom_text="USER SCORE"
             custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
             custom:arc_finished_color="@color/secondaryColor"
@@ -38,9 +40,7 @@
             custom:arc_progress="@{movieDetailViewModel.movie.voteAverage}"
             custom:arc_text_color="@color/secondaryTextColor"
             custom:arc_text_size="@dimen/content_movie_text_size"
-            custom:arc_unfinished_color="@color/primaryLightColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            custom:arc_unfinished_color="@color/primaryLightColor" />
 
         <TextView
             android:id="@+id/release_date"
@@ -80,6 +80,8 @@
             android:layout_height="@dimen/arc_layout_height"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             custom:arc_bottom_text="VOTES"
             custom:arc_bottom_text_size="@dimen/arc_bottom_text_size"
             custom:arc_finished_color="@color/secondaryColor"
@@ -88,9 +90,7 @@
             custom:arc_suffix_text=" "
             custom:arc_text_color="@color/secondaryTextColor"
             custom:arc_text_size="@dimen/content_movie_text_size"
-            custom:arc_unfinished_color="@color/primaryLightColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            custom:arc_unfinished_color="@color/primaryLightColor" />
 
         <View
             android:id="@+id/divider_1"
@@ -175,7 +175,8 @@
             android:background="@color/primaryLightColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cast_list" />
+            app:layout_constraintTop_toBottomOf="@+id/cast_list"
+            app:visible="@{movieDetailViewModel.reviews.size != 0}" />
 
         <TextView
             android:id="@+id/reviews_label"
@@ -187,7 +188,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/secondaryTextColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_3" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_3"
+            app:visible="@{movieDetailViewModel.reviews.size != 0}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

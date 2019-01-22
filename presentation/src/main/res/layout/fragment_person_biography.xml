@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".person.PersonBiographyFragment">
+
+    <data>
+        <import type="android.text.Html"/>
+        
+        <variable
+            name="viewModel"
+            type="lv.st.sbogdano.cinema.person.PersonDetailViewModel"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <TextView
+            android:id="@+id/person_biography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@{viewModel.person.biography}"
+            tools:text="@tools:sample/lorem/random"/>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>
