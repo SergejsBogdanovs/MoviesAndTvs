@@ -13,7 +13,8 @@ class GatewayImpl(
     private val videosRepository: VideosRepository,
     private val reviewsRepository: ReviewsRepository,
     private val favoritesRepository: FavoritesRepository,
-    private val personRepository: PersonRepository
+    private val personRepository: PersonRepository,
+    private val movieCreditsRepository: MovieCreditsRepository
 ) : Gateway {
 
     private val mapper = GatewayMapper()
@@ -71,5 +72,10 @@ class GatewayImpl(
             personRepository.getById(id)
                     .doOnError { println("Error getting PersonDomainModel from persons") }
                     .map { mapper.toDomainModel(it) }
+
+    override fun getMovieCreditsById(id: Int): Observable<List<MovieCreditDomainModel>> =
+            movieCreditsRepository.getById(id)
+                    .doOnError { println("Movie Credits by Id($id) Error") }
+                    .map { it.map { movieCreditLocalModel -> mapper.toDomainModel(movieCreditLocalModel) } }
 
 }

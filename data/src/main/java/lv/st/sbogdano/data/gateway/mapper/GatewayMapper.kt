@@ -58,7 +58,7 @@ class GatewayMapper {
             favoriteLocalModel.type
     )
 
-    fun toDomainModel(personLocalModel: PersonLocalModel): PersonDomainModel = PersonDomainModel(
+    fun toDomainModel(personLocalModel: PersonLocalModel) = PersonDomainModel(
             personLocalModel.id,
             personLocalModel.name,
             personLocalModel.birthDay,
@@ -68,5 +68,10 @@ class GatewayMapper {
             personLocalModel.placeOfBirth,
             personLocalModel.profilePath,
             personLocalModel.homePage
+    )
+
+    fun toDomainModel(movieCreditLocalModel: MovieCreditLocalModel) = MovieCreditDomainModel(
+            movieCreditLocalModel.id,
+            movieCreditLocalModel.posterPath
     )
 }

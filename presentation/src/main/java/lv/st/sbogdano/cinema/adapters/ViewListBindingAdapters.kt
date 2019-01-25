@@ -8,6 +8,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import lv.st.sbogdano.cinema.adapters.casts.CastsAdapter
 import lv.st.sbogdano.cinema.adapters.favorites.FavoriteListAdapter
+import lv.st.sbogdano.cinema.adapters.knownfor.KnownForListAdapter
 import lv.st.sbogdano.cinema.adapters.movies.MovieListAdapter
 import lv.st.sbogdano.cinema.adapters.reviews.ReviewsAdapter
 import lv.st.sbogdano.cinema.adapters.tvs.TvListAdapter
@@ -17,6 +18,7 @@ import lv.st.sbogdano.cinema.basemodel.Tv
 import lv.st.sbogdano.cinema.internal.util.imageSize
 import lv.st.sbogdano.cinema.internal.util.numberOfColumns
 import lv.st.sbogdano.domain.model.CreditDomainModel
+import lv.st.sbogdano.domain.model.MovieCreditDomainModel
 import lv.st.sbogdano.domain.model.ReviewDomainModel
 
 object ViewListBindingAdapters {
@@ -52,6 +54,18 @@ object ViewListBindingAdapters {
             recyclerView.apply {
                 setHasFixedSize(true)
                 adapter = FavoriteListAdapter(it, callbacks, imageSize(context))
+                layoutManager = GridLayoutManager(context, numberOfColumns())
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("knownForAdapter")
+    fun setKnownForAdapter(recyclerView: RecyclerView, items: List<MovieCreditDomainModel>?) {
+        items?.let {
+            recyclerView.apply {
+                setHasFixedSize(true)
+                adapter = KnownForListAdapter(it, imageSize(context))
                 layoutManager = GridLayoutManager(context, numberOfColumns())
             }
         }

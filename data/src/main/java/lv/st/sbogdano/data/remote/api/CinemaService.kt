@@ -30,4 +30,8 @@ interface CinemaService {
 
     @GET("person/{id}")
     fun getPersonById(@Path("id") id: Int): Observable<PersonRemoteModel>
+
+    @GET("person/{id}/movie_credits")
+    @Wrapped(path = ["cast"])
+    fun getMovieCredits(@Path("id") id: Int): Observable<List<MovieCreditRemoteModel>>
 }

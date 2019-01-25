@@ -9,8 +9,10 @@ import dagger.android.ContributesAndroidInjector
 import lv.st.sbogdano.cinema.internal.injection.scope.PersonScope
 import lv.st.sbogdano.cinema.person.PersonBiographyFragment
 import lv.st.sbogdano.cinema.person.PersonDetailViewModel
+import lv.st.sbogdano.cinema.person.knownfor.KnownForListFragment
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
+import lv.st.sbogdano.domain.interactor.MovieCreditsGetByPersonIdUseCase
 import lv.st.sbogdano.domain.interactor.PersonGetByIdUseCase
 
 @Module
@@ -18,6 +20,9 @@ internal abstract class PersonModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributePersonBiographyFragment(): PersonBiographyFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeKnownForListFragment(): KnownForListFragment
 
     @Module
     companion object {
@@ -35,16 +40,27 @@ internal abstract class PersonModule {
         @PersonScope
         @Provides
         @JvmStatic
+        internal fun provideMovieCreditsGetByPersonIdUseCase(
+                schedulers: Schedulers,
+                gateway: Gateway
+        ): MovieCreditsGetByPersonIdUseCase {
+            return MovieCreditsGetByPersonIdUseCase(schedulers, gateway)
+        }
+
+        @PersonScope
+        @Provides
+        @JvmStatic
         internal fun provideViewModelFactory(
                 context: Context,
-                personGetByIdUseCase: PersonGetByIdUseCase
+                personGetByIdUseCase: PersonGetByIdUseCase,
+                movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                     return when {
                         modelClass.isAssignableFrom(PersonDetailViewModel::class.java) ->
-                            PersonDetailViewModel(context, personGetByIdUseCase) as T
+                            PersonDetailViewModel(context, personGetByIdUseCase, movieCreditsGetByPersonIdUseCase) as T
                         else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                     }
                 }

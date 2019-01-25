@@ -90,4 +90,13 @@ class DomainModule {
     ): PersonGetByIdUseCase {
         return PersonGetByIdUseCase(schedulers, gateway)
     }
+
+    @Provides
+    @Singleton
+    internal fun provideMovieCreditsGetByIdUseCase(
+        schedulers: Schedulers,
+        gateway: Gateway
+    ): MovieCreditsGetByPersonIdUseCase {
+        return MovieCreditsGetByPersonIdUseCase(schedulers, gateway)
+    }
 }

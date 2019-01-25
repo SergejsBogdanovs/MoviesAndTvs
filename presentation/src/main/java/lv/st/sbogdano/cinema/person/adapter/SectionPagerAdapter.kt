@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import lv.st.sbogdano.cinema.person.PersonBiographyFragment
+import lv.st.sbogdano.cinema.person.knownfor.KnownForListFragment
 
 class SectionPagerAdapter(fm: FragmentManager, private val person: Int) : FragmentStatePagerAdapter(fm) {
 
@@ -28,7 +29,7 @@ class SectionPagerAdapter(fm: FragmentManager, private val person: Int) : Fragme
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> PersonBiographyFragment.newInstance()
-            //1 -> KnownForListFragment.newInstance(person)
+            1 -> KnownForListFragment.newInstance(person)
             else -> Fragment()
         }
     }

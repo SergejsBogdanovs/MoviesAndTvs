@@ -26,4 +26,6 @@ interface Gateway {
     fun getFavoriteById(id: Int?): Observable<FavoriteDomainModel>
 
     fun getPersonById(id: Int): Observable<PersonDomainModel>
+
+    fun getMovieCreditsById(id: Int): Observable<List<MovieCreditDomainModel>>
 }

@@ -4,8 +4,7 @@
     <!-- Messages-->
     <string name="unknown_error">Unknown error</string>
     <string name="empty_icon">¯\\\\_(ツ)_/¯</string>
-    <string name="movie_list_empty">Sorry, we couldn\'t find any movie\n of this type</string>
-    <string name="tv_list_empty">Sorry, we couldn\'t find any tv\n of this type</string>
+    <string name="list_empty">Sorry, we couldn\'t find any data</string>
     <string name="added_to_favorites">Added to favorites!</string>
     <string name="already_exist">Already in favorites!</string>
 
