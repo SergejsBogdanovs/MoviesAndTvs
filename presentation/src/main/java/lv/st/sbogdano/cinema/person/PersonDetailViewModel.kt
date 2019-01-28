@@ -25,7 +25,6 @@ class PersonDetailViewModel(
     val movieCredits = ObservableArrayList<MovieCreditDomainModel>()
 
     fun loadPersonDetail(id: Int) = addDisposable(getPersonById(id))
-    fun loadMovieCredits(person: Int) = addDisposable(getMovieCreditsByPersonId(person))
 
     private fun getPersonById(id: Int): Disposable {
         return personGetByIdUseCase.execute(id)
@@ -38,6 +37,7 @@ class PersonDetailViewModel(
                     override fun onNext(t: PersonDomainModel) {
                         loading.set(false)
                         person.set(t)
+                        addDisposable(getMovieCreditsByPersonId(id))
                     }
 
                     override fun onError(e: Throwable) {

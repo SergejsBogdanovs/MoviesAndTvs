@@ -15,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/primaryLightColor"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
 
@@ -57,6 +58,7 @@
             android:layout_marginEnd="8dp"
             android:text="@{personDetailViewModel.person.name}"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/secondaryLightColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="parent"
@@ -71,6 +73,7 @@
             android:text="@string/known_for_label"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/secondaryLightColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -80,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{personDetailViewModel.person.knownForDepartment}"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/known_for_label"
             tools:text="Acting" />
@@ -93,6 +97,7 @@
             android:text="@string/gender_label"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/secondaryLightColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/known_for" />
 
@@ -102,6 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{personDetailViewModel.person.gender == 2 ? &quot;Male&quot; : &quot;Female&quot;}"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/gender_label"
             tools:text="Male" />
@@ -115,6 +121,7 @@
             android:text="@string/birthday_label"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/secondaryLightColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/gender" />
 
@@ -124,6 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{personDetailViewModel.person.birthDay}"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/birthday_label"
             tools:text="1963-12-18" />
@@ -137,6 +145,7 @@
             android:text="@string/place_of_birth_label"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/secondaryLightColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/birthday"
             app:visible="@{!personDetailViewModel.person.placeOfBirth.isEmpty()}" />
@@ -148,6 +157,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="@{personDetailViewModel.person.placeOfBirth}"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/place_of_birth_label"
@@ -162,6 +172,7 @@
             android:text="@string/official_site_label"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/secondaryLightColor"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/place_of_birth"
             app:visible="@{!personDetailViewModel.person.homePage.isEmpty()}" />
@@ -187,6 +198,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:background="@color/primaryTextColor"
             android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

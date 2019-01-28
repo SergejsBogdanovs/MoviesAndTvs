@@ -44,12 +44,4 @@ class KnownForListFragment : DaggerFragment() {
         binder.viewModel = viewModel
         return binder.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val person = arguments?.getInt(ARG_KNOWN_FOR)!!
-        viewModel?.loadMovieCredits(person)
-    }
-
-
 }
