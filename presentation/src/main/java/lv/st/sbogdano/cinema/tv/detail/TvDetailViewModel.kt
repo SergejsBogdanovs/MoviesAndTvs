@@ -34,7 +34,7 @@ class TvDetailViewModel(
         addDisposable(getTvById(id))
     }
 
-    fun addItemToFavorites(id: Int, path: String) {
+    fun addItemToFavorites(path: String) {
         if (!isFavorite.get()) {
             addDisposable(addToFavorites(tv.get()!!, path))
         } else {

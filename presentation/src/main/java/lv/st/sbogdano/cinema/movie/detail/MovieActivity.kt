@@ -59,7 +59,7 @@ class MovieActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
         movieDetailViewModel.loadVideos(id, PATH)
         movieDetailViewModel.loadReviews(id, PATH)
 
-        binder.fabFavorite.setOnClickListener { movieDetailViewModel.addItemToFavorites(id, PATH) }
+        binder.fabFavorite.setOnClickListener { movieDetailViewModel.addItemToFavorites(PATH) }
 
         movieDetailViewModel.movie.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {

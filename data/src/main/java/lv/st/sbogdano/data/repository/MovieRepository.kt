@@ -22,7 +22,7 @@ class MovieRepository(
                 .doOnNext { movieLocalDataSource.insertAll(it) }
 
         return Observable.just(refresh)
-                .doOnNext { if (it) movieLocalDataSource.deleteByType(type) }
+                .doOnNext { if (refresh) movieLocalDataSource.deleteByType(type) }
                 .flatMap {
                     Observable.concat(local, remote)
                             .firstElement()

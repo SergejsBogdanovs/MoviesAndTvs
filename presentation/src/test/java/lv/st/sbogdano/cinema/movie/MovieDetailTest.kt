@@ -31,13 +31,15 @@ class MovieDetailTest {
     @Mock
     private lateinit var movieGetByIdUseCase: MovieGetByIdUseCase
     @Mock
+    private lateinit var addToFavoritesUseCase: AddToFavoritesUseCase
+    @Mock
     private lateinit var creditsGetByIdUseCase: CreditsGetByIdUseCase
     @Mock
     private lateinit var videosGetByIdUseCase: VideosGetByIdUseCase
     @Mock
     private lateinit var reviewGetByIdUseCase: ReviewGetByIdUseCase
     @Mock
-    private lateinit var addToFavoritesUseCase: AddToFavoritesUseCase
+    private lateinit var getFavoriteByIdUseCase: GetFavoriteByIdUseCase
 
     private lateinit var movieDetailViewModel: MovieDetailViewModel
     private lateinit var mapper: MovieMapper
@@ -52,7 +54,12 @@ class MovieDetailTest {
         movieDetailViewModel = MovieDetailViewModel(
                 context,
                 movieGetByIdUseCase,
-                addToFavoritesUseCase)
+                addToFavoritesUseCase,
+                creditsGetByIdUseCase,
+                videosGetByIdUseCase,
+                reviewGetByIdUseCase,
+                getFavoriteByIdUseCase)
+
         mapper = MovieMapper()
     }
 
@@ -69,7 +76,8 @@ class MovieDetailTest {
                 "title",
                 1.0f,
                 1,
-                1.0f)
+                1.0f,
+                "movie")
 
         `when`(movieGetByIdUseCase.execute(movieId)).thenReturn(Observable.just(movie))
 
@@ -77,6 +85,7 @@ class MovieDetailTest {
         movieDetailViewModel.loadMovieDetail(movieId)
 
         // Should
+        //assertThat(movieDetailViewModel.isFavorite.get(), `is`(false))
         assertThat(movieDetailViewModel.movie.get(), `is`(mapper.toModel(movie)))
     }
 
@@ -121,7 +130,7 @@ class MovieDetailTest {
         `when`(creditsGetByIdUseCase.execute(params)).thenReturn(Observable.just(credits))
 
         // When
-        movieDetailViewModel.loadCredits(movieId)
+        movieDetailViewModel.loadCredits(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.credits, `is`(credits))
@@ -136,7 +145,7 @@ class MovieDetailTest {
         `when`(creditsGetByIdUseCase.execute(params)).thenReturn(Observable.just(credits))
 
         // When
-        movieDetailViewModel.loadCredits(movieId)
+        movieDetailViewModel.loadCredits(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.empty.get(), `is`(true))
@@ -151,7 +160,7 @@ class MovieDetailTest {
         `when`(creditsGetByIdUseCase.execute(params)).thenReturn(Observable.error(error))
 
         // When
-        movieDetailViewModel.loadCredits(movieId)
+        movieDetailViewModel.loadCredits(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.error.get(), `is`(error.message))
@@ -167,7 +176,7 @@ class MovieDetailTest {
         `when`(creditsGetByIdUseCase.execute(params)).thenReturn(Observable.error(RuntimeException()))
 
         // When
-        movieDetailViewModel.loadCredits(movieId)
+        movieDetailViewModel.loadCredits(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.error.get(), `is`(error))
@@ -182,7 +191,7 @@ class MovieDetailTest {
         `when`(videosGetByIdUseCase.execute(params)).thenReturn(Observable.just(videos))
 
         // When
-        movieDetailViewModel.loadVideos(movieId)
+        movieDetailViewModel.loadVideos(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.video.get(), `is`(videos.first()))
@@ -197,7 +206,7 @@ class MovieDetailTest {
         `when`(videosGetByIdUseCase.execute(params)).thenReturn(Observable.error(error))
 
         // When
-        movieDetailViewModel.loadVideos(movieId)
+        movieDetailViewModel.loadVideos(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.error.get(), `is`(error.message))
@@ -213,7 +222,7 @@ class MovieDetailTest {
         `when`(videosGetByIdUseCase.execute(params)).thenReturn(Observable.error(RuntimeException()))
 
         // When
-        movieDetailViewModel.loadVideos(movieId)
+        movieDetailViewModel.loadVideos(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.error.get(), `is`(error))
@@ -229,7 +238,7 @@ class MovieDetailTest {
         `when`(reviewGetByIdUseCase.execute(params)).thenReturn(Observable.just(reviews))
 
         // When
-        movieDetailViewModel.loadReviews(movieId)
+        movieDetailViewModel.loadReviews(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.reviews, `is`(reviews))
@@ -244,7 +253,7 @@ class MovieDetailTest {
         `when`(reviewGetByIdUseCase.execute(params)).thenReturn(Observable.just(reviews))
 
         // When
-        movieDetailViewModel.loadReviews(movieId)
+        movieDetailViewModel.loadReviews(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.empty.get(), `is`(true))
@@ -259,7 +268,7 @@ class MovieDetailTest {
         `when`(reviewGetByIdUseCase.execute(params)).thenReturn(Observable.error(error))
 
         // When
-        movieDetailViewModel.loadReviews(movieId)
+        movieDetailViewModel.loadReviews(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.error.get(), `is`(error.message))
@@ -275,7 +284,7 @@ class MovieDetailTest {
         `when`(reviewGetByIdUseCase.execute(params)).thenReturn(Observable.error(RuntimeException()))
 
         // When
-        movieDetailViewModel.loadReviews(movieId)
+        movieDetailViewModel.loadReviews(movieId, path)
 
         // Should
         assertThat(movieDetailViewModel.error.get(), `is`(error))

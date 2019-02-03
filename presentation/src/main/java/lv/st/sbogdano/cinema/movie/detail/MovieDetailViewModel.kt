@@ -34,7 +34,7 @@ class MovieDetailViewModel(
         addDisposable(getMovieById(id))
     }
 
-    fun addItemToFavorites(id: Int, path: String) {
+    fun addItemToFavorites(path: String) {
         if (!isFavorite.get()) {
             addDisposable(addToFavorites(movie.get()!!, path))
         } else {
