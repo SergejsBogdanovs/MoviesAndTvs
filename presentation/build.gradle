@@ -70,8 +70,8 @@ dependencies {
     // UI
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.vectordrawable:vectordrawable:$vectorDrawableVersion"
-    implementation "androidx.recyclerview:recyclerview:$coreXVersion"
-    implementation "androidx.cardview:cardview:$coreXVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
+    implementation "androidx.cardview:cardview:$cardviewVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.github.lzyzsd:circleprogress:$circleprogressVersion"
     implementation "com.google.android:flexbox:$flexboxLayoutVersion"
@@ -119,5 +119,5 @@ dependencies {
 
     // Instrumentation tests
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation "androidx.annotation:annotation:$coreXVersion"
+    androidTestImplementation "androidx.annotation:annotation:$annotationVersion"
 }

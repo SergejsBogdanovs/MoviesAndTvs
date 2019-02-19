@@ -59,8 +59,8 @@ class HomeActivity : DaggerAppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putInt(BOTTOM_NAV_ITEM_KEY, binder.bottomNavigation.selectedItemId)
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(BOTTOM_NAV_ITEM_KEY, binder.bottomNavigation.selectedItemId)
         super.onSaveInstanceState(outState)
     }
 
