@@ -1,11 +1,12 @@
-package lv.st.sbogdano.domain
+package lv.st.sbogdano.domain.usecases
 
 import io.reactivex.Observable
+import lv.st.sbogdano.domain.Schedulers
 
 /**
  * A base class for an use case that will be executed by presentation layer
  */
-abstract class UseCase<in Params, Result> internal constructor(private val schedulers: Schedulers) {
+abstract class ObservableUseCase<in Params, Result> internal constructor(private val schedulers: Schedulers) {
 
     internal abstract fun buildObservable(params: Params?): Observable<Result>
 

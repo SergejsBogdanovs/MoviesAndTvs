@@ -23,8 +23,8 @@ internal abstract class TvModule {
         internal fun provideTvGetByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): TvGetByIdUseCase {
-            return TvGetByIdUseCase(schedulers, gateway)
+        ): TvGetByIdObservableUseCase {
+            return TvGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @TvScope
@@ -33,8 +33,8 @@ internal abstract class TvModule {
         internal fun provideCreditsGetByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): CreditsGetByIdUseCase {
-            return CreditsGetByIdUseCase(schedulers, gateway)
+        ): CreditsGetByIdObservableUseCase {
+            return CreditsGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @TvScope
@@ -43,8 +43,8 @@ internal abstract class TvModule {
         internal fun provideVideosGetByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): VideosGetByIdUseCase {
-            return VideosGetByIdUseCase(schedulers, gateway)
+        ): VideosGetByIdObservableUseCase {
+            return VideosGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @TvScope
@@ -53,8 +53,8 @@ internal abstract class TvModule {
         internal fun provideReviewsGetByIdAllUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): ReviewGetByIdUseCase {
-            return ReviewGetByIdUseCase(schedulers, gateway)
+        ): ReviewGetByIdObservableUseCase {
+            return ReviewGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @TvScope
@@ -73,21 +73,21 @@ internal abstract class TvModule {
         internal fun provideGetFavoriteByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): GetFavoriteByIdUseCase {
-            return GetFavoriteByIdUseCase(schedulers, gateway)
+        ): GetFavoriteByIdObservableUseCase {
+            return GetFavoriteByIdObservableUseCase(schedulers, gateway)
         }
 
         @TvScope
         @Provides
         @JvmStatic
         internal fun provideViewModelFactory(
-            context: Context,
-            tvGetByIdUseCase: TvGetByIdUseCase,
-            addToFavoritesUseCase: AddToFavoritesUseCase,
-            creditsGetByIdUseCase: CreditsGetByIdUseCase,
-            videosGetByIdUseCase: VideosGetByIdUseCase,
-            reviewGetByIdUseCase: ReviewGetByIdUseCase,
-            getFavoriteByIdUseCase: GetFavoriteByIdUseCase
+                context: Context,
+                tvGetByIdUseCase: TvGetByIdObservableUseCase,
+                addToFavoritesUseCase: AddToFavoritesUseCase,
+                creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
+                videosGetByIdUseCase: VideosGetByIdObservableUseCase,
+                reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
+                getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")

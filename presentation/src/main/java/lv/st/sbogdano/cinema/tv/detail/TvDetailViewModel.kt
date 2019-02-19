@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.databinding.ObservableField
 import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.basemodel.Tv
@@ -12,13 +13,13 @@ import lv.st.sbogdano.domain.interactor.*
 import lv.st.sbogdano.domain.model.TvDomainModel
 
 class TvDetailViewModel(
-    context: Context,
-    private val tvGetByIdUseCase: TvGetByIdUseCase,
-    private val addToFavoritesUseCase: AddToFavoritesUseCase,
-    creditsGetByIdUseCase: CreditsGetByIdUseCase,
-    videosGetByIdUseCase: VideosGetByIdUseCase,
-    reviewGetByIdUseCase: ReviewGetByIdUseCase,
-    getFavoriteByIdUseCase: GetFavoriteByIdUseCase
+        context: Context,
+        private val tvGetByIdUseCase: TvGetByIdObservableUseCase,
+        private val addToFavoritesUseCase: AddToFavoritesUseCase,
+        creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
+        videosGetByIdUseCase: VideosGetByIdObservableUseCase,
+        reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
+        getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
 ) : BaseAndroidViewModel(
         context.applicationContext as Application,
         creditsGetByIdUseCase,
@@ -69,10 +70,9 @@ class TvDetailViewModel(
         val favoriteDomainModel = tvMapper.toDomainModel(tv, path)
 
         return addToFavoritesUseCase.execute(favoriteDomainModel)
-                .subscribeWith(object : DisposableObserver<Long>() {
-                    override fun onComplete() {}
+                .subscribeWith(object : DisposableCompletableObserver() {
 
-                    override fun onNext(t: Long) {
+                    override fun onComplete() {
                         isFavorite.set(true)
                         isInserted.value = true
                     }

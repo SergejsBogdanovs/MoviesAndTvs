@@ -8,15 +8,15 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.domain.interactor.MovieCreditsGetByPersonIdUseCase
-import lv.st.sbogdano.domain.interactor.PersonGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.MovieCreditsGetByPersonIdObservableUseCase
+import lv.st.sbogdano.domain.interactor.PersonGetByIdObservableUseCase
 import lv.st.sbogdano.domain.model.MovieCreditDomainModel
 import lv.st.sbogdano.domain.model.PersonDomainModel
 
 class PersonDetailViewModel(
         context: Context,
-        private val personGetByIdUseCase: PersonGetByIdUseCase,
-        private val movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdUseCase
+        private val personGetByIdUseCase: PersonGetByIdObservableUseCase,
+        private val movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdObservableUseCase
 ) : BaseAndroidViewModel(
         context.applicationContext as Application
 ) {

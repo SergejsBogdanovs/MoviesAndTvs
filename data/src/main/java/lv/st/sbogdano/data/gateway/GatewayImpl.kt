@@ -1,5 +1,6 @@
 package lv.st.sbogdano.data.gateway
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import lv.st.sbogdano.data.gateway.mapper.GatewayMapper
 import lv.st.sbogdano.data.repository.*
@@ -54,7 +55,7 @@ class GatewayImpl(
                     .doOnError { println("Reviews by Id(${params.first}) Error") }
                     .map { it.map { reviewLocalModel -> mapper.toDomainModel(reviewLocalModel) } }
 
-    override fun addToFavorites(favoriteDomainModel: FavoriteDomainModel): Observable<Long> =
+    override fun addToFavorites(favoriteDomainModel: FavoriteDomainModel): Completable =
             favoritesRepository.addToFavorites(mapper.toLocalModel(favoriteDomainModel))
                     .doOnError { println("Error while adding movie to favorites") }
 

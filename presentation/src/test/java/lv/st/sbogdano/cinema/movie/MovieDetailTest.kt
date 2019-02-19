@@ -29,17 +29,17 @@ class MovieDetailTest {
     @Mock
     private lateinit var application: Application
     @Mock
-    private lateinit var movieGetByIdUseCase: MovieGetByIdUseCase
+    private lateinit var movieGetByIdUseCase: MovieGetByIdObservableUseCase
     @Mock
     private lateinit var addToFavoritesUseCase: AddToFavoritesUseCase
     @Mock
-    private lateinit var creditsGetByIdUseCase: CreditsGetByIdUseCase
+    private lateinit var creditsGetByIdUseCase: CreditsGetByIdObservableUseCase
     @Mock
-    private lateinit var videosGetByIdUseCase: VideosGetByIdUseCase
+    private lateinit var videosGetByIdUseCase: VideosGetByIdObservableUseCase
     @Mock
-    private lateinit var reviewGetByIdUseCase: ReviewGetByIdUseCase
+    private lateinit var reviewGetByIdUseCase: ReviewGetByIdObservableUseCase
     @Mock
-    private lateinit var getFavoriteByIdUseCase: GetFavoriteByIdUseCase
+    private lateinit var getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
 
     private lateinit var movieDetailViewModel: MovieDetailViewModel
     private lateinit var mapper: MovieMapper

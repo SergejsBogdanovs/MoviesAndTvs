@@ -5,7 +5,7 @@ import android.content.Context
 import io.reactivex.Observable
 import lv.st.sbogdano.cinema.movie.list.MovieListViewModel
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
-import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllObservableUseCase
 import lv.st.sbogdano.domain.model.MovieDomainModel
 import org.hamcrest.core.Is.`is`
 import org.junit.Assert.assertThat
@@ -26,7 +26,7 @@ class MovieListTest {
     @Mock
     private lateinit var application: Application
     @Mock
-    private lateinit var moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+    private lateinit var moviesByTypeGetAllUseCase: MoviesByTypeGetAllObservableUseCase
 
     private lateinit var movieListViewModel: MovieListViewModel
     private lateinit var mMapper: MovieMapper

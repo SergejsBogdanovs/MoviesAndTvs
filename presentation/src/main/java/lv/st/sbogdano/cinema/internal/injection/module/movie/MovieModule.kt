@@ -23,8 +23,8 @@ internal abstract class MovieModule {
         internal fun provideMovieGetByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): MovieGetByIdUseCase {
-            return MovieGetByIdUseCase(schedulers, gateway)
+        ): MovieGetByIdObservableUseCase {
+            return MovieGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @MovieScope
@@ -33,8 +33,8 @@ internal abstract class MovieModule {
         internal fun provideCreditsGetByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): CreditsGetByIdUseCase {
-            return CreditsGetByIdUseCase(schedulers, gateway)
+        ): CreditsGetByIdObservableUseCase {
+            return CreditsGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @MovieScope
@@ -43,8 +43,8 @@ internal abstract class MovieModule {
         internal fun provideVideosGetByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): VideosGetByIdUseCase {
-            return VideosGetByIdUseCase(schedulers, gateway)
+        ): VideosGetByIdObservableUseCase {
+            return VideosGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @MovieScope
@@ -53,8 +53,8 @@ internal abstract class MovieModule {
         internal fun provideReviewsGetByIdAllUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): ReviewGetByIdUseCase {
-            return ReviewGetByIdUseCase(schedulers, gateway)
+        ): ReviewGetByIdObservableUseCase {
+            return ReviewGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @MovieScope
@@ -73,21 +73,21 @@ internal abstract class MovieModule {
         internal fun provideGetFavoriteByIdUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): GetFavoriteByIdUseCase {
-            return GetFavoriteByIdUseCase(schedulers, gateway)
+        ): GetFavoriteByIdObservableUseCase {
+            return GetFavoriteByIdObservableUseCase(schedulers, gateway)
         }
 
         @MovieScope
         @Provides
         @JvmStatic
         internal fun provideViewModelFactory(
-            context: Context,
-            movieGetByIdUseCase: MovieGetByIdUseCase,
-            addToFavoritesUseCase: AddToFavoritesUseCase,
-            creditsGetByIdUseCase: CreditsGetByIdUseCase,
-            videosGetByIdUseCase: VideosGetByIdUseCase,
-            reviewGetByIdUseCase: ReviewGetByIdUseCase,
-            getFavoriteByIdUseCase: GetFavoriteByIdUseCase
+                context: Context,
+                movieGetByIdUseCase: MovieGetByIdObservableUseCase,
+                addToFavoritesUseCase: AddToFavoritesUseCase,
+                creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
+                videosGetByIdUseCase: VideosGetByIdObservableUseCase,
+                reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
+                getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")

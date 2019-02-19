@@ -9,7 +9,7 @@ import lv.st.sbogdano.cinema.internal.injection.scope.StartupScope
 import lv.st.sbogdano.cinema.startup.StartupViewModel
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
-import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllObservableUseCase
 
 @Module
 internal class StartupModule {
@@ -19,14 +19,14 @@ internal class StartupModule {
     internal fun provideMoviesByTypeGetAllUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): MoviesByTypeGetAllUseCase {
-        return MoviesByTypeGetAllUseCase(schedulers, gateway)
+    ): MoviesByTypeGetAllObservableUseCase {
+        return MoviesByTypeGetAllObservableUseCase(schedulers, gateway)
     }
 
     @Provides
     internal fun provideViewModelFactory(
         context: Context,
-        moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+        moviesByTypeGetAllUseCase: MoviesByTypeGetAllObservableUseCase
     ): ViewModelProvider.Factory {
 
         return object : ViewModelProvider.Factory {

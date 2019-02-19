@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import io.reactivex.Completable
 import io.reactivex.Maybe
 import lv.st.sbogdano.data.local.model.FavoriteLocalModel
 
@@ -11,7 +12,7 @@ import lv.st.sbogdano.data.local.model.FavoriteLocalModel
 interface FavoritesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertToFavorites(favoriteLocalModel: FavoriteLocalModel): Maybe<Long>
+    fun insertToFavorites(favoriteLocalModel: FavoriteLocalModel): Completable
 
     @Query("SELECT * FROM Favorites WHERE type = :type")
     fun getAll(type: String): Maybe<List<FavoriteLocalModel>>

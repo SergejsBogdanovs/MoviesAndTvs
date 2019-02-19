@@ -15,9 +15,9 @@ import lv.st.sbogdano.cinema.tv.list.TvListFragment
 import lv.st.sbogdano.cinema.tv.list.TvListViewModel
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
-import lv.st.sbogdano.domain.interactor.FavoritesByTypeGetAllUseCase
-import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
-import lv.st.sbogdano.domain.interactor.TvsByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.FavoritesByTypeGetAllObservableUseCase
+import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllObservableUseCase
+import lv.st.sbogdano.domain.interactor.TvsByTypeGetAllObservableUseCase
 
 @Module
 internal abstract class HomeModule {
@@ -40,8 +40,8 @@ internal abstract class HomeModule {
         internal fun provideMoviesByTypeGetAllUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): MoviesByTypeGetAllUseCase {
-            return MoviesByTypeGetAllUseCase(schedulers, gateway)
+        ): MoviesByTypeGetAllObservableUseCase {
+            return MoviesByTypeGetAllObservableUseCase(schedulers, gateway)
         }
 
         @HomeScope
@@ -50,8 +50,8 @@ internal abstract class HomeModule {
         internal fun provideTvsByTypeGetAllUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): TvsByTypeGetAllUseCase {
-            return TvsByTypeGetAllUseCase(schedulers, gateway)
+        ): TvsByTypeGetAllObservableUseCase {
+            return TvsByTypeGetAllObservableUseCase(schedulers, gateway)
         }
 
         @HomeScope
@@ -60,18 +60,18 @@ internal abstract class HomeModule {
         internal fun provideFavoritesByTypeGetAllUseCase(
             schedulers: Schedulers,
             gateway: Gateway
-        ): FavoritesByTypeGetAllUseCase {
-            return FavoritesByTypeGetAllUseCase(schedulers, gateway)
+        ): FavoritesByTypeGetAllObservableUseCase {
+            return FavoritesByTypeGetAllObservableUseCase(schedulers, gateway)
         }
 
         @HomeScope
         @Provides
         @JvmStatic
         internal fun provideViewModelFactory(
-            context: Context,
-            moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase,
-            tvsByTypeGetAllUseCase: TvsByTypeGetAllUseCase,
-            favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllUseCase
+                context: Context,
+                moviesByTypeGetAllUseCase: MoviesByTypeGetAllObservableUseCase,
+                tvsByTypeGetAllUseCase: TvsByTypeGetAllObservableUseCase,
+                favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllObservableUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")

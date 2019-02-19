@@ -13,10 +13,10 @@ import io.reactivex.observers.DisposableObserver
 import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
 import lv.st.sbogdano.cinema.tv.mapper.TvMapper
-import lv.st.sbogdano.domain.interactor.CreditsGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.GetFavoriteByIdUseCase
-import lv.st.sbogdano.domain.interactor.ReviewGetByIdUseCase
-import lv.st.sbogdano.domain.interactor.VideosGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.CreditsGetByIdObservableUseCase
+import lv.st.sbogdano.domain.interactor.GetFavoriteByIdObservableUseCase
+import lv.st.sbogdano.domain.interactor.ReviewGetByIdObservableUseCase
+import lv.st.sbogdano.domain.interactor.VideosGetByIdObservableUseCase
 import lv.st.sbogdano.domain.model.CreditDomainModel
 import lv.st.sbogdano.domain.model.FavoriteDomainModel
 import lv.st.sbogdano.domain.model.ReviewDomainModel
@@ -24,11 +24,11 @@ import lv.st.sbogdano.domain.model.VideoDomainModel
 
 @SuppressLint("StaticFieldLeak")
 abstract class BaseAndroidViewModel(
-    application: Application,
-    private val creditsGetByIdUseCase: CreditsGetByIdUseCase?,
-    private val videosGetByIdUseCase: VideosGetByIdUseCase?,
-    private val reviewGetByIdUseCase: ReviewGetByIdUseCase?,
-    private val getFavoriteByIdUseCase: GetFavoriteByIdUseCase?
+        application: Application,
+        private val creditsGetByIdUseCase: CreditsGetByIdObservableUseCase?,
+        private val videosGetByIdUseCase: VideosGetByIdObservableUseCase?,
+        private val reviewGetByIdUseCase: ReviewGetByIdObservableUseCase?,
+        private val getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase?
 ) : AndroidViewModel(application) {
 
     constructor(application: Application) : this(

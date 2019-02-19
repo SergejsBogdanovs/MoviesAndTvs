@@ -9,12 +9,12 @@ import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.basemodel.Tv
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
 import lv.st.sbogdano.cinema.tv.mapper.TvMapper
-import lv.st.sbogdano.domain.interactor.TvsByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.TvsByTypeGetAllObservableUseCase
 import lv.st.sbogdano.domain.model.TvDomainModel
 
 class TvListViewModel(
     context: Context,
-    private val tvsByTypeGetAllUseCase: TvsByTypeGetAllUseCase
+    private val tvsByTypeGetAllUseCase: TvsByTypeGetAllObservableUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = TvMapper()

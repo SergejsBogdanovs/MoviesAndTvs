@@ -1,5 +1,6 @@
 package lv.st.sbogdano.domain.gateway
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import lv.st.sbogdano.domain.model.*
 
@@ -19,7 +20,7 @@ interface Gateway {
 
     fun getReviewsById(params: Pair<Int, String>): Observable<List<ReviewDomainModel>>
 
-    fun addToFavorites(favoriteDomainModel: FavoriteDomainModel): Observable<Long>
+    fun addToFavorites(favoriteDomainModel: FavoriteDomainModel): Completable
 
     fun getFavoritesByType(type: String): Observable<List<FavoriteDomainModel>>
 

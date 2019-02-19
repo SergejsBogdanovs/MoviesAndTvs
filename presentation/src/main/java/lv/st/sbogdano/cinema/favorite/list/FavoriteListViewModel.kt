@@ -9,12 +9,12 @@ import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.basemodel.Favorite
 import lv.st.sbogdano.cinema.favorite.mapper.FavoriteMapper
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
-import lv.st.sbogdano.domain.interactor.FavoritesByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.FavoritesByTypeGetAllObservableUseCase
 import lv.st.sbogdano.domain.model.FavoriteDomainModel
 
 class FavoriteListViewModel(
     context: Context,
-    private val favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllUseCase
+    private val favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllObservableUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = FavoriteMapper()

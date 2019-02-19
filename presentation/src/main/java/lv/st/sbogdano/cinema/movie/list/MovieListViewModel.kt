@@ -9,12 +9,12 @@ import lv.st.sbogdano.cinema.R
 import lv.st.sbogdano.cinema.basemodel.Movie
 import lv.st.sbogdano.cinema.internal.util.BaseAndroidViewModel
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
-import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllUseCase
+import lv.st.sbogdano.domain.interactor.MoviesByTypeGetAllObservableUseCase
 import lv.st.sbogdano.domain.model.MovieDomainModel
 
 class MovieListViewModel(
     context: Context,
-    private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllUseCase
+    private val moviesByTypeGetAllUseCase: MoviesByTypeGetAllObservableUseCase
 ) : BaseAndroidViewModel(context.applicationContext as Application) {
 
     private val mapper = MovieMapper()

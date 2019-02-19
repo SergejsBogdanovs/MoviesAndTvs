@@ -15,8 +15,8 @@ class DomainModule {
     internal fun provideMoviesByTypeGetAllUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): MoviesByTypeGetAllUseCase {
-        return MoviesByTypeGetAllUseCase(schedulers, gateway)
+    ): MoviesByTypeGetAllObservableUseCase {
+        return MoviesByTypeGetAllObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -24,8 +24,8 @@ class DomainModule {
     internal fun provideMovieGetByIdUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): MovieGetByIdUseCase {
-        return MovieGetByIdUseCase(schedulers, gateway)
+    ): MovieGetByIdObservableUseCase {
+        return MovieGetByIdObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -33,8 +33,8 @@ class DomainModule {
     internal fun provideTvByTypeGetAllUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): TvsByTypeGetAllUseCase {
-        return TvsByTypeGetAllUseCase(schedulers, gateway)
+    ): TvsByTypeGetAllObservableUseCase {
+        return TvsByTypeGetAllObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -42,8 +42,8 @@ class DomainModule {
     internal fun provideCreditsGetByIdAllUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): CreditsGetByIdUseCase {
-        return CreditsGetByIdUseCase(schedulers, gateway)
+    ): CreditsGetByIdObservableUseCase {
+        return CreditsGetByIdObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -51,8 +51,8 @@ class DomainModule {
     internal fun provideVideosGetByIdAllUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): VideosGetByIdUseCase {
-        return VideosGetByIdUseCase(schedulers, gateway)
+    ): VideosGetByIdObservableUseCase {
+        return VideosGetByIdObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -60,8 +60,8 @@ class DomainModule {
     internal fun provideReviewsGetByIdAllUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): ReviewGetByIdUseCase {
-        return ReviewGetByIdUseCase(schedulers, gateway)
+    ): ReviewGetByIdObservableUseCase {
+        return ReviewGetByIdObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -78,8 +78,8 @@ class DomainModule {
     internal fun provideFavoritesByTypeUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): FavoritesByTypeGetAllUseCase {
-        return FavoritesByTypeGetAllUseCase(schedulers, gateway)
+    ): FavoritesByTypeGetAllObservableUseCase {
+        return FavoritesByTypeGetAllObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -87,8 +87,8 @@ class DomainModule {
     internal fun providePersonsGetByIdUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): PersonGetByIdUseCase {
-        return PersonGetByIdUseCase(schedulers, gateway)
+    ): PersonGetByIdObservableUseCase {
+        return PersonGetByIdObservableUseCase(schedulers, gateway)
     }
 
     @Provides
@@ -96,7 +96,7 @@ class DomainModule {
     internal fun provideMovieCreditsGetByIdUseCase(
         schedulers: Schedulers,
         gateway: Gateway
-    ): MovieCreditsGetByPersonIdUseCase {
-        return MovieCreditsGetByPersonIdUseCase(schedulers, gateway)
+    ): MovieCreditsGetByPersonIdObservableUseCase {
+        return MovieCreditsGetByPersonIdObservableUseCase(schedulers, gateway)
     }
 }

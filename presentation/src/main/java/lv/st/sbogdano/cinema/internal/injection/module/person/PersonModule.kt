@@ -12,8 +12,8 @@ import lv.st.sbogdano.cinema.person.PersonDetailViewModel
 import lv.st.sbogdano.cinema.person.knownfor.KnownForListFragment
 import lv.st.sbogdano.domain.Schedulers
 import lv.st.sbogdano.domain.gateway.Gateway
-import lv.st.sbogdano.domain.interactor.MovieCreditsGetByPersonIdUseCase
-import lv.st.sbogdano.domain.interactor.PersonGetByIdUseCase
+import lv.st.sbogdano.domain.interactor.MovieCreditsGetByPersonIdObservableUseCase
+import lv.st.sbogdano.domain.interactor.PersonGetByIdObservableUseCase
 
 @Module
 internal abstract class PersonModule {
@@ -33,8 +33,8 @@ internal abstract class PersonModule {
         internal fun providePersonGetByIdUseCase(
                 schedulers: Schedulers,
                 gateway: Gateway
-        ): PersonGetByIdUseCase {
-            return PersonGetByIdUseCase(schedulers, gateway)
+        ): PersonGetByIdObservableUseCase {
+            return PersonGetByIdObservableUseCase(schedulers, gateway)
         }
 
         @PersonScope
@@ -43,8 +43,8 @@ internal abstract class PersonModule {
         internal fun provideMovieCreditsGetByPersonIdUseCase(
                 schedulers: Schedulers,
                 gateway: Gateway
-        ): MovieCreditsGetByPersonIdUseCase {
-            return MovieCreditsGetByPersonIdUseCase(schedulers, gateway)
+        ): MovieCreditsGetByPersonIdObservableUseCase {
+            return MovieCreditsGetByPersonIdObservableUseCase(schedulers, gateway)
         }
 
         @PersonScope
@@ -52,8 +52,8 @@ internal abstract class PersonModule {
         @JvmStatic
         internal fun provideViewModelFactory(
                 context: Context,
-                personGetByIdUseCase: PersonGetByIdUseCase,
-                movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdUseCase
+                personGetByIdUseCase: PersonGetByIdObservableUseCase,
+                movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdObservableUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
