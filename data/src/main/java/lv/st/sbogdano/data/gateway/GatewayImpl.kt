@@ -78,5 +78,4 @@ class GatewayImpl(
             movieCreditsRepository.getById(id)
                     .doOnError { println("Movie Credits by Id($id) Error") }
                     .map { it.map { movieCreditLocalModel -> mapper.toDomainModel(movieCreditLocalModel) } }
-
 }

@@ -7,9 +7,9 @@ import lv.st.sbogdano.domain.gateway.Gateway
 import lv.st.sbogdano.domain.model.PersonDomainModel
 
 class PersonGetByIdObservableUseCase(
-        schedulers: Schedulers,
-        private val gateway: Gateway
-) : ObservableUseCase<Int, PersonDomainModel>(schedulers){
+    schedulers: Schedulers,
+    private val gateway: Gateway
+) : ObservableUseCase<Int, PersonDomainModel>(schedulers) {
 
     override fun buildObservable(params: Int?): Observable<PersonDomainModel> {
         return gateway.getPersonById(params!!)

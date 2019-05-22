@@ -24,11 +24,11 @@ import lv.st.sbogdano.domain.model.VideoDomainModel
 
 @SuppressLint("StaticFieldLeak")
 abstract class BaseAndroidViewModel(
-        application: Application,
-        private val creditsGetByIdUseCase: CreditsGetByIdObservableUseCase?,
-        private val videosGetByIdUseCase: VideosGetByIdObservableUseCase?,
-        private val reviewGetByIdUseCase: ReviewGetByIdObservableUseCase?,
-        private val getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase?
+    application: Application,
+    private val creditsGetByIdUseCase: CreditsGetByIdObservableUseCase?,
+    private val videosGetByIdUseCase: VideosGetByIdObservableUseCase?,
+    private val reviewGetByIdUseCase: ReviewGetByIdObservableUseCase?,
+    private val getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase?
 ) : AndroidViewModel(application) {
 
     constructor(application: Application) : this(
@@ -132,7 +132,6 @@ abstract class BaseAndroidViewModel(
                     }
                 })
     }
-
 
     protected fun checkIsFavorite(movieId: Int): Disposable {
         return getFavoriteByIdUseCase!!.execute(movieId)

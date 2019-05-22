@@ -63,10 +63,9 @@ class FavoriteListFragment : DaggerFragment(), FavoriteListAdapter.Callbacks {
     override fun onItemClick(view: View, item: Favorite) {
         val imageView = view.findViewById<View>(R.id.poster)
         val sharedView = Pair(imageView, ViewCompat.getTransitionName(imageView))
-        when(item.type) {
+        when (item.type) {
             MOVIE -> activity?.let { navigator.navigateToMovie(it, item.id, sharedView) }
             TV -> activity?.let { navigator.navigateToTv(it, item.id, sharedView) }
         }
     }
-
 }

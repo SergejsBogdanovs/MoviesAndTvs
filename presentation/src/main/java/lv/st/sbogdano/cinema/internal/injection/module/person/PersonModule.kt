@@ -31,8 +31,8 @@ internal abstract class PersonModule {
         @Provides
         @JvmStatic
         internal fun providePersonGetByIdUseCase(
-                schedulers: Schedulers,
-                gateway: Gateway
+            schedulers: Schedulers,
+            gateway: Gateway
         ): PersonGetByIdObservableUseCase {
             return PersonGetByIdObservableUseCase(schedulers, gateway)
         }
@@ -41,8 +41,8 @@ internal abstract class PersonModule {
         @Provides
         @JvmStatic
         internal fun provideMovieCreditsGetByPersonIdUseCase(
-                schedulers: Schedulers,
-                gateway: Gateway
+            schedulers: Schedulers,
+            gateway: Gateway
         ): MovieCreditsGetByPersonIdObservableUseCase {
             return MovieCreditsGetByPersonIdObservableUseCase(schedulers, gateway)
         }
@@ -51,9 +51,9 @@ internal abstract class PersonModule {
         @Provides
         @JvmStatic
         internal fun provideViewModelFactory(
-                context: Context,
-                personGetByIdUseCase: PersonGetByIdObservableUseCase,
-                movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdObservableUseCase
+            context: Context,
+            personGetByIdUseCase: PersonGetByIdObservableUseCase,
+            movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdObservableUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
@@ -66,6 +66,5 @@ internal abstract class PersonModule {
                 }
             }
         }
-
     }
 }

@@ -7,9 +7,9 @@ import lv.st.sbogdano.data.remote.MovieCreditsRemoteDataSource
 import lv.st.sbogdano.data.repository.mapper.MovieCreditsListMapper
 
 class MovieCreditsRepository(
-        private val movieCreditsLocalDataSource: MovieCreditsLocalDataSource,
-        private val movieCreditsRemoteDataSource: MovieCreditsRemoteDataSource,
-        private val movieCreditsListMapper: MovieCreditsListMapper
+    private val movieCreditsLocalDataSource: MovieCreditsLocalDataSource,
+    private val movieCreditsRemoteDataSource: MovieCreditsRemoteDataSource,
+    private val movieCreditsListMapper: MovieCreditsListMapper
 ) {
 
     fun getById(id: Int): Observable<List<MovieCreditLocalModel>> {

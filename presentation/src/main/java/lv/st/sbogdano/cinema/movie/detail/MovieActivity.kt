@@ -82,7 +82,7 @@ class MovieActivity : DaggerAppCompatActivity(), CastsAdapter.Callbacks {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId) {
+        when (item?.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 return true

@@ -1,6 +1,5 @@
 package lv.st.sbogdano.cinema.person.knownfor
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

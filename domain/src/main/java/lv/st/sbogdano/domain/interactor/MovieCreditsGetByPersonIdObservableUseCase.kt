@@ -7,8 +7,8 @@ import lv.st.sbogdano.domain.gateway.Gateway
 import lv.st.sbogdano.domain.model.MovieCreditDomainModel
 
 class MovieCreditsGetByPersonIdObservableUseCase(
-        schedulers: Schedulers,
-        private val gateway: Gateway
+    schedulers: Schedulers,
+    private val gateway: Gateway
 ) : ObservableUseCase<Int, List<MovieCreditDomainModel>>(schedulers) {
 
     override fun buildObservable(params: Int?): Observable<List<MovieCreditDomainModel>> {

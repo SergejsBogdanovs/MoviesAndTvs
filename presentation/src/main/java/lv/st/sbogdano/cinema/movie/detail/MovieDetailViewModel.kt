@@ -13,13 +13,13 @@ import lv.st.sbogdano.domain.interactor.*
 import lv.st.sbogdano.domain.model.MovieDomainModel
 
 class MovieDetailViewModel(
-        context: Context,
-        private val movieGetByIdUseCase: MovieGetByIdObservableUseCase,
-        private val addToFavoritesUseCase: AddToFavoritesUseCase,
-        creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
-        videosGetByIdUseCase: VideosGetByIdObservableUseCase,
-        reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
-        getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
+    context: Context,
+    private val movieGetByIdUseCase: MovieGetByIdObservableUseCase,
+    private val addToFavoritesUseCase: AddToFavoritesUseCase,
+    creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
+    videosGetByIdUseCase: VideosGetByIdObservableUseCase,
+    reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
+    getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
 ) : BaseAndroidViewModel(
         context.applicationContext as Application,
         creditsGetByIdUseCase,

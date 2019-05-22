@@ -13,13 +13,13 @@ import lv.st.sbogdano.domain.interactor.*
 import lv.st.sbogdano.domain.model.TvDomainModel
 
 class TvDetailViewModel(
-        context: Context,
-        private val tvGetByIdUseCase: TvGetByIdObservableUseCase,
-        private val addToFavoritesUseCase: AddToFavoritesUseCase,
-        creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
-        videosGetByIdUseCase: VideosGetByIdObservableUseCase,
-        reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
-        getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
+    context: Context,
+    private val tvGetByIdUseCase: TvGetByIdObservableUseCase,
+    private val addToFavoritesUseCase: AddToFavoritesUseCase,
+    creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
+    videosGetByIdUseCase: VideosGetByIdObservableUseCase,
+    reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
+    getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
 ) : BaseAndroidViewModel(
         context.applicationContext as Application,
         creditsGetByIdUseCase,
@@ -82,6 +82,5 @@ class TvDetailViewModel(
                         ?: context.getString(R.string.unknown_error))
                     }
                 })
-
     }
 }

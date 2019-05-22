@@ -10,9 +10,9 @@ import lv.st.sbogdano.cinema.basemodel.Favorite
 import lv.st.sbogdano.cinema.databinding.FragmentFavoriteListItemBinding
 
 class FavoriteListAdapter(
-        private val items: List<Favorite>,
-        private val callbacks: Callbacks? = null,
-        private val imageSize: Pair<Int, Int>
+    private val items: List<Favorite>,
+    private val callbacks: Callbacks? = null,
+    private val imageSize: Pair<Int, Int>
 ) : RecyclerView.Adapter<FavoriteListAdapter.ViewHolder>() {
 
     interface Callbacks {

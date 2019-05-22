@@ -89,7 +89,7 @@ class MovieDetailTest {
         movieDetailViewModel.loadMovieDetail(movieId)
 
         // Should
-        //assertThat(movieDetailViewModel.isFavorite.get(), `is`(false))
+        // assertThat(movieDetailViewModel.isFavorite.get(), `is`(false))
         assertThat(movieDetailViewModel.movie.get(), `is`(mapper.toModel(movie)))
     }
 

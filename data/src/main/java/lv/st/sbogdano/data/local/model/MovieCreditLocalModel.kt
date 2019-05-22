@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "MovieCredits")
 data class MovieCreditLocalModel(
-        @PrimaryKey
-        val id: Int,
-        val posterPath: String?,
-        val voteAverage: Float
+    @PrimaryKey
+    val id: Int,
+    val posterPath: String?,
+    val voteAverage: Float
 )

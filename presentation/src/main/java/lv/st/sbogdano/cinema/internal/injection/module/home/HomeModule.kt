@@ -68,10 +68,10 @@ internal abstract class HomeModule {
         @Provides
         @JvmStatic
         internal fun provideViewModelFactory(
-                context: Context,
-                moviesByTypeGetAllUseCase: MoviesByTypeGetAllObservableUseCase,
-                tvsByTypeGetAllUseCase: TvsByTypeGetAllObservableUseCase,
-                favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllObservableUseCase
+            context: Context,
+            moviesByTypeGetAllUseCase: MoviesByTypeGetAllObservableUseCase,
+            tvsByTypeGetAllUseCase: TvsByTypeGetAllObservableUseCase,
+            favoritesByTypeGetAllUseCase: FavoritesByTypeGetAllObservableUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")

@@ -81,13 +81,13 @@ internal abstract class TvModule {
         @Provides
         @JvmStatic
         internal fun provideViewModelFactory(
-                context: Context,
-                tvGetByIdUseCase: TvGetByIdObservableUseCase,
-                addToFavoritesUseCase: AddToFavoritesUseCase,
-                creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
-                videosGetByIdUseCase: VideosGetByIdObservableUseCase,
-                reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
-                getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
+            context: Context,
+            tvGetByIdUseCase: TvGetByIdObservableUseCase,
+            addToFavoritesUseCase: AddToFavoritesUseCase,
+            creditsGetByIdUseCase: CreditsGetByIdObservableUseCase,
+            videosGetByIdUseCase: VideosGetByIdObservableUseCase,
+            reviewGetByIdUseCase: ReviewGetByIdObservableUseCase,
+            getFavoriteByIdUseCase: GetFavoriteByIdObservableUseCase
         ): ViewModelProvider.Factory {
             return object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")

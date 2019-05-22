@@ -53,7 +53,7 @@ class PersonActivity : DaggerAppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId) {
+        when (item?.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 return true
@@ -61,5 +61,4 @@ class PersonActivity : DaggerAppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 }

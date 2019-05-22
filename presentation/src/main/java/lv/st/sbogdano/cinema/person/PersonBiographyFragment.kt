@@ -1,6 +1,5 @@
 package lv.st.sbogdano.cinema.person
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +33,4 @@ class PersonBiographyFragment : DaggerFragment() {
         binder.viewModel = viewModel
         return binder.root
     }
-
-
 }

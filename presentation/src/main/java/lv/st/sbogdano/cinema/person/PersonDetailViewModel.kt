@@ -14,9 +14,9 @@ import lv.st.sbogdano.domain.model.MovieCreditDomainModel
 import lv.st.sbogdano.domain.model.PersonDomainModel
 
 class PersonDetailViewModel(
-        context: Context,
-        private val personGetByIdUseCase: PersonGetByIdObservableUseCase,
-        private val movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdObservableUseCase
+    context: Context,
+    private val personGetByIdUseCase: PersonGetByIdObservableUseCase,
+    private val movieCreditsGetByPersonIdUseCase: MovieCreditsGetByPersonIdObservableUseCase
 ) : BaseAndroidViewModel(
         context.applicationContext as Application
 ) {
@@ -48,7 +48,6 @@ class PersonDetailViewModel(
 
                     override fun onComplete() {
                     }
-
                 })
     }
 
