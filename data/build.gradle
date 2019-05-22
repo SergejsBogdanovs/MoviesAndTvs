@@ -28,8 +28,8 @@ android {
 
 }
 
-def API_URL = System.getenv("API_URL") ?: apiUrl
-def API_KEY = System.getenv("API_KEY") ?: apiKey
+def API_URL = "https://api.themoviedb.org/3/"
+def API_KEY = "ec37c7f4a198ea5f17aa1db00536041c"
 
 android.buildTypes.each { type ->
     type.buildConfigField "String", "API_URL", "\"$API_URL\""
