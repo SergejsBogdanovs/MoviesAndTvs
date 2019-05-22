@@ -61,7 +61,6 @@ abstract class BaseAndroidViewModel(
     fun loadVideos(id: Int, path: String) = addDisposable(getVideosById(id, path))
     fun loadReviews(id: Int, path: String) = addDisposable(getReviewsById(id, path))
 
-
     private fun getCreditsById(id: Int, path: String): Disposable {
         val params = Pair(id, path)
         return creditsGetByIdUseCase!!.execute(params)

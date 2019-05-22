@@ -5,6 +5,8 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import lv.st.sbogdano.cinema.R
 
+// In case you are using lazy initialization in the Main Thread and you are sure that it’s not going
+// to be used in different threads, then you can avoid all of this overhead to make it Thread Safe.
 fun <T> lazyThreadSafetyNone(initializer: () -> T): Lazy<T> = lazy(LazyThreadSafetyMode.NONE, initializer)
 
 fun imageSize(context: Context): Pair<Int, Int> {

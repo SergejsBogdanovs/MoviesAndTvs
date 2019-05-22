@@ -6,10 +6,7 @@ import io.reactivex.Observable
 import lv.st.sbogdano.cinema.movie.detail.MovieDetailViewModel
 import lv.st.sbogdano.cinema.movie.mapper.MovieMapper
 import lv.st.sbogdano.domain.interactor.*
-import lv.st.sbogdano.domain.model.CreditDomainModel
-import lv.st.sbogdano.domain.model.MovieDomainModel
-import lv.st.sbogdano.domain.model.ReviewDomainModel
-import lv.st.sbogdano.domain.model.VideoDomainModel
+import lv.st.sbogdano.domain.model.*
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -79,7 +76,14 @@ class MovieDetailTest {
                 1.0f,
                 "movie")
 
+        val favorite = FavoriteDomainModel(
+                1,
+                "posterPath",
+                "movie"
+        )
+
         `when`(movieGetByIdUseCase.execute(movieId)).thenReturn(Observable.just(movie))
+        `when`(getFavoriteByIdUseCase.execute(movieId)).thenReturn(Observable.just(favorite))
 
         // When
         movieDetailViewModel.loadMovieDetail(movieId)
@@ -96,6 +100,7 @@ class MovieDetailTest {
         // Given
         val error = RuntimeException("Error emission")
         `when`(movieGetByIdUseCase.execute(movieId)).thenReturn(Observable.error(error))
+        `when`(getFavoriteByIdUseCase.execute(movieId)).thenReturn(Observable.error(error))
 
         // When
         movieDetailViewModel.loadMovieDetail(movieId)
@@ -112,6 +117,7 @@ class MovieDetailTest {
         val error = "Unknown error"
         `when`(application.getString(ArgumentMatchers.anyInt())).thenReturn(error)
         `when`(movieGetByIdUseCase.execute(movieId)).thenReturn(Observable.error(RuntimeException()))
+        `when`(getFavoriteByIdUseCase.execute(movieId)).thenReturn(Observable.error(RuntimeException()))
 
         // When
         movieDetailViewModel.loadMovieDetail(movieId)
