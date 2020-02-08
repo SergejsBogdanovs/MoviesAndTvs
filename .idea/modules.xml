@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Cinema.iml" filepath="$PROJECT_DIR$/Cinema.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CinemaOld.iml" filepath="$PROJECT_DIR$/CinemaOld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data/CinemaOld-data.iml" filepath="$PROJECT_DIR$/data/CinemaOld-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain/CinemaOld-domain.iml" filepath="$PROJECT_DIR$/domain/CinemaOld-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/presentation/CinemaOld-presentation.iml" filepath="$PROJECT_DIR$/presentation/CinemaOld-presentation.iml" />
       <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/presentation/presentation.iml" filepath="$PROJECT_DIR$/presentation/presentation.iml" />
